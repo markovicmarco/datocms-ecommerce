@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Image as DatoImage, type ResponsiveImageType } from 'react-datocms';
 import type { ContentPage } from '@/components/WithRealTimeUpdates/types';
 import type { PageProps, Query } from './meta';
+import DatoImage from '@/components/DatoImage';
 
 const Content: ContentPage<PageProps, Query> = ({
   data,
@@ -23,9 +23,7 @@ const Content: ContentPage<PageProps, Query> = ({
         <div className="container relative mx-auto grid grid-cols-1 gap-12 md:grid-cols-2 md:px-12">
           <div className="relative h-screen w-full object-cover">
             <DatoImage
-              data={
-                data.showcase.displays[0].responsiveImage as ResponsiveImageType
-              }
+              fragment={data.showcase.displays[0].responsiveImage!}
               className="h-full w-full rounded-lg object-contain"
               layout="fill"
               objectFit="cover"
@@ -34,9 +32,7 @@ const Content: ContentPage<PageProps, Query> = ({
           </div>
           <div className="relative hidden h-screen w-full object-cover md:mt-32 md:block">
             <DatoImage
-              data={
-                data.showcase.displays[1].responsiveImage as ResponsiveImageType
-              }
+              fragment={data.showcase.displays[1].responsiveImage!}
               className="h-full w-full rounded-lg object-contain"
               layout="fill"
               objectFit="cover"
@@ -76,10 +72,7 @@ const Content: ContentPage<PageProps, Query> = ({
                 {collection.details.image.responsiveImage && (
                   <div className="absolute inset-0 h-full w-full rounded-lg object-cover object-right brightness-75">
                     <DatoImage
-                      data={
-                        collection.details.image
-                          .responsiveImage as ResponsiveImageType
-                      }
+                      fragment={collection.details.image.responsiveImage!}
                       className="h-full w-full rounded-lg object-contain"
                       layout="fill"
                       objectFit="cover"
@@ -103,9 +96,8 @@ const Content: ContentPage<PageProps, Query> = ({
           >
             <div className="relative h-96 w-full object-cover md:h-screen">
               <DatoImage
-                data={
-                  data.showcase.newProducts[0].productImages[0]
-                    .responsiveImage as ResponsiveImageType
+                fragment={
+                  data.showcase.newProducts[0].productImages[0].responsiveImage!
                 }
                 className="h-full w-full rounded-lg object-contain"
                 layout="fill"
@@ -135,9 +127,8 @@ const Content: ContentPage<PageProps, Query> = ({
           >
             <div className="relative h-96 w-full object-cover md:h-screen">
               <DatoImage
-                data={
-                  data.showcase.newProducts[1].productImages[0]
-                    .responsiveImage as ResponsiveImageType
+                fragment={
+                  data.showcase.newProducts[1].productImages[0].responsiveImage!
                 }
                 className="h-full w-full rounded-lg object-contain"
                 layout="fill"
@@ -171,10 +162,7 @@ const Content: ContentPage<PageProps, Query> = ({
             </h2>
             <div className="relative h-96 w-full object-cover">
               <DatoImage
-                data={
-                  data.showcase.materialsDisplay[0]
-                    .responsiveImage as ResponsiveImageType
-                }
+                fragment={data.showcase.materialsDisplay[0].responsiveImage!}
                 className="h-full w-full rounded-lg object-contain"
                 layout="fill"
                 objectFit="cover"
@@ -185,10 +173,7 @@ const Content: ContentPage<PageProps, Query> = ({
           <div className="md:pt-32">
             <div className="relative hidden h-96 w-full object-cover md:block">
               <DatoImage
-                data={
-                  data.showcase.materialsDisplay[1]
-                    .responsiveImage as ResponsiveImageType
-                }
+                fragment={data.showcase.materialsDisplay[1].responsiveImage!}
                 className="h-full w-full rounded-lg object-contain"
                 layout="fill"
                 objectFit="cover"
