@@ -121,7 +121,6 @@ const FilterDetail = ({
             />
           </div>
         </div>
-        )
       </div>
     </div>
   );
