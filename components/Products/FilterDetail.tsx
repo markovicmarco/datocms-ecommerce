@@ -6,14 +6,11 @@ import {
   type StructuredText,
 } from 'datocms-structured-text-utils';
 import type { Maybe } from 'graphql/jsutils/Maybe';
-import {
-  renderNodeRule,
-  StructuredText as StructuredTextField,
-} from 'react-datocms/structured-text';
+import { renderNodeRule } from 'react-datocms/structured-text';
 import ReactMarkdown from 'react-markdown';
+import DatoStructuredText from '@/components/DatoStructuredText';
 import type { FragmentType } from '@/graphql/types';
 import type { DatoImage_ResponsiveImageFragmentDoc } from '@/graphql/types/graphql';
-import Highlighter from '../Common/Highlighter';
 import DatoImage from '../DatoImage';
 
 type PropTypes = {
@@ -91,9 +88,8 @@ const FilterDetail = ({
         </div>
         <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:w-full lg:max-w-7xl lg:gap-x-8 lg:px-8">
           <div className="px-8 text-base leading-7 text-gray-700">
-            <StructuredTextField
+            <DatoStructuredText
               data={description}
-              renderNode={Highlighter}
               customNodeRules={[
                 renderNodeRule(isListItem, ({ children, key }) => {
                   return (

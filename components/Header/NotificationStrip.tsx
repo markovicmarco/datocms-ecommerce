@@ -5,16 +5,13 @@ import {
 } from 'datocms-structured-text-utils';
 import Link from 'next/link';
 import type { SetStateAction } from 'react';
-import {
-  renderNodeRule,
-  StructuredText as StructuredTextField,
-} from 'react-datocms/structured-text';
+import { renderNodeRule } from 'react-datocms/structured-text';
+import DatoStructuredText from '@/components/DatoStructuredText';
 import {
   type LayoutModelNotificationField,
   SiteLocale,
 } from '@/graphql/types/graphql';
 import type { ResolvedGlobalPageProps } from '@/utils/globalPageProps';
-import Highlighter from '../Common/Highlighter';
 
 type Props = {
   notification: LayoutModelNotificationField;
@@ -31,9 +28,8 @@ const NotificationStrip = ({
     <div className="bg-white pb-1">
       <div className="relative flex flex-nowrap items-center justify-center bg-primary/80 px-4 py-2 sm:flex-nowrap sm:gap-3 sm:py-4 sm:pr-8 md:px-8">
         <div className="order-1 mb-2 mt-2 flex h-full w-auto max-w-screen-sm items-center justify-center text-sm text-white sm:order-none sm:mb-0 sm:mt-0 md:text-base">
-          <StructuredTextField
+          <DatoStructuredText
             data={notification.value as StructuredText<Record, Record>}
-            renderNode={Highlighter}
             customNodeRules={[
               renderNodeRule(isLink, ({ node, children, key }) => {
                 return (

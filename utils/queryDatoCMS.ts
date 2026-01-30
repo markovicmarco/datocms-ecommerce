@@ -14,6 +14,12 @@ export default async function queryDatoCMS<
     variables,
     includeDrafts: isDraft,
     excludeInvalid: true,
+    ...(isDraft
+      ? {
+          contentLink: 'v1',
+          baseEditingUrl: process.env.DATOCMS_BASE_EDITING_URL,
+        }
+      : {}),
     requestInitOptions: {
       cache: isDraft ? 'no-store' : 'force-cache',
       next: isDraft ? undefined : { tags: ['datocms'] },
