@@ -9,7 +9,7 @@ type PropTypes = {
 
 const CookiesNotice = ({ setCookies, cookieNotice }: PropTypes) => {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-20 p-4">
+    <div className="fixed bottom-0 left-0 z-20 p-4">
       <div className="relative max-w-xl rounded-lg bg-gray-100 p-6 shadow-sm">
         <button
           type="button"

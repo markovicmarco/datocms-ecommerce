@@ -1,6 +1,7 @@
 import { isHeading, isList, isListItem } from 'datocms-structured-text-utils';
 import { notFound } from 'next/navigation';
-import { renderNodeRule, StructuredText } from 'react-datocms';
+import { renderNodeRule } from 'react-datocms';
+import DatoStructuredText from '@/components/DatoStructuredText';
 import FeaturedProducts from '@/components/Grids/FeaturedProducts';
 import ProductInfoSection from '@/components/Products/Product/Blocks/ProductInfoSection';
 import QuestionsSection from '@/components/Products/Product/Blocks/QuestionsSection';
@@ -22,7 +23,7 @@ const Content: ContentPage<PageProps, Query> = ({
       <div className="mx-12 mt-8 sm:mx-24 lg:mx-64">
         <div className="text-gray-500">
           {data.product.description && (
-            <StructuredText
+            <DatoStructuredText
               data={data.product.description}
               renderBlock={({ record }) => {
                 switch (record.__typename) {

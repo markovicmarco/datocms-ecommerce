@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
 
   const token = searchParams.get('token');
-  const url = searchParams.get('url');
+  const url = searchParams.get('redirect');
 
   if (token !== process.env.DRAFT_SECRET_TOKEN)
     return new Response('Invalid token', { status: 401 });

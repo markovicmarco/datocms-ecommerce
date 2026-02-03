@@ -1,3 +1,4 @@
+import ContentLink from '@/components/ContentLink';
 import ScrollToTop from '@/components/ScrollToTop';
 import '@/styles/global.css';
 import { draftMode } from 'next/headers';
@@ -13,6 +14,7 @@ export default async function RootLayout({ children }: Params) {
       <body className={'tracking-tight antialiased'}>
         {children}
         <ScrollToTop isDraft={isDraft} />
+        {isDraft && <ContentLink />}
       </body>
     </html>
   );

@@ -76,14 +76,14 @@ export async function POST(request: NextRequest) {
   if (parsedRequest.item.meta.status !== 'published') {
     previewLinks.push({
       label: 'Draft version',
-      url: `${baseUrl}/api/draft/enable?url=${url}&token=${token}`,
+      url: `${baseUrl}/api/draft/enable?token=${token}&redirect=${url}`,
     });
   }
 
   if (parsedRequest.item.meta.status !== 'draft') {
     previewLinks.push({
       label: 'Published version',
-      url: `${baseUrl}/api/draft/disable?url=${url}`,
+      url: `${baseUrl}/api/draft/disable?redirect=${url}`,
     });
   }
 

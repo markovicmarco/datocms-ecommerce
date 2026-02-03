@@ -1,9 +1,9 @@
-import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import type { SiteLocale } from '@/graphql/types/graphql';
 import type {
   GlobalPageProps,
   ResolvedGlobalPageProps,
 } from '@/utils/globalPageProps';
+import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
 
 // Type for resolved page props (after awaiting params)
 export type ResolvedPageProps<T extends GlobalPageProps> = Omit<T, 'params'> & {
@@ -29,6 +29,7 @@ export type RealtimeUpdatesPage<
   variables: TVariables;
   query: TypedDocumentNode<TResult, TVariables>;
   token: string;
+  baseEditingUrl: string;
   children?: React.ReactNode;
 }) => React.ReactNode;
 
