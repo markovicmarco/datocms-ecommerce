@@ -1,15 +1,17 @@
 import '@/styles/global.css';
 import { draftMode } from 'next/headers';
-import queryDatoCMS from '@/utils/queryDatoCMS'; // FIKS: Import bez zagrada jer je default export
+import queryDatoCMS from '@/utils/queryDatoCMS'; 
 import Script from 'next/script';
 
-// FIKS: Uklonjen import eksternog graphql fajla koji je pravio "Module not found"
-// Definišemo osnovni upit direktno ovde
 const BRAND_IDENTITY_QUERY = `
-  query BrandIdentity {
-    _site {
-      globalSeo {
-        siteName
+  query BrandIdentity($slug: String!) {
+    brandIdentity(filter: { slug: { eq: $slug } }) {
+      brandName
+      schemaData
+      seo {
+        title
+        description
+        image { url }
       }
     }
   }
@@ -22,10 +24,26 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ lng: string }>;
 }) {
+  const { isEnabled: isDraft } = await draftMode();
   const { lng } = await params;
+
+  // Povlačimo podatke za primarni entitet (npr. Eillence)
+  const data: any = await queryDatoCMS(BRAND_IDENTITY_QUERY as any, { slug: "eillence" }, isDraft);
+  const brand = data?.brandIdentity;
 
   return (
     <html lang={lng}>
+      <head>
+        {/* RAW HTML SCRIPT - Google ovo vidi trenutno, bez hidratacije */}
+        {brand?.schemaData && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ 
+              __html: JSON.stringify(brand.schemaData) 
+            }}
+          />
+        )}
+      </head>
       <body className="antialiased selection:bg-black selection:text-white font-sans">
         {children}
       </body>
