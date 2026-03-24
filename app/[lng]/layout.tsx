@@ -1,23 +1,37 @@
-import { generateWrapper } from '@/components/WithRealTimeUpdates/generateWrapper';
-import type { BuildVariablesFn } from '@/components/WithRealTimeUpdates/types';
-import type { SiteLocale } from '@/graphql/types/graphql';
-import Content from './Content';
-import { type PageProps, type Query, query, type Variables } from './meta';
-import RealTime from './RealTime';
+import '@/styles/global.css';
+import { draftMode } from 'next/headers';
+// POPRAVKA: Uvozimo default export (bez zagrada)
+import queryDatoCMS from '@/utils/queryDatoCMS'; 
+import Script from 'next/script';
 
-const buildVariables: BuildVariablesFn<PageProps, Variables> = ({
+// Definišemo upit direktno ovde da izbegnemo "Module not found" grešku
+const BRAND_IDENTITY_QUERY = `
+  query BrandIdentity {
+    _site {
+      globalSeo {
+        siteName
+      }
+    }
+  }
+`;
+
+export default async function RootLayout({
+  children,
   params,
-  fallbackLocale,
-}) => ({
-  locale: params.lng as SiteLocale,
-  fallbackLocale: [fallbackLocale],
-});
+}: {
+  children: React.ReactNode;
+  params: Promise<{ lng: string }>;
+}) {
+  const { lng } = await params;
 
-const layout = generateWrapper<PageProps, Query, Variables>({
-  query,
-  buildVariables,
-  contentComponent: Content,
-  realtimeComponent: RealTime,
-});
+  // Opciono: Možeš pozvati queryDatoCMS ovde ako ti trebaju globalni podaci
+  // const data = await queryDatoCMS(BRAND_IDENTITY_QUERY);
 
-export default layout;
+  return (
+    <html lang={lng}>
+      <body className="antialiased">
+        {children}
+      </body>
+    </html>
+  );
+}

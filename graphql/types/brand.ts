@@ -1,10 +1,11 @@
 export interface BrandIdentity {
   brandName: string;
-  schemaData: any; // JSON-LD struktura iz DatoCMS-a
+  slug: string;
+  schemaData: any; // Ovde ide tvoj JSON-LD za AI sisteme
   seo: {
     title: string;
     description: string;
-    image: {
+    image?: {
       url: string;
     };
   };
