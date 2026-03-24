@@ -12,7 +12,11 @@ const config: IGraphQLConfig = {
       },
     },
   ],
-  documents: ['./app/**/*.graphql', './components/**/*.graphql'],
+ documents: [
+  './app/**/*.{graphql,ts,tsx}', 
+  './components/**/*.{graphql,ts,tsx}',
+  './graphql/**/*.ts' // Da obuhvatiš i onaj brand.ts koji smo pominjali
+],
   extensions: {
     codegen: {
       generates: {

@@ -33,3 +33,17 @@ tsconfig.tsbuildinfo
 .vercel
 
 .env
+
+# Custom Environment Files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# DatoCMS specific (ako koristiš neki local cache)
+.datocms
+
+# Logovi i ostalo
+.turbo
+.eslintcache

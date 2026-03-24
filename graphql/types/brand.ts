@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import { gql } from '@/graphql/types'; // tvoj generisani gql
 
 export const BRAND_IDENTITY_QUERY = gql(`
+=======
+import { graphql } from "./gql";
+
+export const BRAND_IDENTITY_QUERY = graphql(`
+>>>>>>> chore: strict gitignore for environment security and clean entity architecture
   query BrandIdentity($slug: String) {
     brandIdentity(filter: { slug: { eq: $slug } }) {
       brandName
@@ -14,4 +20,8 @@ export const BRAND_IDENTITY_QUERY = gql(`
       }
     }
   }
+<<<<<<< HEAD
 `);
+=======
+`);
+>>>>>>> chore: strict gitignore for environment security and clean entity architecture
