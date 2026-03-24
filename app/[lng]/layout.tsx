@@ -1,10 +1,10 @@
 import '@/styles/global.css';
 import { draftMode } from 'next/headers';
-// POPRAVKA: Uvozimo default export (bez zagrada)
-import queryDatoCMS from '@/utils/queryDatoCMS'; 
+import queryDatoCMS from '@/utils/queryDatoCMS'; // FIKS: Import bez zagrada jer je default export
 import Script from 'next/script';
 
-// Definišemo upit direktno ovde da izbegnemo "Module not found" grešku
+// FIKS: Uklonjen import eksternog graphql fajla koji je pravio "Module not found"
+// Definišemo osnovni upit direktno ovde
 const BRAND_IDENTITY_QUERY = `
   query BrandIdentity {
     _site {
@@ -24,12 +24,9 @@ export default async function RootLayout({
 }) {
   const { lng } = await params;
 
-  // Opciono: Možeš pozvati queryDatoCMS ovde ako ti trebaju globalni podaci
-  // const data = await queryDatoCMS(BRAND_IDENTITY_QUERY);
-
   return (
     <html lang={lng}>
-      <body className="antialiased">
+      <body className="antialiased selection:bg-black selection:text-white font-sans">
         {children}
       </body>
     </html>
