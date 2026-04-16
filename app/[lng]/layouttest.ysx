@@ -1,0 +1,133 @@
+import '@/styles/global.css';
+import { draftMode } from 'next/headers';
+import queryDatoCMS from '@/utils/queryDatoCMS'; 
+import Script from 'next/script';
+
+const BRAND_IDENTITY_QUERY = `
+  query BrandIdentity($slug: String!) {
+    brandIdentity(filter: { slug: { eq: $slug } }) {
+      brandName
+      schemaData
+      seo {
+        title
+        description
+        image { url }
+      }
+    }
+  }
+`;
+
+export default async function RootLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ lng: string }>;
+}) {
+  const { isEnabled: isDraft } = await draftMode();
+  const { lng } = await params;
+
+  // Povlačimo podatke za primarni entitet (npr. Eillence)
+  const data: any = await queryDatoCMS(BRAND_IDENTITY_QUERY as any, { slug: "eillence" }, isDraft);
+  const brand = data?.brandIdentity;
+
+  return (
+    <html lang={lng}>
+      <head>
+        {/* RAW HTML SCRIPT - Google ovo vidi trenutno, bez hidratacije */}
+        {brand?.schemaData && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ 
+              __html: JSON.stringify(brand.schemaData) 
+            }}
+          />
+        )}
+      </head>
+      <body className="tracking-tight antialiased">
+        {children}
+      </body>
+    </html>
+  );
+}
+
+
+
+
+
+
+
+import { generateWrapper } from '@/components/WithRealTimeUpdates/generateWrapper';
+import type { BuildVariablesFn } from '@/components/WithRealTimeUpdates/types';
+import type { SiteLocale } from '@/graphql/types/graphql';
+import Content from './Content';
+import { type PageProps, type Query, query, type Variables } from './meta';
+import RealTime from './RealTime';
+import '@/styles/global.css';
+import { draftMode } from 'next/headers';
+import queryDatoCMS from '@/utils/queryDatoCMS'; 
+
+const BRAND_IDENTITY_QUERY = `
+  query BrandIdentity($slug: String!) {
+    brandIdentity(filter: { slug: { eq: $slug } }) {
+      brandName
+      schemaData
+      seo {
+        title
+        description
+        image { url }
+      }
+    }
+  }
+`;
+
+export default async function RootLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ lng: string }>;
+}) {
+  const { isEnabled: isDraft } = await draftMode();
+  const { lng } = await params;
+
+
+const buildVariables: BuildVariablesFn<PageProps, Variables> = ({
+  params,
+  fallbackLocale,
+}) => ({
+  locale: params.lng as SiteLocale,
+  fallbackLocale: [fallbackLocale],
+});
+
+const layout = generateWrapper<PageProps, Query, Variables>({
+  query,
+  buildVariables,
+  contentComponent: Content,
+  realtimeComponent: RealTime,
+});
+
+// Povlačimo podatke za primarni entitet (npr. Eillence)
+  const data: any = await queryDatoCMS(BRAND_IDENTITY_QUERY as any, { slug: "eillence" }, isDraft);
+  const brand = data?.brandIdentity;
+
+  return (
+    <html lang={lng}>
+      <head>
+        {/* RAW HTML SCRIPT - Google ovo vidi trenutno, bez hidratacije */}
+        {brand?.schemaData && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ 
+              __html: JSON.stringify(brand.schemaData) 
+            }}
+          />
+        )}
+      </head>
+      <body className="tracking-tight antialiased">
+        {children}
+      </body>
+    </html>
+  );
+}
+

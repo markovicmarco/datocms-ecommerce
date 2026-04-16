@@ -3,12 +3,7 @@ fragment HeroSection on HeroSectionRecord {
   id
   heroSubtitle
   heroTitle
-  heroImage {
-    responsiveImage {
-      ...DatoImage_responsiveImage
-    }
-  }
-  additionalImage {
+  heroImage { # Postavljeno na Multiple Assets u CMS-u
     responsiveImage {
       ...DatoImage_responsiveImage
     }
