@@ -16,6 +16,7 @@ const Hero = ({ fragment, globalPageProps }: Props) => {
   const data = getFragmentData(HeroSectionFragmentDoc, fragment);
   
   const {
+    id, // Uzimamo ID zapisa za Content Link
     heroTitle,
     heroSubtitle,
     heroImage,
@@ -54,17 +55,23 @@ const Hero = ({ fragment, globalPageProps }: Props) => {
   }, [isPaused, slides.length]);
 
   return (
-    <div className="bg-white min-h-screen flex flex-col">
+    /* DODATO: data-sidebar atribut na korenski element.
+       Ovo omogućava DatoCMS-u da "vidi" komponentu.
+    */
+    <div 
+      className="bg-white min-h-screen flex flex-col"
+      data-sidebar={id}
+    >
       <section className="mx-auto w-full max-w-[1920px] flex-grow flex flex-col">
         
-        {/* TOP TITLE - Fokus na eleganciju i prostor */}
+        {/* TOP TITLE */}
         <header className="py-16 md:py-24 border-b border-gray-100 px-4">
           <h1 className="text-center text-3xl md:text-[10rem] font-serif uppercase tracking-tight text-black leading-none transition-all duration-1000">
             {heroTitle ?? "Find Your Style"}
           </h1>
         </header>
 
-        {/* MAIN SLIDER - Od ivice do ivice unutar kontejnera */}
+        {/* MAIN SLIDER */}
         <div className="flex-grow flex items-center justify-center p-4 md:p-8 bg-white">
           <div 
             className="group relative w-full aspect-[16/10] md:aspect-[21/9] overflow-hidden rounded-sm shadow-sm cursor-crosshair"
@@ -101,15 +108,13 @@ const Hero = ({ fragment, globalPageProps }: Props) => {
               </div>
             ))}
             
-            {/* Suptilna linija koja se pojavljuje samo na hover */}
             <div className="absolute inset-y-0 left-1/2 w-px bg-white/40 z-20 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           </div>
         </div>
 
-        {/* BOTTOM NAVIGATION BAR - Direktno prema vizuelnom predlošku */}
+        {/* BOTTOM NAVIGATION BAR */}
         <footer className="px-4 md:px-12 py-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-8">
           
-          {/* SEASONS / COLLECTIONS */}
           <div className="flex gap-4 text-[10px] tracking-[0.2em] uppercase font-bold text-black">
             {['Spring', 'Summer', 'Fall', 'Winter'].map((season) => (
               <span key={season} className="hover:line-through cursor-pointer transition-all">
@@ -118,14 +123,12 @@ const Hero = ({ fragment, globalPageProps }: Props) => {
             ))}
           </div>
 
-          {/* CURATED SUBTITLE */}
           <div className="max-w-md text-center">
             <p className="text-[10px] md:text-[11px] uppercase tracking-[0.15em] font-medium text-black underline underline-offset-8 decoration-gray-200">
               {heroSubtitle}
             </p>
           </div>
 
-          {/* SOCIALS */}
           <div className="flex items-center gap-6">
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
               {socialLabel ?? 'Socials'}
