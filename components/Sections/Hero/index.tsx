@@ -16,12 +16,11 @@ const Hero = ({ fragment, globalPageProps }: Props) => {
   const data = getFragmentData(HeroSectionFragmentDoc, fragment);
   
   const {
-    id, // Uzimamo ID zapisa za Content Link
+    id,
     heroTitle,
     heroSubtitle,
     heroImage,
     socialLabel,
-    featuredCollections,
     socials,
   } = data;
 
@@ -55,26 +54,23 @@ const Hero = ({ fragment, globalPageProps }: Props) => {
   }, [isPaused, slides.length]);
 
   return (
-    /* DODATO: data-sidebar atribut na korenski element.
-       Ovo omogućava DatoCMS-u da "vidi" komponentu.
-    */
     <div 
-      className="bg-white min-h-screen flex flex-col"
+      className="bg-white w-full" 
       data-sidebar={id}
     >
-      <section className="mx-auto w-full max-w-[1920px] flex-grow flex flex-col">
+      <section className="mx-auto w-full max-w-[1920px] flex flex-col">
         
-        {/* TOP TITLE */}
-        <header className="py-16 md:py-24 border-b border-gray-100 px-4">
-          <h1 className="text-center text-3xl md:text-[10rem] font-serif uppercase tracking-tight text-black leading-none transition-all duration-1000">
+        {/* TOP TITLE - Elegantna tipografija i smanjen prostor */}
+        <header className="py-6 md:py-10 border-b border-gray-100 px-4">
+          <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-[4rem] font-serif uppercase tracking-[0.2em] text-black leading-[0.8] transition-all duration-1000">
             {heroTitle ?? "Find Your Style"}
           </h1>
         </header>
 
-        {/* MAIN SLIDER */}
-        <div className="flex-grow flex items-center justify-center p-4 md:p-8 bg-white">
+        {/* MAIN SLIDER - Panoramski prikaz "zalepljen" uz header i footer */}
+        <div className="flex items-start justify-center p-2 md:p-4 pt-4 md:pt-6 bg-white">
           <div 
-            className="group relative w-full aspect-[16/10] md:aspect-[21/9] overflow-hidden rounded-sm shadow-sm cursor-crosshair"
+            className="group relative w-full aspect-[21/9] md:aspect-[3/1] lg:aspect-[4/1] overflow-hidden rounded-sm shadow-sm cursor-crosshair max-h-[50vh]"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
@@ -85,6 +81,7 @@ const Hero = ({ fragment, globalPageProps }: Props) => {
                   index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
                 }`}
               >
+                {/* Before Image */}
                 <div className="relative w-1/2 h-full border-r border-white/10 overflow-hidden">
                   <DatoImage
                     fragment={slide.before}
@@ -95,6 +92,7 @@ const Hero = ({ fragment, globalPageProps }: Props) => {
                   </div>
                 </div>
 
+                {/* After Image */}
                 <div className="relative w-1/2 h-full overflow-hidden">
                   <DatoImage
                     fragment={slide.after}
@@ -108,44 +106,48 @@ const Hero = ({ fragment, globalPageProps }: Props) => {
               </div>
             ))}
             
+            {/* Središnja linija na hover */}
             <div className="absolute inset-y-0 left-1/2 w-px bg-white/40 z-20 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           </div>
         </div>
 
-        {/* BOTTOM NAVIGATION BAR */}
-        <footer className="px-4 md:px-12 py-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-8">
+        {/* BOTTOM NAVIGATION BAR - Kompaktno povezan sa slajderom */}
+        <footer className="px-4 md:px-12 py-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
           
-          <div className="flex gap-4 text-[10px] tracking-[0.2em] uppercase font-bold text-black">
+          {/* SEASONS */}
+          <div className="flex gap-6 text-[9px] md:text-[10px] tracking-[0.2em] uppercase font-bold text-black">
             {['Spring', 'Summer', 'Fall', 'Winter'].map((season) => (
-              <span key={season} className="hover:line-through cursor-pointer transition-all">
+              <span key={season} className="hover:line-through cursor-pointer transition-all duration-500">
                 {season}
               </span>
             ))}
           </div>
 
-          <div className="max-w-md text-center">
-            <p className="text-[10px] md:text-[11px] uppercase tracking-[0.15em] font-medium text-black underline underline-offset-8 decoration-gray-200">
+          {/* SUBTITLE */}
+          <div className="max-w-xs md:max-w-md text-center">
+            <p className="text-[9px] md:text-[10px] uppercase tracking-[0.12em] font-medium text-black leading-relaxed">
               {heroSubtitle}
             </p>
           </div>
 
-          <div className="flex items-center gap-6">
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
+          {/* SOCIALS */}
+          <div className="flex items-center gap-8">
+            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-300">
               {socialLabel ?? 'Socials'}
             </span>
-            <div className="flex gap-5">
+            <div className="flex gap-4">
               {socials.map((social) => (
                 <Link 
                   key={social.id} 
                   href={social.url ?? "#"} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="opacity-60 hover:opacity-100 transition-all transform hover:-translate-y-1"
+                  className="opacity-40 hover:opacity-100 transition-all duration-500 transform hover:-translate-y-0.5"
                 >
                   <img 
                     src={social.icon.url} 
                     alt={social.name ?? "Social Media"} 
-                    className="h-4 w-4 grayscale hover:grayscale-0" 
+                    className="h-3.5 w-3.5 grayscale" 
                   />
                 </Link>
               ))}
