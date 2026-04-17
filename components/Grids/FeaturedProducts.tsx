@@ -21,82 +21,98 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
   );
 
   const { sale, currencySymbol } = fragmentData;
+  const relatedProducts = data.product?.relatedProducts || [];
+
+  if (relatedProducts.length === 0) return null;
 
   return (
-    <section className="w-full bg-white py-20 border-t border-gray-100">
+    <section className="w-full bg-white py-20 border-t border-black/5">
       <div className="max-w-[1920px] mx-auto px-4 md:px-12">
-        {/* SECTION HEADER - Minimalist */}
-        <div className="mb-12 flex items-end justify-between">
-          <h2 className="text-[12px] font-bold uppercase tracking-[0.4em] text-black border-l-4 border-black pl-4">
-            Featured Selection
-          </h2>
-          <span className="text-[10px] uppercase tracking-widest text-gray-400">
-            {data.product?.relatedProducts.length} Items Found
+        
+        {/* SECTION HEADER */}
+        <div className="mb-12 flex items-end justify-between border-b border-black/5 pb-8">
+          <div className="space-y-2">
+            <span className="text-[10px] font-mono font-bold text-[#87CEEB] uppercase tracking-[0.3em]">
+              Collection_Extension
+            </span>
+            <h2 className="text-3xl md:text-5xl font-serif italic uppercase tracking-tighter text-black">
+              Featured Selection
+            </h2>
+          </div>
+          <span className="text-[10px] font-mono uppercase tracking-widest text-gray-400 pb-2">
+            [{relatedProducts.length}] Units_Available
           </span>
         </div>
 
         {/* PRODUCT GRID */}
         <div className="grid gap-x-6 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
-          {data.product?.relatedProducts.map((product) => {
-            const isOnSale = product?.sale === 'on_sale';
+          {relatedProducts.map((product) => {
+            // Sigurnosne provere za cene i slike
+            const price = product.price || 0;
+            const salePrice = product.salePrice || price;
+            const isOnSale = product.sale === 'on_sale' && (product.salePrice ?? 0) < price;
+            const firstImage = product.productImages[0]?.responsiveImage;
             
             return (
               <div key={product.id} className="group relative">
                 <Link
                   href={`/${globalPageProps.params.lng}/product/${product.slug}`}
-                  className="relative block aspect-[3/4] overflow-hidden bg-gray-50 border border-gray-100 transition-all duration-700 group-hover:border-black"
+                  className="relative block aspect-[3/4] overflow-hidden bg-gray-50 transition-all duration-700"
                 >
-                  {/* IMAGE - Starts grayscale, turns color on hover */}
+                  {/* IMAGE ENGINE */}
                   <div className="h-full w-full grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105">
-                    <DatoImage
-                      fragment={product.productImages[0].responsiveImage!}
-                      className="h-full w-full object-cover"
-                    />
+                    {firstImage && (
+                      <DatoImage
+                        fragment={firstImage}
+                        className="h-full w-full object-cover"
+                        layout="fill"
+                      />
+                    )}
                   </div>
 
-                  {/* SALE BADGE - Brutalist style */}
+                  {/* SALE BADGE */}
                   {isOnSale && (
-                    <div className="absolute top-0 left-0 bg-black text-white px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] animate-in slide-in-from-left duration-500">
+                    <div className="absolute top-4 left-4 bg-[#87CEEB] text-black px-3 py-1 text-[10px] font-bold uppercase tracking-widest z-10">
                       {sale}
                     </div>
                   )}
 
-                  {/* QUICK ADD / VIEW HOVER - Optional tech feel */}
-                  <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-white/90 backdrop-blur-sm border-t border-black">
-                    <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-black block text-center">
-                      View Details — Quick View
+                  {/* QUICK ACTION BAR */}
+                  <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-black text-white">
+                    <span className="text-[9px] font-bold uppercase tracking-[0.3em] block text-center">
+                      View_Technical_Specs — {product.name}
                     </span>
                   </div>
                 </Link>
 
-                {/* CONTENT AREA */}
+                {/* INFO AREA */}
                 <div className="mt-6 flex justify-between items-start">
                   <div className="flex flex-col gap-1">
-                    <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#87CEEB]">
+                    <span className="text-[9px] font-mono font-bold uppercase tracking-[0.2em] text-gray-400">
                       {product.brand?.name}
                     </span>
                     <Link
                       href={`/${globalPageProps.params.lng}/product/${product.slug}`}
-                      className="text-[14px] font-bold uppercase tracking-wider text-black hover:opacity-50 transition-opacity"
+                      className="text-[14px] font-bold uppercase tracking-wider text-black hover:text-[#87CEEB] transition-colors"
                     >
                       {product.name}
                     </Link>
                   </div>
 
-                  <div className="flex flex-col items-end gap-1">
+                  <div className="flex flex-col items-end gap-1 font-mono">
                     <div className="flex items-center gap-2">
                       {isOnSale && (
-                        <span className="text-[11px] text-gray-300 line-through tracking-tighter">
-                          {currencySymbol}{product.price}
+                        <span className="text-[11px] text-gray-300 line-through">
+                          {currencySymbol}{price}
                         </span>
                       )}
-                      <span className={`text-[13px] font-bold tracking-tight ${isOnSale ? 'text-black' : 'text-black'}`}>
-                        {currencySymbol}{isOnSale ? product.salePrice : product.price}
+                      <span className="text-[14px] font-bold text-black">
+                        {currencySymbol}{isOnSale ? salePrice : price}
                       </span>
                     </div>
                     {isOnSale && (
-                      <span className="text-[9px] font-black uppercase tracking-tighter text-black bg-gray-100 px-2 py-0.5">
-                        Save {Math.round(((product.price - product.salePrice) / product.price) * 100)}%
+                      <span className="text-[9px] font-bold uppercase text-red-500 bg-red-50 px-1">
+                        -{Math.round(((price - salePrice) / price) * 100)}%
                       </span>
                     )}
                   </div>
