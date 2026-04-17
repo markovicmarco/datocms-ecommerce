@@ -13,35 +13,43 @@ export default function DividerSection({ fragment, globalPageProps }: Props) {
     DividerSectionFragmentDoc,
     fragment,
   );
+
   return (
-    <div className="container mx-auto mb-8 flex max-w-7xl flex-wrap items-center px-20 py-16 text-center lg:text-left">
-      <div className="w-full lg:flex-1 lg:text-right">
-        <div className="text-sm uppercase tracking-widest text-gray-700">
-          {preTitle}
+    <div className="w-full bg-white border-b border-gray-100 py-12 px-4 md:px-12">
+      <div className="mx-auto max-w-[1920px] grid grid-cols-1 md:grid-cols-12 items-center gap-8">
+        
+        {/* LEVA STRANA: PreTitle i Title */}
+        <div className="md:col-span-4 flex flex-col items-start text-left">
+          <div className="text-[10px] uppercase tracking-[0.3em] font-bold text-black mb-3">
+            {preTitle}
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-black leading-[1.1]">
+            {title}
+          </h2>
         </div>
-        <h2 className="font-display mt-3 text-3xl font-semibold md:text-4xl">
-          {title}
-        </h2>
-      </div>
-      <div className="w-full text-center lg:w-auto">
-        <svg
-          className="-mb-10 -mt-4 inline-block h-32 w-32 lg:-ml-8 lg:mb-0 lg:mt-0 lg:rotate-90 lg:transform"
-          x="0px"
-          y="0px"
-          viewBox="0 0 100 125"
-        >
-          <title>Divider</title>
-          <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z" />
-        </svg>
-      </div>
-      <div className="w-full lg:flex-1">
-        <p>{subtitle}</p>
-        <Link
-          href={`/${globalPageProps.params.lng}/${button[0].slug}`}
-          className="font-heading mt-4 inline-block rounded-lg bg-primary/80 px-8 py-4 text-sm tracking-widest text-white"
-        >
-          {button[0].label}
-        </Link>
+
+        {/* SREDINA: Prazan prostor za balans */}
+        <div className="hidden md:block md:col-span-1" />
+
+        {/* DESNA STRANA: Subtitle i Button */}
+        <div className="md:col-span-7 flex flex-col md:flex-row items-center justify-between gap-12">
+          <p className="max-w-md text-[7px] md:text-[9px] uppercase tracking-[0.05em] font-medium text-black leading-relaxed text-left">
+            {subtitle}
+          </p>
+          
+          <div className="flex items-center gap-6 self-end md:self-center">
+             {button?.[0] && (
+              <Link
+                href={`/${globalPageProps.params.lng}/${button[0].slug}`}
+                className="text-[10px] uppercase tracking-[0.2em] font-bold text-black border-b border-black pb-1 hover:opacity-50 transition-all whitespace-nowrap"
+              >
+                {button[0].label}
+              </Link>
+            )}
+            
+          </div>
+        </div>
+
       </div>
     </div>
   );

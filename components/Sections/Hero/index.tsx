@@ -67,6 +67,13 @@ const Hero = ({ fragment, globalPageProps }: Props) => {
           </h1>
         </header>
 
+        {/* SUBTITLE */}
+          <div className="mx-auto max-w-xs md:max-w-md text-center py-6 md:py-8">
+            <p className="text-[9px] md:text-[10px] uppercase tracking-[0.12em] font-medium text-black leading-relaxed">
+              {heroSubtitle}
+            </p>
+          </div>
+
         {/* MAIN SLIDER - Panoramski prikaz "zalepljen" uz header i footer */}
         <div className="flex items-start justify-center p-2 md:p-4 pt-4 md:pt-6 bg-white">
           <div 
@@ -123,12 +130,7 @@ const Hero = ({ fragment, globalPageProps }: Props) => {
             ))}
           </div>
 
-          {/* SUBTITLE */}
-          <div className="max-w-xs md:max-w-md text-center">
-            <p className="text-[9px] md:text-[10px] uppercase tracking-[0.12em] font-medium text-black leading-relaxed">
-              {heroSubtitle}
-            </p>
-          </div>
+
 
           {/* SOCIALS */}
           <div className="flex items-center gap-8">

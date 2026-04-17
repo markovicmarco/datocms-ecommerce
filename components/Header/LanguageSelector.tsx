@@ -16,57 +16,56 @@ const LanguageSelector = ({ languages, currencySymbol }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const pathArray = pathname.split('/');
-  const currentLocale = pathArray[1] as SiteLocale; //will be a SiteLocale because of the middleware redirect rules
+  const currentLocale = pathArray[1] as SiteLocale;
   const searchParams = useSearchParams()!;
 
-  const pathString = pathArray.splice(2, pathArray.length).join('/');
+  const pathString = pathArray.slice(2).join('/');
 
   return (
     <div className="relative">
-      <div
-        onClick={() => {
-          isOpen ? setIsOpen(false) : setIsOpen(true);
-        }}
-        onBlur={() =>
-          setTimeout(() => {
-            setIsOpen(false);
-          }, 100)
-        }
-        className="ml-4 inline-flex w-full items-center overflow-hidden rounded-md bg-white transition duration-100 hover:bg-gray-200 active:scale-95 active:bg-gray-300"
+      {/* TRIGGER - Minimalistički tekst bez pozadine */}
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        onBlur={() => setTimeout(() => setIsOpen(false), 200)}
+        className="flex items-center gap-2 px-2 py-1 transition-all duration-300 active:scale-95 group"
       >
-        <button
-          type="button"
-          className="inline-flex w-full cursor-pointer items-center justify-center rounded-lg px-4 py-2 text-center text-sm font-medium text-gray-800"
+        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-black group-hover:opacity-50 transition-opacity">
+          {getLangNameFromCode(currentLocale)?.name || currentLocale}
+        </span>
+        <span className="text-[9px] font-medium text-gray-400">
+          ({currencySymbol})
+        </span>
+        {/* Mali indikator koji se rotira */}
+        <svg 
+          className={`w-3 h-3 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} 
+          fill="none" viewBox="0 0 24 24" stroke="currentColor"
         >
-          {getLangNameFromCode(currentLocale)?.name || currentLocale} (
-          {currencySymbol})
-        </button>
-      </div>
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
 
+      {/* DROPDOWN - Oštar i visok kontrast */}
       <div
-        className={`absolute end-0 left-5 z-10 mt-1 w-28 rounded-md border border-gray-100 bg-white shadow-lg${
-          isOpen ? '' : ' hidden'
+        className={`absolute right-0 z-[100] mt-4 min-w-[140px] bg-white border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.08)] animate-in fade-in slide-in-from-top-2 duration-300 ${
+          isOpen ? 'block' : 'hidden'
         }`}
         role="menu"
       >
-        {languages.map((locale) => {
-          return (
-            <div
+        <div className="py-1">
+          {languages.map((locale) => (
+            <Link
               key={locale}
-              className="inline-flex w-full cursor-pointer items-end justify-start rounded-lg text-center text-sm font-medium text-gray-900 hover:bg-gray-100"
+              href={`/${locale}/${pathString}?${searchParams.toString()}`}
+              className={`block px-6 py-3 text-[10px] font-bold uppercase tracking-[0.15em] transition-colors hover:bg-gray-50 ${
+                currentLocale === locale ? 'text-black' : 'text-gray-400 hover:text-black'
+              }`}
+              role="menuitem"
             >
-              <Link
-                href={`/${locale}/${pathString}?${searchParams.toString()}`}
-                className="block w-full px-4 py-2 text-center text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-                role="menuitem"
-              >
-                <div className="w-full text-center">
-                  {getLangNameFromCode(locale)?.name || currentLocale}
-                </div>
-              </Link>
-            </div>
-          );
-        })}
+              {getLangNameFromCode(locale)?.name || locale}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );

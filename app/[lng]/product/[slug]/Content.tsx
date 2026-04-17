@@ -1,3 +1,5 @@
+'use client';
+
 import { isHeading, isList, isListItem } from 'datocms-structured-text-utils';
 import { notFound } from 'next/navigation';
 import { renderNodeRule } from 'react-datocms';
@@ -17,69 +19,103 @@ const Content: ContentPage<PageProps, Query> = ({
   if (!data.product) {
     notFound();
   }
+
   return (
-    <div className="mx-auto max-w-[1480px]">
+    <div className="w-full bg-white antialiased">
+      {/* GLAVNI VIEW PROIZVODA */}
       <ProductView data={data} globalPageProps={globalPageProps} />
-      <div className="mx-12 mt-8 sm:mx-24 lg:mx-64">
-        <div className="text-gray-500">
-          {data.product.description && (
-            <DatoStructuredText
-              data={data.product.description}
-              renderBlock={({ record }) => {
-                switch (record.__typename) {
-                  case 'ProductFeatureSectionRecord':
+
+      {/* DETALJNI OPIS & BLOKOVI */}
+      <div className="max-w-[1920px] mx-auto px-4 md:px-12 py-24 border-t border-black/5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          {/* Labela sekcije */}
+          <div className="lg:col-span-3">
+            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#87CEEB] sticky top-32">
+              Product_Deep_Dive / 01
+            </span>
+          </div>
+
+          {/* Dinamički sadržaj iz CMS-a */}
+          <div className="lg:col-span-9 max-w-4xl">
+            {data.product.description && (
+              <DatoStructuredText
+                data={data.product.description}
+                renderBlock={({ record }) => {
+                  switch (record.__typename) {
+                    case 'ProductFeatureSectionRecord':
+                      return (
+                        <div className="my-20 border-y border-black/5 py-12">
+                          <ProductInfoSection
+                            ProductInfoFragment={record}
+                            MaterialFragment={data.product?.material}
+                            generalInterfaceFragment={data.generalInterface}
+                            globalPageProps={globalPageProps}
+                          />
+                        </div>
+                      );
+                    case 'FeaturedQuestionsSectionRecord':
+                      return (
+                        <div className="my-20 bg-gray-50 p-8 md:p-16">
+                          <QuestionsSection fragment={record} />
+                        </div>
+                      );
+                    default:
+                      return null;
+                  }
+                }}
+                customNodeRules={[
+                  // Brutalistički Naslovi unutar opisa
+                  renderNodeRule(isHeading, ({ children, key }) => {
                     return (
-                      <ProductInfoSection
-                        ProductInfoFragment={record}
-                        MaterialFragment={data.product?.material}
-                        generalInterfaceFragment={data.generalInterface}
-                        globalPageProps={globalPageProps}
-                      />
+                      <h3
+                        key={key}
+                        className="mb-8 mt-16 text-3xl md:text-5xl font-serif italic uppercase text-black tracking-tighter"
+                      >
+                        {children}
+                      </h3>
                     );
-                  case 'FeaturedQuestionsSectionRecord':
-                    return <QuestionsSection fragment={record} />;
-                  default:
-                    return null;
-                }
-              }}
-              customNodeRules={[
-                renderNodeRule(isHeading, ({ children, key }) => {
-                  return (
-                    <h3
-                      className="mb-4 mt-9 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl"
-                      key={key}
-                    >
-                      {children}
-                    </h3>
-                  );
-                }),
-                renderNodeRule(isListItem, ({ children, key }) => {
-                  return (
-                    <div
-                      key={key}
-                      className="whitespace-nowrap rounded-full bg-primary/80 px-4 py-2 text-center text-sm font-medium text-white"
-                    >
-                      <div>{children}</div>
-                    </div>
-                  );
-                }),
-                renderNodeRule(isList, ({ children, key }) => {
-                  return (
-                    <div
-                      key={key}
-                      className="-mb-4 flex flex-col items-center justify-center gap-4 py-8 md:mb-0 md:flex-row "
-                    >
-                      {children}
-                    </div>
-                  );
-                }),
-              ]}
-            />
-          )}
+                  }),
+                  // Liste transformisane u "Data Grid"
+                  renderNodeRule(isList, ({ children, key }) => {
+                    return (
+                      <div
+                        key={key}
+                        className="grid grid-cols-1 md:grid-cols-2 gap-px bg-black/10 border border-black/10 my-12"
+                      >
+                        {children}
+                      </div>
+                    );
+                  }),
+                  // Stavke liste kao tehničke ćelije
+                  renderNodeRule(isListItem, ({ children, key }) => {
+                    return (
+                      <div
+                        key={key}
+                        className="bg-white p-4 flex items-center gap-4 group"
+                      >
+                        <span className="text-[#87CEEB] font-mono text-[10px] font-bold">●</span>
+                        <div className="text-[11px] font-bold uppercase tracking-widest text-black group-hover:text-[#87CEEB] transition-colors">
+                          {children}
+                        </div>
+                      </div>
+                    );
+                  }),
+                ]}
+              />
+            )}
+          </div>
         </div>
       </div>
-      <FeaturedProducts data={data} globalPageProps={globalPageProps} />
-      <Reviews data={data} globalPageProps={globalPageProps} />
+
+      {/* FOOTER SEKCIJE */}
+      <div className="border-t border-black/5">
+        <FeaturedProducts data={data} globalPageProps={globalPageProps} />
+      </div>
+      
+      <div className="bg-black text-white py-24">
+        <Reviews data={data} globalPageProps={globalPageProps} />
+      </div>
     </div>
   );
 };

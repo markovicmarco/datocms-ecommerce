@@ -1,8 +1,11 @@
+"use client";
+
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { type Dispatch, Fragment, type SetStateAction } from 'react';
 
+// Demo proizvodi - ostaju isti radi logike
 const products = [
   {
     id: 1,
@@ -11,10 +14,8 @@ const products = [
     color: 'Salmon',
     price: '$90.00',
     quantity: 1,
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
-    imageAlt:
-      'Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
+    imageAlt: 'Salmon orange fabric pouch.',
   },
   {
     id: 2,
@@ -23,12 +24,9 @@ const products = [
     color: 'Blue',
     price: '$32.00',
     quantity: 1,
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
-    imageAlt:
-      'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
+    imageAlt: 'Front of satchel.',
   },
-  // More products...
 ];
 
 type PropTypes = {
@@ -39,7 +37,9 @@ type PropTypes = {
 export default function Cart({ open, setOpen }: PropTypes) {
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-50" onClose={setOpen}>
+      <Dialog as="div" className="relative z-[100]" onClose={setOpen}>
+        
+        {/* BACKDROP - Tamniji i čistiji */}
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"
@@ -49,107 +49,80 @@ export default function Cart({ open, setOpen }: PropTypes) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-        </Transition.Child>
-
-        <Transition.Child
-          as={Fragment}
-          enter="transform transition ease-in-out duration-500 sm:duration-700"
-          enterFrom="translate-x-full"
-          enterTo="translate-x-0"
-          leave="transform transition ease-in-out duration-500 sm:duration-700"
-          leaveFrom="translate-x-0"
-          leaveTo="translate-x-full"
-        >
-          <div className="fixed right-0 top-1/2 z-50 w-[440px] drop-shadow-sm">
-            <div className="flex flex-col items-center justify-between gap-4 rounded-lg p-4 text-center sm:flex-row md:p-8">
-              <div>
-                <h1 className="text-3xl font-semibold text-primary">
-                  This is a DatoCMS Demo
-                </h1>
-                <p className="text-md">
-                  To use the cart, and enable purchases, an integration with
-                  Shopify or Commercelayer is necessary{' '}
-                </p>
-              </div>
-            </div>
-          </div>
+          <div className="fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 blur-sm">
+            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full">
               <Transition.Child
                 as={Fragment}
-                enter="transform transition ease-in-out duration-500 sm:duration-700"
+                enter="transform transition ease-in-out duration-500"
                 enterFrom="translate-x-full"
                 enterTo="translate-x-0"
-                leave="transform transition ease-in-out duration-500 sm:duration-700"
+                leave="transform transition ease-in-out duration-500"
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-                    <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-                      <div className="flex items-start justify-between">
-                        <Dialog.Title className="text-lg font-medium text-gray-900">
-                          Shopping cart
+                  <div className="flex h-full flex-col bg-white shadow-[-20px_0_40px_rgba(0,0,0,0.1)] border-l border-gray-100">
+                    
+                    {/* HEADER */}
+                    <div className="flex-1 overflow-y-auto px-6 py-10">
+                      <div className="flex items-start justify-between border-b border-gray-100 pb-6">
+                        <Dialog.Title className="text-[12px] font-bold uppercase tracking-[0.3em] text-black">
+                          Your Cart
                         </Dialog.Title>
-                        <div className="ml-3 flex h-7 items-center">
-                          <button
-                            type="button"
-                            className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
-                            onClick={() => setOpen(false)}
-                          >
-                            <span className="absolute -inset-0.5" />
-                            <span className="sr-only">Close panel</span>
-                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                          </button>
-                        </div>
+                        <button
+                          type="button"
+                          className="text-black hover:opacity-50 transition-opacity"
+                          onClick={() => setOpen(false)}
+                        >
+                          <XMarkIcon className="h-5 w-5" />
+                        </button>
                       </div>
 
-                      <div className="mt-8">
+                      {/* DEMO INFO BOX - Brutalist stil */}
+                      <div className="mt-8 bg-gray-50 border border-gray-100 p-6">
+                        <h3 className="text-[10px] font-bold uppercase tracking-widest text-black mb-2">
+                          DatoCMS Integration Notice
+                        </h3>
+                        <p className="text-[10px] uppercase tracking-wider text-gray-500 leading-relaxed italic">
+                          To enable live purchases, sync with Shopify or CommerceLayer is required.
+                        </p>
+                      </div>
+
+                      <div className="mt-12">
                         <div className="flow-root">
-                          <ul className="-my-6 divide-y divide-gray-200">
+                          <ul className="-my-8 divide-y divide-gray-100">
                             {products.map((product) => (
-                              <li key={product.id} className="flex py-6">
-                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                              <li key={product.id} className="flex py-8">
+                                <div className="h-24 w-20 flex-shrink-0 overflow-hidden border border-gray-100 grayscale hover:grayscale-0 transition-all duration-500">
                                   <Image
                                     src={product.imageSrc}
                                     width={100}
                                     height={100}
                                     alt={product.imageAlt}
-                                    className="h-full w-full object-cover object-center"
+                                    className="h-full w-full object-cover"
                                   />
                                 </div>
 
-                                <div className="ml-4 flex flex-1 flex-col">
-                                  <div>
-                                    <div className="flex justify-between text-base font-medium text-gray-900">
-                                      <h3>
-                                        <a href={product.href}>
-                                          {product.name}
-                                        </a>
-                                      </h3>
-                                      <p className="ml-4">{product.price}</p>
-                                    </div>
-                                    <p className="mt-1 text-sm text-gray-500">
-                                      {product.color}
-                                    </p>
+                                <div className="ml-6 flex flex-1 flex-col">
+                                  <div className="flex justify-between text-[11px] font-bold uppercase tracking-widest text-black">
+                                    <h3>{product.name}</h3>
+                                    <p className="ml-4">{product.price}</p>
                                   </div>
-                                  <div className="flex flex-1 items-end justify-between text-sm">
-                                    <p className="text-gray-500">
-                                      Qty {product.quantity}
-                                    </p>
-
-                                    <div className="flex">
-                                      <button
-                                        type="button"
-                                        className="font-medium text-primary hover:text-primary/80"
-                                      >
-                                        Remove
-                                      </button>
-                                    </div>
+                                  <p className="mt-1 text-[9px] uppercase tracking-widest text-gray-400">
+                                    {product.color}
+                                  </p>
+                                  <div className="flex flex-1 items-end justify-between text-[10px] uppercase tracking-widest">
+                                    <p className="text-gray-400 font-medium">Qty {product.quantity}</p>
+                                    <button
+                                      type="button"
+                                      className="font-bold text-black border-b border-black pb-0.5 hover:opacity-50"
+                                    >
+                                      Remove
+                                    </button>
                                   </div>
                                 </div>
                               </li>
@@ -159,34 +132,25 @@ export default function Cart({ open, setOpen }: PropTypes) {
                       </div>
                     </div>
 
-                    <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                      <div className="flex justify-between text-base font-medium text-gray-900">
+                    {/* FOOTER */}
+                    <div className="border-t border-gray-100 px-6 py-10 bg-gray-50">
+                      <div className="flex justify-between text-[12px] font-bold uppercase tracking-[0.2em] text-black">
                         <p>Subtotal</p>
                         <p>$262.00</p>
                       </div>
-                      <p className="mt-0.5 text-sm text-gray-500">
+                      <p className="mt-2 text-[9px] uppercase tracking-widest text-gray-400">
                         Shipping and taxes calculated at checkout.
                       </p>
-                      <div className="mt-6">
-                        <a
-                          href="#"
-                          className="flex items-center justify-center rounded-md border border-transparent bg-primary px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary/80"
+                      <div className="mt-10 flex flex-col gap-4">
+                        <button className="w-full bg-black text-white text-[10px] font-bold uppercase tracking-[0.3em] py-5 hover:bg-gray-800 transition-all active:scale-[0.98]">
+                          Proceed to Checkout
+                        </button>
+                        <button
+                          onClick={() => setOpen(false)}
+                          className="w-full text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-colors"
                         >
-                          Checkout
-                        </a>
-                      </div>
-                      <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-                        <p>
-                          or{' '}
-                          <button
-                            type="button"
-                            className="font-medium text-primary hover:text-primary/80"
-                            onClick={() => setOpen(false)}
-                          >
-                            Continue Shopping
-                            <span aria-hidden="true"> &rarr;</span>
-                          </button>
-                        </p>
+                          Continue Shopping
+                        </button>
                       </div>
                     </div>
                   </div>

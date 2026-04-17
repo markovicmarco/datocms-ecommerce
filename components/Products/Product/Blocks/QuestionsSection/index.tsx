@@ -1,3 +1,5 @@
+'use client';
+
 import ReactMarkdown from 'react-markdown';
 import { type FragmentType, getFragmentData } from '@/graphql/types';
 import { QuestionSectionFragmentDoc } from '@/graphql/types/graphql';
@@ -10,42 +12,52 @@ const QuestionsSection = ({ fragment }: Props) => {
   const { questions } = getFragmentData(QuestionSectionFragmentDoc, fragment);
 
   return (
-    <div className="bg-white py-6 sm:py-8 lg:py-12">
-      <div className="mx-auto max-w-screen-xl px-4 md:px-8">
-        <div className="grid gap-4 sm:grid-cols-2 md:gap-8">
-          {questions.map((question) => {
+    <section className="w-full bg-white py-20 border-t border-gray-100">
+      <div className="max-w-[1920px] mx-auto px-4 md:px-12">
+        
+        {/* HEADER SEKCIJE */}
+        <div className="mb-16">
+          <h2 className="text-[12px] font-bold uppercase tracking-[0.4em] text-black">
+            Inquiry / Knowledge Base
+          </h2>
+          <div className="mt-4 h-1 w-12 bg-[#87CEEB]" />
+        </div>
+
+        {/* FAQ GRID */}
+        <div className="grid gap-x-16 gap-y-12 sm:grid-cols-2">
+          {questions.map((question, index) => {
             return (
-              <div key={question.id} className="rounded-lg bg-gray-100 p-5">
-                <div className="mb-4 flex items-center justify-between gap-4 border-b pb-4">
-                  <h3 className="font-semibold text-primary/90 sm:text-lg md:text-xl">
-                    {question.question}
-                  </h3>
-
-                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-300 text-gray-500">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+              <div 
+                key={question.id} 
+                className="group flex flex-col border-b border-gray-100 pb-10 transition-colors hover:border-black"
+              >
+                {/* NUMERACIJA I PITANJE */}
+                <div className="flex items-start gap-6">
+                  <span className="text-[10px] font-bold font-mono text-[#87CEEB] mt-1">
+                    {String(index + 1).padStart(2, '0')}
                   </span>
-                </div>
+                  
+                  <div className="flex-1">
+                    <h3 className="text-[14px] font-bold uppercase tracking-wider text-black mb-6 leading-tight">
+                      {question.question}
+                    </h3>
 
-                <div className="text-gray-500">
-                  <ReactMarkdown>{question.answer || ''}</ReactMarkdown>
+                    {/* ODGOVOR */}
+                    <div className="prose prose-sm max-w-none">
+                      <div className="text-[12px] uppercase tracking-widest text-gray-400 leading-relaxed font-medium italic">
+                        <ReactMarkdown>
+                          {question.answer || ''}
+                        </ReactMarkdown>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

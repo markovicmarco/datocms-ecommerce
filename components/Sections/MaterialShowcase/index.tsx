@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import DatoImage from '@/components/DatoImage';
 import { type FragmentType, getFragmentData } from '@/graphql/types';
@@ -14,49 +16,73 @@ const MaterialShowcase = ({ fragment, globalPageProps }: Props) => {
     MaterialShowcaseFragmentDoc,
     fragment,
   );
+
   return (
-    <div className="mx-auto mb-12 max-w-7xl bg-white px-12 lg:px-24">
-      <div className="mb-12">
-        <h1 className="font-display mt-3 text-center text-3xl font-semibold md:text-4xl">
-          {title}
-        </h1>
+    <section className="w-full bg-white py-24 border-t border-black/5">
+      <div className="max-w-[1920px] mx-auto px-4 md:px-12">
+        
+        {/* HEADER: Technical Intro */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
+          <div className="lg:col-span-5">
+            <h2 className="text-[10px] font-bold uppercase tracking-[0.5em] text-[#87CEEB] mb-6">
+              Core Components / Materials
+            </h2>
+            <h1 className="text-4xl md:text-6xl font-serif uppercase leading-[0.9] text-black italic">
+              {title}
+            </h1>
+          </div>
+          <div className="lg:col-span-7 lg:pt-12">
+            <p className="text-[14px] font-bold uppercase tracking-widest text-black mb-4">
+              {description}
+            </p>
+            <p className="max-w-2xl text-[12px] leading-relaxed text-gray-400 uppercase tracking-wider font-medium">
+              {subDescription}
+            </p>
+          </div>
+        </div>
 
-        <p className="text-md mx-auto mb-6 max-w-xl py-4 text-center leading-relaxed">
-          {description}
-        </p>
+        {/* MATERIALS GRID: The Archive */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-100 border border-gray-100">
+          {materials.map((material, idx) => {
+            return (
+              <Link
+                href={`/${globalPageProps.params.lng}/products?materials=${material.id}`}
+                className="group relative bg-white overflow-hidden p-8"
+                key={material.id}
+              >
+                {/* Index Number */}
+                <span className="absolute top-8 left-8 text-[10px] font-mono font-bold text-gray-200 group-hover:text-[#87CEEB] transition-colors">
+                  MTRL_{String(idx + 1).padStart(2, '0')}
+                </span>
 
-        <p className="mx-auto max-w-3xl text-center text-sm leading-loose tracking-wide text-gray-600">
-          {subDescription}
-        </p>
-      </div>
-
-      <div className="-mx-2 flex flex-col flex-wrap lg:flex-row">
-        {materials.map((material) => {
-          return (
-            <Link
-              href={`/${globalPageProps.params.lng}/products?materials=${material.id}`}
-              className="p-2 transition-all hover:scale-95 lg:w-1/3"
-              key={material.id}
-            >
-              {material.details.image.responsiveImage && (
-                <div className="opacity-85 relative mb-8 block h-[300px] rounded-lg bg-black hover:bg-gray-700 md:h-[500px]">
-                  <DatoImage
-                    fragment={material.details.image.responsiveImage}
-                    className="h-full w-full rounded-lg object-contain"
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="50% 50%"
-                  />
+                {/* Image Container */}
+                <div className="relative aspect-[4/5] mb-8 overflow-hidden bg-gray-50 grayscale hover:grayscale-0 transition-all duration-700">
+                  {material.details.image.responsiveImage && (
+                    <DatoImage
+                      fragment={material.details.image.responsiveImage}
+                      className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                      layout="fill"
+                    />
+                  )}
                 </div>
-              )}
-              <div className="block text-center text-xl font-medium">
-                {material.name}
-              </div>
-            </Link>
-          );
-        })}
+
+                {/* Label Style Title */}
+                <div className="flex items-center justify-between border-t-2 border-black pt-6">
+                  <div className="text-[13px] font-bold uppercase tracking-[0.2em] text-black">
+                    {material.name}
+                  </div>
+                  <div className="h-6 w-6 flex items-center justify-center border border-black group-hover:bg-black group-hover:text-white transition-all">
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 9L9 1M9 1H1M9 1V9" stroke="currentColor" strokeWidth="2"/>
+                    </svg>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

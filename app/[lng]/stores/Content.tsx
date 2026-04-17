@@ -1,105 +1,106 @@
 'use client';
 
 import { useState } from 'react';
-import { Image as DatoImage, type ResponsiveImageType } from 'react-datocms';
+import DatoImage from '@/components/DatoImage';
 import type { ContentPage } from '@/components/WithRealTimeUpdates/types';
 import type { PageProps, Query } from './meta';
 
 const Content: ContentPage<PageProps, Query> = ({ data }) => {
   const [currentStore, setCurrentStore] = useState(0);
-
   const allStores = data.allStores;
 
+  const nextStore = () => setCurrentStore((prev) => (prev === allStores.length - 1 ? 0 : prev + 1));
+  const prevStore = () => setCurrentStore((prev) => (prev === 0 ? allStores.length - 1 : prev - 1));
+
   return (
-    <div className="mx-auto -mb-8  flex w-full max-w-7xl flex-wrap py-24 lg:h-screen lg:pt-24">
-      <div className="-mb-56 -mt-80 flex h-screen w-full items-center justify-center lg:m-0 lg:block lg:h-full lg:w-1/2 lg:items-start lg:justify-start">
-        <div className="flex h-full max-w-xl flex-col justify-center px-12 text-center lg:px-32 lg:text-left">
-          <p className="mb-4 font-sans text-xs uppercase tracking-wide text-gray-600">
-            {allStores[currentStore].country}
-          </p>
+    <div className="w-full min-h-screen bg-white flex flex-col lg:flex-row">
+      
+      {/* LEFT SIDE: Data Panel */}
+      <div className="w-full lg:w-2/5 flex flex-col justify-center px-6 md:px-12 lg:px-24 py-24 border-r border-black/5">
+        <div className="max-w-md space-y-12">
+          
+          {/* Metadata */}
+          <div className="space-y-4">
+            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-[#87CEEB]">
+              Location_Archive / {allStores[currentStore].country}
+            </span>
+            <h1 className="text-5xl md:text-7xl font-serif uppercase leading-[0.85] text-black italic tracking-tighter">
+              {allStores[currentStore].storeName}
+            </h1>
+          </div>
 
-          <h1 className="mb-8 font-serif text-2xl leading-normal md:text-4xl">
-            {allStores[currentStore].storeName}
-          </h1>
-
-          <div className="flex flex-col items-center justify-center">
-            <div className="h-48 pr-6 text-xs leading-normal text-gray-900 md:pr-0 md:leading-loose lg:mb-6 lg:h-64">
+          {/* Description Box */}
+          <div className="border-l-2 border-black pl-8 py-2">
+            <p className="text-[13px] uppercase tracking-widest leading-relaxed text-gray-500 font-medium">
               {allStores[currentStore].storeDescription}
-            </div>
+            </p>
+          </div>
 
+          {/* Actions & Navigation */}
+          <div className="space-y-12 pt-8">
             <a
-              href={`https://www.google.com/maps/?q=${allStores[currentStore].storeLocation?.latitude},${allStores[currentStore].storeLocation?.longitude}`}
-              target="__blank"
-              className="cursor-pointer text-xs uppercase text-black"
+              href={`https://www.google.com/maps/search/?api=1&query=${allStores[currentStore].storeLocation?.latitude},${allStores[currentStore].storeLocation?.longitude}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-6 text-[11px] font-bold uppercase tracking-[0.3em] text-black"
             >
-              {data.generalInterface?.findOnMaps}{' '}
-              <span className="border-gray-light ml-4 inline-block h-1 w-24 border-t" />
-            </a>
-            <div className="pin-l pin-b -ml-6 flex w-32 justify-around bg-white px-4 py-6">
-              <button
-                className="text-gray-600er cursor-pointer text-xs no-underline hover:text-gray-900"
-                onClick={() => {
-                  setCurrentStore((currentStore) => {
-                    if (currentStore === 0) return allStores.length - 1;
-                    return currentStore - 1;
-                  });
-                }}
-                onKeyUp={(event) => {
-                  if (event.key === 'Enter') {
-                    setCurrentStore((currentStore) => {
-                      if (currentStore === 0) return allStores.length - 1;
-                      return currentStore - 1;
-                    });
-                  }
-                }}
-                tabIndex={0}
-                type="button"
-              >
-                &larr;
-              </button>
-              <span className="text-gray-600er text-xs">
-                {currentStore + 1}/{allStores.length}
+              <span className="border-b-2 border-black group-hover:text-[#87CEEB] group-hover:border-[#87CEEB] transition-all">
+                {data.generalInterface?.findOnMaps}
               </span>
+              <span className="text-[#87CEEB] transition-transform group-hover:translate-x-2">→</span>
+            </a>
+
+            {/* Brutalist Controller */}
+            <div className="flex items-center gap-8 border-t border-black/5 pt-12">
               <button
-                className="text-gray-600er cursor-pointer text-xs no-underline hover:text-gray-900"
-                onClick={() => {
-                  setCurrentStore((currentStore) => {
-                    if (currentStore === allStores.length - 1) return 0;
-                    return currentStore + 1;
-                  });
-                }}
-                onKeyUp={(event) => {
-                  if (event.key === 'Enter') {
-                    setCurrentStore((currentStore) => {
-                      if (currentStore === allStores.length - 1) return 0;
-                      return currentStore + 1;
-                    });
-                  }
-                }}
-                tabIndex={0}
-                type="button"
+                onClick={prevStore}
+                className="h-12 w-12 flex items-center justify-center border-2 border-black hover:bg-black hover:text-white transition-all text-xl"
               >
-                &rarr;
+                ←
+              </button>
+              
+              <div className="flex flex-col">
+                <span className="text-[9px] font-mono font-bold text-gray-400 uppercase tracking-widest">Index</span>
+                <span className="text-xl font-bold font-mono">
+                  {String(currentStore + 1).padStart(2, '0')} / {String(allStores.length).padStart(2, '0')}
+                </span>
+              </div>
+
+              <button
+                onClick={nextStore}
+                className="h-12 w-12 flex items-center justify-center border-2 border-black hover:bg-black hover:text-white transition-all text-xl"
+              >
+                →
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="relative mx-8 h-screen w-full lg:mx-0 lg:h-full lg:w-1/2">
-        <div className="h-full w-full bg-cover bg-center bg-no-repeat">
-          <DatoImage
-            data={
-              allStores[currentStore].storeImage
-                ?.responsiveImage as ResponsiveImageType
-            }
-            className="h-full w-full rounded-lg object-contain"
-            layout="fill"
-            objectFit="cover"
-            objectPosition="70% 30%"
-          />
+      {/* RIGHT SIDE: Visual Panel */}
+      <div className="w-full lg:w-3/5 h-[60vh] lg:h-screen relative overflow-hidden bg-gray-100">
+        {allStores[currentStore].storeImage?.responsiveImage && (
+          <div key={currentStore} className="h-full w-full animate-in fade-in zoom-in-105 duration-1000">
+            <DatoImage
+              // USKLAĐENO: Koristimo fragment za potpunu TS kompatibilnost
+              fragment={allStores[currentStore].storeImage.responsiveImage as any}
+              className="h-full w-full object-cover"
+              layout="fill"
+            />
+          </div>
+        )}
+        
+        {/* Decorative System Overlay */}
+        <div className="absolute top-12 right-12 z-10 hidden lg:block">
+          <div className="bg-white/90 backdrop-blur-md border border-black/5 p-4">
+            <div className="text-[9px] font-mono font-bold uppercase tracking-[0.3em] text-black">
+              Lat: {allStores[currentStore].storeLocation?.latitude?.toFixed(4)}<br />
+              Lng: {allStores[currentStore].storeLocation?.longitude?.toFixed(4)}
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   );
 };

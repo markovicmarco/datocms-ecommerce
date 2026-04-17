@@ -40,7 +40,6 @@ export default function ScrollToTop({ isDraft }: Props) {
     };
 
     window.addEventListener('scroll', toggleVisibility);
-
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
@@ -49,33 +48,33 @@ export default function ScrollToTop({ isDraft }: Props) {
       <AnimatePresence>
         {isVisible && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed bottom-4 right-4 z-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-4"
           >
+            {/* SUCCESS TOAST - Za kupca (Nebesko plava senka) */}
             <AnimatePresence>
               {successToast && (
                 <motion.div
-                  className="absolute bottom-0 right-0 z-50 w-[500px]"
+                  className="w-[320px] md:w-[450px] border-2 border-black bg-white p-1 shadow-[12px_12px_0px_0px_rgba(135,206,235,1)]"
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 50 }}
-                  transition={{ duration: 0.15 }}
                 >
                   <SuccessPopUp setSuccessToast={setSuccessToast} />
                 </motion.div>
               )}
             </AnimatePresence>
+
+            {/* AUTH MODAL - Za admina (Teška crna senka) */}
             <AnimatePresence>
               {modalOpen && (
                 <motion.div
-                  className="absolute bottom-0 right-0 z-50 w-[400px]"
+                  className="w-[300px] md:w-[380px] border-2 border-black bg-white p-1 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 50 }}
-                  transition={{ duration: 0.15 }}
                 >
                   <AuthenticationModal
                     setModalOpen={setModalOpen}
@@ -85,11 +84,20 @@ export default function ScrollToTop({ isDraft }: Props) {
                 </motion.div>
               )}
             </AnimatePresence>
+
+            {/* TOGGLE BUTTON - Admin komanda */}
             <div
               onClick={toggleDraft}
-              className="flex cursor-pointer items-center justify-center rounded-md bg-primary p-4 font-bold text-white shadow-md transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
+              className={`flex cursor-pointer items-center justify-center border-2 border-black px-6 py-3 font-bold uppercase tracking-[0.2em] text-[10px] transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] ${
+                isDraft 
+                ? 'bg-[#87CEEB] text-black hover:bg-black hover:text-white' 
+                : 'bg-black text-white hover:bg-[#87CEEB] hover:text-black'
+              }`}
             >
-              {isDraft ? 'Enter Published Mode' : 'Enter Draft Mode'}
+              <div className="flex items-center gap-3">
+                <span className={`h-1.5 w-1.5 shrink-0 ${isDraft ? 'bg-black animate-pulse' : 'bg-[#87CEEB]'}`} />
+                {isDraft ? 'Enter Published Mode' : 'Enter Draft Mode'}
+              </div>
             </div>
           </motion.div>
         )}

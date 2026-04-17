@@ -29,7 +29,14 @@ export default function DatoStructuredText<
   } = props;
 
   return (
-    <div data-datocms-content-link-group>
+    /* "prose-custom" je tvoj tajni sastojak iz globals.css. 
+       On upravlja razmacima, font-serif naslovima i monospaced detaljima 
+       unutar dinamičkog sadržaja.
+    */
+    <div 
+      data-datocms-content-link-group 
+      className="prose-custom lg:prose-lg"
+    >
       <StructuredText
         {...rest}
         renderNode={renderNode ?? Highlighter}

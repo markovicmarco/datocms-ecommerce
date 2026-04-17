@@ -1,3 +1,5 @@
+"use client";
+
 import { type Dispatch, type SetStateAction, useState } from 'react';
 
 type Props = {
@@ -32,19 +34,19 @@ const AuthenticationModal = ({
 
   return (
     <div
-      className="rounded-2xl border border-blue-100 bg-white p-4 shadow-lg sm:p-6 lg:p-8"
+      className="bg-white border-2 border-black p-6 md:p-10 shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] max-w-md w-full animate-in zoom-in-95 duration-300"
       role="alert"
     >
-      <div className="flex items-center gap-2">
-        <span className="shrink-0 rounded-full bg-primary p-2 text-white">
+      <div className="flex items-center gap-4">
+        {/* Štit ikona u tvom stilu */}
+        <div className="shrink-0 bg-black p-3 text-white">
           <svg
             fill="none"
-            className="h-4 w-4"
+            className="h-5 w-5"
             stroke="currentColor"
             strokeWidth="2"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -52,42 +54,61 @@ const AuthenticationModal = ({
               d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
             />
           </svg>
-        </span>
+        </div>
 
-        <p className="font-medium sm:text-lg">Authenticate First!</p>
+        <div>
+          <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] text-black">
+            System Access
+          </h3>
+          <p className="text-[10px] uppercase tracking-widest text-gray-400">
+            Authorization Required
+          </p>
+        </div>
       </div>
-      <p className="mt-4 text-gray-500">
-        You will need a secret token to access the drafts, please add it bellow:
+
+      <p className="mt-8 text-[11px] uppercase tracking-wider text-gray-500 leading-relaxed border-l-2 border-gray-100 pl-4">
+        Enter the secret token to decrypt and access the latest drafts. 
+        Unauthorised access is logged.
       </p>
-      <div>
+
+      <div className="mt-8">
+        <label htmlFor="UserToken" className="text-[9px] font-bold uppercase tracking-[0.2em] text-black mb-2 block">
+          Access Token
+        </label>
         <input
-          type="token"
+          type="password"
           value={inputValue}
           onChange={(e) => {
             setInputValue(e.target.value);
             setHasError(false);
           }}
           id="UserToken"
-          className={`mt-4 w-full rounded-md border-2 border-gray-100 p-2 shadow-sm sm:text-sm${
-            hasError ? ' border-red-300' : ''
+          className={`w-full bg-gray-50 border-none p-4 text-sm tracking-[0.5em] focus:ring-1 focus:ring-black transition-all ${
+            hasError ? 'bg-red-50 text-red-600 ring-1 ring-red-500' : 'text-black'
           }`}
+          placeholder="••••••••"
         />
-        {hasError && <p className="mt-4 text-red-400">Incorrect token!</p>}
+        {hasError && (
+          <p className="mt-2 text-[10px] uppercase tracking-widest font-bold text-red-500">
+            Invalid Token. Access Denied.
+          </p>
+        )}
       </div>
-      <div className="mt-6 sm:flex sm:gap-4">
-        <div
-          onClick={enableDraft}
-          className="inline-block w-full rounded-lg bg-primary px-5 py-3 text-center text-sm font-semibold text-white hover:cursor-pointer sm:w-auto"
-        >
-          Authenticate
-        </div>
 
-        <div
-          className="mt-2 inline-block w-full rounded-lg bg-gray-50 px-5 py-3 text-center text-sm font-semibold text-gray-500 hover:cursor-pointer sm:mt-0 sm:w-auto"
+      <div className="mt-10 flex flex-col sm:flex-row gap-4">
+        <button
+          onClick={enableDraft}
+          className="flex-1 bg-black text-white text-[10px] font-bold uppercase tracking-[0.2em] py-4 hover:bg-gray-800 transition-all active:scale-95"
+        >
+          Verify Identity
+        </button>
+
+        <button
+          className="flex-1 bg-white border border-gray-200 text-gray-400 text-[10px] font-bold uppercase tracking-[0.2em] py-4 hover:text-black hover:border-black transition-all"
           onClick={() => setModalOpen(false)}
         >
-          Cancel
-        </div>
+          Abort
+        </button>
       </div>
     </div>
   );

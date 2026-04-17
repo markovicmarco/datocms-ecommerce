@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Image as DatoImage, type ResponsiveImageType } from 'react-datocms';
 import type { LayoutQuery } from '@/graphql/types/graphql';
@@ -11,111 +13,108 @@ type Props = {
 
 const Footer = ({ data, globalPageProps }: Props) => {
   return (
-    <footer className="mx-auto max-w-7xl bg-white pt-4 sm:pt-6 lg:pt-8">
+    <footer className="w-full bg-white border-t border-gray-100">
+      {/* NEWSLETTER SECTION - Brutalist style */}
       {data.generalInterface?.displayNewsletterFooter && (
-        <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
-          <div className="flex flex-col items-center justify-between gap-2 border-b border-t py-6 md:flex-row">
-            <div className="mb-3 text-center md:mb-0 md:text-left">
-              <span className="font-bold uppercase tracking-widest text-gray-800">
-                {data.generalInterface?.newsletter}
-              </span>
-              <p className="text-gray-500">
-                {data.generalInterface?.subscribeToOurNewsletter}
-              </p>
+        <div className="w-full border-b border-gray-100">
+          <div className="max-w-[1920px] mx-auto px-4 md:px-12 py-16 md:py-24">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-end">
+              <div className="md:col-span-7">
+                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#87CEEB]">
+                  {data.generalInterface?.newsletter}
+                </span>
+                <h2 className="mt-4 text-4xl md:text-6xl font-serif uppercase leading-tight text-black">
+                  {data.generalInterface?.subscribeToOurNewsletter}
+                </h2>
+              </div>
+
+              <div className="md:col-span-5">
+                <form className="flex flex-col sm:flex-row gap-0 border-2 border-black">
+                  <input
+                    placeholder={data.generalInterface?.emailPlaceholder ?? 'EMAIL@ADDRESS.COM'}
+                    className="flex-1 bg-white px-6 py-5 text-[11px] uppercase tracking-widest outline-none focus:placeholder:opacity-0"
+                  />
+                  <button
+                    type="button"
+                    className="bg-black text-white px-10 py-5 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#87CEEB] hover:text-black transition-all duration-500"
+                  >
+                    {data.generalInterface?.newsletterButton}
+                  </button>
+                </form>
+              </div>
             </div>
-
-            <form className="flex w-full gap-2 md:max-w-md">
-              <input
-                placeholder={data.generalInterface?.emailPlaceholder ?? 'Email'}
-                className="w-full flex-1 rounded border bg-gray-50 px-3 py-2 text-gray-800 placeholder-gray-500 outline-none ring-indigo-300 transition duration-100 focus:ring"
-              />
-
-              <button
-                type="button"
-                className="inline-block rounded bg-primary px-8 py-2 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-primary/80 focus-visible:ring active:bg-indigo-700 md:text-base"
-              >
-                {data.generalInterface?.newsletterButton}
-              </button>
-            </form>
           </div>
         </div>
       )}
 
-      <div className="pt-12">
-        <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
-          <div className="mb-16 grid grid-cols-2 gap-y-12 md:grid-cols-4 lg:grid-cols-6 lg:gap-8">
-            <div className="col-span-full flex flex-col items-center justify-center text-center md:my-auto md:block lg:col-span-2">
-              <div className="mb-4 flex items-center lg:-mt-2">
-                <Link
-                  href="/"
-                  className="relative inline-flex h-12 w-12 items-center gap-2 text-xl font-bold text-black md:text-2xl"
-                  aria-label="logo"
-                >
-                  <DatoImage
-                    data={
-                      data.layout?.footerLogo
-                        ?.responsiveImage as ResponsiveImageType
-                    }
-                    className="h-full w-full object-contain"
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="50% 50%"
-                  />
-                </Link>
-                <span className="relative inline-flex items-center gap-2 pl-2 text-lg font-semibold text-black md:text-2xl">
-                  {data.layout?.footerTitle}
-                </span>
-              </div>
-
-              <p className="mb-6 text-gray-500 md:pr-8">
-                {data.layout?.footerSubtitle}
-              </p>
-
-              <div className="flex gap-4">
-                {data.layout?.socialMediaLinks.map((social) => {
-                  return (
-                    <a
-                      href={social.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600"
-                      key={social.id}
-                    >
-                      <SvgRenderer url={social.icon.url} />
-                    </a>
-                  );
-                })}
-              </div>
+      {/* MAIN FOOTER LINKS */}
+      <div className="max-w-[1920px] mx-auto px-4 md:px-12 py-20">
+        <div className="grid grid-cols-2 gap-y-16 md:grid-cols-4 lg:grid-cols-12 lg:gap-8">
+          
+          {/* LOGO & BRAND INFO */}
+          <div className="col-span-full lg:col-span-4 flex flex-col gap-8">
+            <div className="flex items-center gap-4">
+              <Link href="/" className="relative h-12 w-12 grayscale hover:grayscale-0 transition-all duration-700">
+                <DatoImage
+                  data={data.layout?.footerLogo?.responsiveImage as ResponsiveImageType}
+                  className="h-full w-full object-contain"
+                />
+              </Link>
+              <span className="text-[14px] font-bold uppercase tracking-[0.3em] text-black">
+                {data.layout?.footerTitle}
+              </span>
             </div>
+            
+            <p className="text-[11px] uppercase tracking-wider text-gray-400 leading-relaxed max-w-xs">
+              {data.layout?.footerSubtitle}
+            </p>
 
-            {data.layout?.footerColumns.map((column) => {
-              return (
-                <div key={column.id}>
-                  <div className="-ml-4 mb-4 text-center font-bold uppercase tracking-widest text-gray-800 md:text-start">
-                    {column.label}
+            <div className="flex gap-6">
+              {data.layout?.socialMediaLinks.map((social) => (
+                <a
+                  href={social.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-black hover:opacity-50 transition-opacity"
+                  key={social.id}
+                >
+                  <div className="w-5 h-5">
+                    <SvgRenderer url={social.icon.url} />
                   </div>
-
-                  <nav className="-ml-4 flex flex-col items-center gap-4 md:items-start">
-                    {column.footerItem.map((item) => {
-                      return (
-                        <div key={item.id}>
-                          <Link
-                            href={`/${globalPageProps.params.lng}/${item.slug}`}
-                            className="text-gray-500 transition duration-100 hover:text-primary active:text-primary/80"
-                          >
-                            {item.label}
-                          </Link>
-                        </div>
-                      );
-                    })}
-                  </nav>
-                </div>
-              );
-            })}
+                </a>
+              ))}
+            </div>
           </div>
 
-          <div className="border-t py-8 text-center text-sm text-gray-400">
+          {/* DYNAMIC COLUMNS */}
+          {data.layout?.footerColumns.map((column) => (
+            <div key={column.id} className="lg:col-span-2">
+              <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black mb-10">
+                {column.label}
+              </h3>
+              <nav className="flex flex-col gap-4">
+                {column.footerItem.map((item) => (
+                  <Link
+                    key={item.id}
+                    href={`/${globalPageProps.params.lng}/${item.slug}`}
+                    className="text-[11px] uppercase tracking-wider text-gray-500 hover:text-black hover:line-through transition-all"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          ))}
+        </div>
+
+        {/* COPYRIGHT AREA */}
+        <div className="mt-32 pt-10 border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="text-[9px] font-bold uppercase tracking-[0.3em] text-gray-300">
             {data.layout?.copyrightText}
+          </div>
+          <div className="flex gap-8">
+            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-300 hover:text-black cursor-pointer">Privacy Policy</span>
+            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-300 hover:text-black cursor-pointer">Terms of Service</span>
           </div>
         </div>
       </div>

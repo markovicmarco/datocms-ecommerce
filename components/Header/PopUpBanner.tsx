@@ -1,3 +1,6 @@
+
+"use client";
+
 import Link from 'next/link';
 import type { Dispatch, SetStateAction } from 'react';
 import { Image as DatoImage, type ResponsiveImageType } from 'react-datocms';
@@ -12,70 +15,78 @@ type PropTypes = {
 
 const PopUpBanner = ({ setPopUp, popup, globalPageProps }: PropTypes) => {
   return (
-    <div>
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+      {/* BACKDROP - Jači blur za fokus na brend */}
       <div
-        onClick={() => {
-          setPopUp(false);
-        }}
-        className="fixed z-40 h-screen w-screen bg-slate-900 bg-opacity-75 "
+        onClick={() => setPopUp(false)}
+        className="absolute inset-0 bg-black/60 backdrop-blur-md animate-in fade-in duration-500"
       />
-      <div
-        onClick={() => {
-          setPopUp(false);
-        }}
-        className="fixed bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center"
+      
+      {/* MODAL CONTAINER */}
+      <section
+        onClick={(e) => e.stopPropagation()}
+        className="relative z-[210] w-full max-w-4xl bg-white border-2 border-black shadow-[30px_30px_0px_0px_rgba(0,0,0,1)] md:grid md:grid-cols-5 animate-in zoom-in-95 duration-500"
       >
-        <section
-          onClick={(e) => e.stopPropagation()}
-          className="z-50 mx-auto my-auto w-3/4 overflow-hidden  rounded-lg bg-white shadow-2xl md:grid md:grid-cols-3 2xl:w-3/5"
-        >
-          <div className="relative h-32 w-full object-cover md:h-full">
-            <DatoImage
-              data={popup.popupImage?.responsiveImage as ResponsiveImageType}
-              className="h-full w-full object-contain"
-              layout="fill"
-              objectFit="cover"
-              objectPosition="50% 50%"
-            />
+        {/* IMAGE SIDE - Grayscale vibe */}
+        <div className="relative h-64 md:h-full md:col-span-2 border-b-2 md:border-b-0 md:border-r-2 border-black grayscale hover:grayscale-0 transition-all duration-1000">
+          <DatoImage
+            data={popup.popupImage?.responsiveImage as ResponsiveImageType}
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute top-4 left-4 bg-black text-white text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1">
+            Featured
+          </div>
+        </div>
+
+        {/* CONTENT SIDE */}
+        <div className="md:col-span-3 flex flex-col justify-center p-8 md:p-12 text-center md:text-left">
+          <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">
+            {popup.preTitle ?? "System Announcement"}
+          </p>
+
+          <h2 className="mt-4 flex flex-col">
+            <span className="text-4xl sm:text-5xl lg:text-7xl font-serif uppercase leading-[0.85] text-black">
+              {popup.title}
+            </span>
+            <span className="mt-4 text-[11px] font-bold uppercase tracking-[0.2em] text-black border-l-2 border-black pl-4 self-start md:self-auto inline-block">
+              {popup.subtitle}
+            </span>
+          </h2>
+
+          <div className="mt-10 flex flex-col gap-4">
+            <Link
+              onClick={() => setPopUp(false)}
+              className="w-full bg-black text-white text-[11px] font-bold uppercase tracking-[0.3em] py-5 hover:bg-[#87CEEB] hover:text-black transition-all duration-500 text-center"
+              href={`/${globalPageProps.params.lng}/${popup.button[0]?.slug ?? ''}`}
+            >
+              {popup.button[0]?.label}
+            </Link>
+            
+            <button
+              onClick={() => setPopUp(false)}
+              className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-colors"
+            >
+              {popup.dismissButtonLabel ?? "Close"}
+            </button>
           </div>
 
-          <div className="my-auto p-4 text-center sm:p-6 md:col-span-2 lg:p-8">
-            <p className="text-sm font-semibold uppercase tracking-widest">
-              {popup.preTitle}
-            </p>
-
-            <h2 className="mt-6 font-black uppercase">
-              <span className="text-4xl font-black sm:text-5xl lg:text-6xl">
-                {' '}
-                {popup.title}{' '}
-              </span>
-
-              <span className="mt-2 block text-sm">{popup.subtitle}</span>
-            </h2>
-
-            <Link
-              onClick={() => {
-                setPopUp(false);
-              }}
-              className="mt-8 inline-block w-full bg-primary py-4 text-sm font-bold uppercase tracking-widest text-white"
-              href={`/${globalPageProps.params.lng}/${popup.button[0].slug}`}
-            >
-              {popup.button[0].label}
-            </Link>
-            <div
-              className="mt-8 inline-block w-full cursor-pointer text-xs font-bold uppercase tracking-widest text-slate-500"
-              onClick={() => {
-                setPopUp(false);
-              }}
-            >
-              {popup.dismissButtonLabel}
-            </div>
-            <p className="mt-8 text-xs font-medium uppercase text-gray-400">
+          {popup.underText && (
+            <p className="mt-8 text-[9px] uppercase tracking-widest text-gray-300 leading-relaxed italic">
               {popup.underText}
             </p>
-          </div>
-        </section>
-      </div>
+          )}
+        </div>
+
+        {/* CLOSE ICON - Gornji desni ugao */}
+        <button
+          onClick={() => setPopUp(false)}
+          className="absolute -top-4 -right-4 bg-black text-white p-2 hover:rotate-90 transition-transform duration-300"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </section>
     </div>
   );
 };
