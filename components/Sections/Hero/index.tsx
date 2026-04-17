@@ -60,24 +60,29 @@ const Hero = ({ fragment, globalPageProps }: Props) => {
     >
       <section className="mx-auto w-full max-w-[1920px] flex flex-col">
         
-        {/* TOP TITLE - Elegantna tipografija i smanjen prostor */}
+        {/* TOP TITLE */}
         <header className="py-6 md:py-10 border-b border-gray-100 px-4">
-          <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-[4rem] font-serif uppercase tracking-[0.2em] text-black leading-[0.8] transition-all duration-1000">
+          <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-[4rem] font-serif uppercase tracking-[0.2em] text-black leading-[0.8]">
             {heroTitle ?? "Find Your Style"}
           </h1>
         </header>
 
         {/* SUBTITLE */}
-          <div className="mx-auto max-w-xs md:max-w-md text-center py-6 md:py-8">
-            <p className="text-[9px] md:text-[10px] uppercase tracking-[0.12em] font-medium text-black leading-relaxed">
-              {heroSubtitle}
-            </p>
-          </div>
+        <div className="mx-auto max-w-xs md:max-w-md text-center py-6 md:py-8">
+          <p className="text-[9px] md:text-[10px] uppercase tracking-[0.12em] font-medium text-black leading-relaxed">
+            {heroSubtitle}
+          </p>
+        </div>
 
-        {/* MAIN SLIDER - Panoramski prikaz "zalepljen" uz header i footer */}
+        {/* MAIN SLIDER - Izmenjen za mobilnu visinu */}
         <div className="flex items-start justify-center p-2 md:p-4 pt-4 md:pt-6 bg-white">
           <div 
-            className="group relative w-full aspect-[21/9] md:aspect-[3/1] lg:aspect-[4/1] overflow-hidden rounded-sm shadow-sm cursor-crosshair max-h-[50vh]"
+            className="group relative w-full 
+                       /* MOBILNI: 80% visine ekrana, portretni odnos */
+                       h-[80vh] aspect-[3/4] 
+                       /* DESKTOP: Vraća se na tvoj original */
+                       md:h-auto md:max-h-[50vh] md:aspect-[3/1] lg:aspect-[4/1] 
+                       overflow-hidden rounded-sm shadow-sm cursor-crosshair"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
@@ -113,15 +118,13 @@ const Hero = ({ fragment, globalPageProps }: Props) => {
               </div>
             ))}
             
-            {/* Središnja linija na hover */}
+            {/* Središnja linija */}
             <div className="absolute inset-y-0 left-1/2 w-px bg-white/40 z-20 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           </div>
         </div>
 
-        {/* BOTTOM NAVIGATION BAR - Kompaktno povezan sa slajderom */}
+        {/* BOTTOM NAVIGATION */}
         <footer className="px-4 md:px-12 py-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
-          
-          {/* SEASONS */}
           <div className="flex gap-6 text-[9px] md:text-[10px] tracking-[0.2em] uppercase font-bold text-black">
             {['Spring', 'Summer', 'Fall', 'Winter'].map((season) => (
               <span key={season} className="hover:line-through cursor-pointer transition-all duration-500">
@@ -130,9 +133,6 @@ const Hero = ({ fragment, globalPageProps }: Props) => {
             ))}
           </div>
 
-
-
-          {/* SOCIALS */}
           <div className="flex items-center gap-8">
             <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-300">
               {socialLabel ?? 'Socials'}

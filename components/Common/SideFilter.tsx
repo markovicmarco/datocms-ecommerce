@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Disclosure } from '@headlessui/react';
 import type { Maybe } from 'graphql/jsutils/Maybe';
@@ -62,55 +62,67 @@ const SideFilter = ({
   }
 
   return (
-    <form className="lg:sticky lg:top-24 space-y-12 px-4 lg:px-0">
+    <form className="lg:sticky lg:top-24 space-y-12 px-4 lg:px-0 bg-white">
       
-      {/* SORTING SECTION - Technical List */}
-      <div className="space-y-6">
-        <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#87CEEB]">
-          Sort_By
-        </h3>
-        <ul className="space-y-3">
-          {sortOptions.map((option) => {
-            const isSelected = searchParams.get('orderBy') === option.value || 
-              (!searchParams.get('orderBy') && option.value === '_publishedAt_DESC');
+      {/* SORTING SECTION - Zatvoreno po defaultu */}
+      <Disclosure>
+        {({ open }) => (
+          <div className="border-b border-gray-100 pb-6">
+            <Disclosure.Button className="flex w-full items-center justify-between group">
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40 group-hover:text-black transition-colors">
+                01 // Sort_By
+              </span>
+              <span className="text-[12px] font-mono text-black">
+                {open ? '[ – ]' : '[ + ]'}
+              </span>
+            </Disclosure.Button>
             
-            return (
-              <li key={option.value}>
-                <button
-                  type="button"
-                  onClick={() => exportQueryParameters('orderBy', option.value)}
-                  className={`text-[11px] uppercase tracking-widest transition-all ${
-                    isSelected 
-                    ? 'font-bold text-black translate-x-2' 
-                    : 'text-gray-400 hover:text-black hover:translate-x-1'
-                  }`}
-                >
-                  {isSelected && <span className="mr-2 text-[#87CEEB]">→</span>}
-                  {option.label}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+            <Disclosure.Panel className="pt-8 animate-in fade-in duration-500">
+              <ul className="space-y-4">
+                {sortOptions.map((option) => {
+                  const isSelected = searchParams.get('orderBy') === option.value || 
+                    (!searchParams.get('orderBy') && option.value === '_publishedAt_DESC');
+                  
+                  return (
+                    <li key={option.value}>
+                      <button
+                        type="button"
+                        onClick={() => exportQueryParameters('orderBy', option.value)}
+                        className={`text-[11px] uppercase tracking-[0.2em] transition-all flex items-center gap-3 ${
+                          isSelected 
+                          ? 'font-bold text-black' 
+                          : 'text-gray-400 hover:text-black hover:translate-x-1'
+                        }`}
+                      >
+                        {isSelected && <span className="h-px w-4 bg-black animate-in slide-in-from-left-2 duration-300"></span>}
+                        {option.label}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Disclosure.Panel>
+          </div>
+        )}
+      </Disclosure>
 
-      {/* FILTERS - Industrial Accordion */}
-      <div className="border-t-2 border-black pt-8 space-y-2">
-        {filters.map((section) => (
-          <Disclosure key={section.id} defaultOpen={true}>
+      {/* FILTERS - Industrial Accordion (Zatvoreni po defaultu) */}
+      <div className="space-y-2">
+        {filters.map((section, index) => (
+          <Disclosure key={section.id} defaultOpen={false}>
             {({ open }) => (
-              <div className="border-b border-gray-100 last:border-none pb-4 mb-4">
-                <Disclosure.Button className="flex w-full items-center justify-between py-2 group">
-                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-black group-hover:text-[#87CEEB]">
-                    {section.name}
+              <div className="border-b border-gray-100 pb-6 mb-6">
+                <Disclosure.Button className="flex w-full items-center justify-between group">
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40 group-hover:text-black transition-colors">
+                    0{index + 2} // {section.name}
                   </span>
-                  <span className="text-xs font-mono text-gray-300">
+                  <span className="text-[12px] font-mono text-black">
                     {open ? '[ – ]' : '[ + ]'}
                   </span>
                 </Disclosure.Button>
                 
-                <Disclosure.Panel className="pt-4 animate-in fade-in slide-in-from-top-2 duration-300">
-                  <div className="space-y-3">
+                <Disclosure.Panel className="pt-8 animate-in fade-in slide-in-from-top-2 duration-500">
+                  <div className="space-y-5">
                     {section.options?.map((option, idx) => {
                       const isChecked = 
                         paramaterCollectionsFiltered.includes(option.id) ||
@@ -119,13 +131,12 @@ const SideFilter = ({
 
                       return (
                         <div key={option.id} className="group flex items-center cursor-pointer">
-                          <div className="relative flex items-center h-5">
+                          <div className="relative flex items-center h-4">
                             <input
                               id={`f-${section.id}-${idx}`}
                               type="checkbox"
                               checked={isChecked}
                               onChange={() => {
-                                // Logika ostaje ista, samo je UI čistiji
                                 let currentList = section.id === 'collections' ? [...paramaterCollectionsFiltered] :
                                                  section.id === 'brands' ? [...parameterBrandsFiltered] : 
                                                  [...parameterMaterialsFiltered];
@@ -137,18 +148,14 @@ const SideFilter = ({
                                 }
                                 exportQueryParameters(section.id, currentList.join('|'));
                               }}
-                              className="peer h-4 w-4 appearance-none border-2 border-black rounded-none checked:bg-black transition-all cursor-pointer"
+                              className="peer h-3.5 w-3.5 appearance-none border border-black/20 rounded-none checked:bg-black checked:border-black transition-all cursor-pointer"
                             />
-                            {/* Custom Brutalist Checkmark */}
-                            <svg className="absolute w-3 h-3 text-white pointer-events-none hidden peer-checked:block left-0.5" 
-                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4">
-                              <path d="M20 6L9 17L4 12" />
-                            </svg>
+                            <div className="absolute inset-0 m-auto w-1.5 h-1.5 bg-white scale-0 peer-checked:scale-100 transition-transform pointer-events-none" />
                           </div>
                           <label
                             htmlFor={`f-${section.id}-${idx}`}
-                            className={`ml-3 text-[10px] font-mono uppercase tracking-tight cursor-pointer transition-colors ${
-                              isChecked ? 'text-black font-bold' : 'text-gray-500 hover:text-black'
+                            className={`ml-4 text-[10px] font-bold uppercase tracking-widest cursor-pointer transition-colors ${
+                              isChecked ? 'text-black' : 'text-gray-400 hover:text-black'
                             }`}
                           >
                             {option.name}

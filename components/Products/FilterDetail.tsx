@@ -1,9 +1,8 @@
-'use client';
+"use client";
 
+import { useState } from 'react';
 import {
-  isList,
   isListItem,
-  isThematicBreak,
   type Record,
   type StructuredText,
 } from 'datocms-structured-text-utils';
@@ -30,71 +29,86 @@ const FilterDetail = ({
   description,
   subtitle,
 }: PropTypes) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <section className="w-full bg-white relative">
+    <section className="w-full bg-white relative border-b border-gray-100">
       <div className="max-w-[1920px] mx-auto">
-        
-        {/* MAIN LAYOUT GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-screen">
+        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[100px] lg:min-h-[120px]">
           
-          {/* LEVA KOLONA: Tekstualni sadržaj */}
-          <div className="lg:col-span-7 px-4 md:px-12 py-20 lg:py-32 flex flex-col justify-center">
-            
-            <div className="max-w-2xl">
-              {/* Tip filtera (npr. Material, Collection) */}
-              <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#87CEEB]">
-                {type ?? "Explore Detail"}
+          {/* HEADER / TRIGGER */}
+          <button 
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:col-span-12 w-full flex items-center justify-between px-6 md:px-12 py-10 group bg-white hover:bg-gray-50 transition-colors z-20"
+          >
+            <div className="flex items-baseline gap-8">
+              <span className="text-[10px] font-mono opacity-30">
+                {isOpen ? '[ 02 ]' : '[ 01 ]'}
               </span>
-
-              {/* Naslov - Masivan i autoritativan */}
-              <h1 className="mt-6 text-5xl md:text-8xl font-serif uppercase leading-[0.9] text-black italic">
+              <h2 className="text-2xl md:text-5xl font-serif uppercase italic tracking-tight text-black">
                 {name}
-              </h1>
-
-              {/* Subtitle / Intro */}
-              <div className="mt-10 text-[14px] uppercase tracking-widest text-black font-bold leading-relaxed border-l-4 border-black pl-6">
-                <ReactMarkdown>{subtitle || ''}</ReactMarkdown>
-              </div>
-
-              {/* Structured Text: Opis */}
-              <div className="mt-16 prose-custom">
-                <DatoStructuredText
-                  data={description}
-                  customNodeRules={[
-                    renderNodeRule(isListItem, ({ children, key }) => (
-                      <li key={key} className="flex items-center gap-4 py-2 border-b border-gray-50">
-                        <span className="w-1.5 h-1.5 bg-[#87CEEB] shrink-0" />
-                        <span className="text-[11px] uppercase tracking-wider text-gray-500">{children}</span>
-                      </li>
-                    )),
-                    renderNodeRule(isThematicBreak, ({ key }) => (
-                      <hr key={key} className="my-12 border-0 h-px bg-black opacity-10" />
-                    )),
-                    renderNodeRule(isList, ({ children, key }) => (
-                      <ul key={key} className="space-y-2 my-8">
-                        {children}
-                      </ul>
-                    )),
-                  ]}
-                />
-              </div>
+              </h2>
             </div>
-          </div>
-
-          {/* DESNA KOLONA: Sticky Image */}
-          <div className="lg:col-span-5 relative h-[60vh] lg:h-screen sticky top-0 bg-gray-50 overflow-hidden border-l border-gray-100 grayscale hover:grayscale-0 transition-all duration-1000">
-            {image && (
-              <DatoImage
-                fragment={image}
-                className="h-full w-full object-cover"
-                layout="fill"
-                objectFit="cover"
-              />
-            )}
             
-            {/* Overlay labela */}
-            <div className="absolute bottom-12 right-12 bg-black text-white px-6 py-4 text-[10px] font-bold uppercase tracking-[0.3em]">
-              Detail View / 01
+            <div className="flex items-center gap-6">
+              <span className="hidden md:block text-[9px] font-black uppercase tracking-[0.4em] opacity-0 group-hover:opacity-40 transition-opacity text-black">
+                {isOpen ? 'Close_Archive' : 'View_Details'}
+              </span>
+              <span className="text-xl font-mono text-black">
+                {isOpen ? '[ - ]' : '[ + ]'}
+              </span>
+            </div>
+          </button>
+
+          {/* COLLAPSIBLE CONTENT */}
+          <div className={`lg:col-span-12 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] ${isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+            <div className="grid grid-cols-1 lg:grid-cols-12 border-t border-gray-100">
+              
+              {/* LEVA STRANA: Tekst */}
+              <div className="lg:col-span-7 px-6 md:px-12 py-16 lg:py-24 border-r border-gray-100">
+                <div className="max-w-xl">
+                  <div className="flex items-center gap-3 mb-8">
+                    <span className="h-px w-6 bg-black opacity-20"></span>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-black/40">
+                      {type ?? "ARCHIVE_REF"}
+                    </span>
+                  </div>
+                  
+                  <div className="mt-8 text-[16px] uppercase tracking-[0.1em] text-black font-bold leading-relaxed border-l-[4px] border-black pl-8">
+                    <ReactMarkdown>{subtitle || ''}</ReactMarkdown>
+                  </div>
+
+                  <div className="mt-16 prose-custom">
+                    <DatoStructuredText
+                      data={description}
+                      customNodeRules={[
+                        renderNodeRule(isListItem, ({ children, key }) => (
+                          <li key={key} className="flex items-center gap-4 py-4 border-b border-gray-50 group/item">
+                            <span className="w-1.5 h-1.5 bg-black rotate-45 shrink-0 transition-transform group-hover/item:rotate-90" />
+                            <span className="text-[11px] uppercase tracking-[0.2em] text-black/50 group-hover/item:text-black transition-colors">{children}</span>
+                          </li>
+                        )),
+                      ]}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* DESNA STRANA: Slika */}
+              <div className="lg:col-span-5 relative h-[70vh] lg:h-auto bg-gray-50 overflow-hidden grayscale contrast-125 transition-all duration-1000 hover:grayscale-0">
+                {image && (
+                  <DatoImage
+                    fragment={image}
+                    className="h-full w-full object-cover"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                )}
+                <div className="absolute bottom-12 right-12 bg-black text-white px-6 py-4 text-[9px] font-bold uppercase tracking-[0.4em]">
+                  {name} // Image_Data
+                </div>
+              </div>
+
             </div>
           </div>
 
