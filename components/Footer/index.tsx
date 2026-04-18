@@ -38,7 +38,7 @@ const Footer = ({ data, globalPageProps }: Props) => {
                   {/* Button hover efekat usklađen sa brendom */}
                   <button
                     type="button"
-                    className="bg-black text-white px-10 py-5 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-primary hover:text-black transition-all duration-500"
+                    className="btn-brutalist flex items-center justify-center transition-all duration-500"
                   >
                     {data.generalInterface?.newsletterButton}
                   </button>

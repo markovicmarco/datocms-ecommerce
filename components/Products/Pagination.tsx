@@ -27,14 +27,14 @@ const Pagination = ({ numberOfProducts, currentPage }: PropTypes) => {
       <button
         key={pageNumber}
         type="button"
-        className={`relative inline-flex h-12 w-12 items-center justify-center text-[11px] font-bold uppercase tracking-widest transition-all duration-300 border-r border-black/5 last:border-r-0 ${
+        className={`btn-brutalist relative inline-flex items-center justify-center transition-all duration-300 ${
           isSelected 
             ? 'bg-black text-white' 
             : 'bg-white text-black hover:bg-primary hover:text-black'
         }`}
         onClick={() => exportQueryParameters('page', pageNumber.toString())}
       >
-        {String(pageNumber).padStart(2, '0')}
+        {String(pageNumber).padStart(2, '0')} 
       </button>,
     );
   }
@@ -60,7 +60,7 @@ const Pagination = ({ numberOfProducts, currentPage }: PropTypes) => {
             type="button"
             disabled={currentPage === 1}
             onClick={() => exportQueryParameters('page', (currentPage - 1).toString())}
-            className={`flex items-center justify-center w-12 h-12 border-r-2 border-black transition-colors ${
+            className={`btn-brutalist flex items-center justify-center transition-colors ${
               currentPage === 1 ? 'opacity-20 cursor-not-allowed' : 'hover:bg-primary hover:text-black'
             }`}
           >
@@ -82,7 +82,7 @@ const Pagination = ({ numberOfProducts, currentPage }: PropTypes) => {
             type="button"
             disabled={lastProductIndex === numberOfProducts}
             onClick={() => exportQueryParameters('page', (currentPage + 1).toString())}
-            className={`flex items-center justify-center w-12 h-12 border-l-2 border-black transition-colors ${
+            className={`btn-brutalist flex items-center justify-center transition-colors ${
               lastProductIndex === numberOfProducts ? 'opacity-20 cursor-not-allowed' : 'hover:bg-primary hover:text-black'
             }`}
           >

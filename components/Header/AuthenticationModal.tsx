@@ -98,13 +98,13 @@ const AuthenticationModal = ({
       <div className="mt-10 flex flex-col sm:flex-row gap-4">
         <button
           onClick={enableDraft}
-          className="flex-1 bg-black text-white text-[10px] font-bold uppercase tracking-[0.2em] py-4 hover:bg-gray-800 transition-all active:scale-95"
+          className="btn-brutalist flex items-center justify-center transition-all active:scale-95"
         >
           Verify Identity
         </button>
 
         <button
-          className="flex-1 bg-white border border-gray-200 text-gray-400 text-[10px] font-bold uppercase tracking-[0.2em] py-4 hover:text-black hover:border-black transition-all"
+          className="btn-brutalist flex items-center justify-center transition-all"
           onClick={() => setModalOpen(false)}
         >
           Abort

@@ -58,7 +58,7 @@ export default function CategoryHeader({
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="bg-black text-white p-3 flex flex-col items-center gap-4 border-r border-y border-black shadow-2xl transition-transform active:scale-90"
+          className="btn-brutalist flex items-center justify-center transition-transform active:scale-90"
         >
           <Bars3Icon className="h-5 w-5" />
           <span className="[writing-mode:vertical-lr] rotate-180 text-[10px] font-bold uppercase tracking-[0.4em] py-1">

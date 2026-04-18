@@ -57,7 +57,7 @@ const Content: ContentPage<PageProps, Query> = ({ data }) => {
             <div className="flex items-center gap-8 border-t border-black/5 pt-12">
               <button
                 onClick={prevStore}
-                className="h-12 w-12 flex items-center justify-center border-2 border-black hover:bg-black hover:text-white transition-all text-xl"
+                className="btn-brutalist flex items-center justify-center"
               >
                 ←
               </button>
@@ -71,7 +71,7 @@ const Content: ContentPage<PageProps, Query> = ({ data }) => {
 
               <button
                 onClick={nextStore}
-                className="h-12 w-12 flex items-center justify-center border-2 border-black hover:bg-black hover:text-white transition-all text-xl"
+                className="btn-brutalist flex items-center justify-center"
               >
                 →
               </button>

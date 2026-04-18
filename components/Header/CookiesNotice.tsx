@@ -39,14 +39,14 @@ const CookiesNotice = ({ setCookies, cookieNotice }: PropTypes) => {
           <div className="md:col-span-4 flex flex-col md:flex-row items-center justify-end gap-6">
             <button
               onClick={() => setCookies(false)}
-              className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-colors"
+              className="btn-brutalist flex items-center justify-center transition-colors"
             >
               {cookieNotice.secondaryButtonLabel}
             </button>
             
             <button
               onClick={() => setCookies(false)}
-              className="w-full md:w-auto bg-black text-white text-[10px] font-bold uppercase tracking-[0.2em] px-10 py-4 hover:bg-gray-800 transition-all duration-300"
+              className="btn-brutalist flex items-center justify-center transition-all duration-300"
             >
               {cookieNotice.primaryButtonLabel}
             </button>

@@ -75,7 +75,7 @@ export default function Cart({ open, setOpen }: PropTypes) {
                         </Dialog.Title>
                         <button
                           type="button"
-                          className="text-black hover:opacity-50 transition-opacity"
+                          className="btn-brutalist flex items-center justify-center transition-opacity"
                           onClick={() => setOpen(false)}
                         >
                           <XMarkIcon className="h-5 w-5" />
@@ -119,7 +119,7 @@ export default function Cart({ open, setOpen }: PropTypes) {
                                     <p className="text-gray-400 font-medium">Qty {product.quantity}</p>
                                     <button
                                       type="button"
-                                      className="font-bold text-black border-b border-black pb-0.5 hover:opacity-50"
+                                      className="btn-brutalist flex items-center justify-center"
                                     >
                                       Remove
                                     </button>
@@ -147,7 +147,7 @@ export default function Cart({ open, setOpen }: PropTypes) {
                         </button>
                         <button
                           onClick={() => setOpen(false)}
-                          className="w-full text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-colors"
+                          className="btn-brutalist flex items-center justify-center transition-colors"
                         >
                           Continue Shopping
                         </button>
