@@ -1,4 +1,3 @@
-import '@/styles/global.css';
 import queryDatoCMS from '@/utils/queryDatoCMS'; 
 import Script from 'next/script';
 

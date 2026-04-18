@@ -24,12 +24,12 @@ module.exports = {
         current: 'currentColor',
         transparent: 'transparent',
         white: '#FFFFFF',
-        black: '#090E34',
-        dark: '#1D2144',
+        black: '#000000',
+        dark: '#0A0A0A',
         // KLJUČ: RGB varijabla bez zareza za alpha podršku
         primary: 'rgb(var(--color-primary) / <alpha-value>)',
         yellow: '#FBB040',
-        'body-color': '#959CB1',
+        'body-color': '#ECECE9',
       },
       boxShadow: {
         signUp: '0px 5px 10px rgba(4, 10, 34, 0.2)',
