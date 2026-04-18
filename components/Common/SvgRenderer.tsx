@@ -18,7 +18,7 @@ const SvgRenderer = ({ url, className = "h-6 w-6" }: Props) => {
         if (!response.ok) throw new Error('Network response was not ok');
         const svgText = await response.text();
         
-        // Čišćenje SVG-a od inline stilova koji mogu da blokiraju Tailwind
+        // Dinamičko čišćenje: Forsiramo currentColor kako bi Tailwind klase iz roditelja radile
         const cleanSvg = svgText
           .replace(/fill="[^"]*"/g, 'fill="currentColor"')
           .replace(/stroke="[^"]*"/g, 'stroke="currentColor"');
@@ -37,7 +37,8 @@ const SvgRenderer = ({ url, className = "h-6 w-6" }: Props) => {
       className={`
         inline-flex items-center justify-center 
         transition-all duration-300
-        text-black hover:text-[#87CEEB]
+        /* Promenjeno: hover efekat sada koristi primary boju (krem) */
+        text-black hover:text-primary
         [&_svg]:h-full [&_svg]:w-full [&_svg]:fill-current
         ${className}
       `}

@@ -26,20 +26,22 @@ const NotificationStrip = ({
   setNotificationStrip,
 }: Props) => {
   return (
-    <div className="w-full bg-[#87CEEB] relative z-[60]">
+    <div className="w-full bg-primary relative z-[60] border-b border-black/5">
       <div className="max-w-[1920px] mx-auto px-4 md:px-12 py-3 flex items-center justify-center relative">
         
-        {/* TEXT AREA - Rešeno preko Structured Text-a */}
-        <div className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold text-white text-center">
+        <div className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold text-black text-center">
           <DatoStructuredText
             data={notification.value as StructuredText<Record, Record>}
             customNodeRules={[
               renderNodeRule(isLink, ({ node, children, key }) => {
+                // Generisanje putanje sa jezikom
+                const path = `/${globalPageProps.params.lng}${node.url}`;
+                
                 return (
                   <Link
-                    href={`/${globalPageProps.params.lng}${node.url}` || '#'}
-                    className="ml-4 inline-block border-b border-white pb-0.5 hover:opacity-70 transition-opacity"
                     key={key}
+                    href={path || '#'}
+                    className="ml-4 inline-block border-b border-black pb-0.5 hover:opacity-50 transition-opacity"
                   >
                     {children}
                   </Link>
@@ -49,10 +51,9 @@ const NotificationStrip = ({
           />
         </div>
 
-        {/* CLOSE BUTTON - Diskretniji iksić */}
         <button
           type="button"
-          className="absolute right-4 md:right-12 text-white hover:opacity-50 transition-opacity"
+          className="absolute right-4 md:right-12 text-black hover:opacity-50 transition-opacity"
           onClick={() => setNotificationStrip(false)}
         >
           <svg

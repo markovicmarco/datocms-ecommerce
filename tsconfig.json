@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
-    "baseUrl": ".",
+    // 1. Uklonjen baseUrl (izvor greške)
+    
     "paths": {
+      // 2. Putanje ostaju iste, one sada rade relativno u odnosu na ovaj fajl
       "@/*": ["./*"]
     },
     "allowJs": true,
@@ -13,7 +15,10 @@
     "incremental": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    
+    // 3. Promenjeno sa "node" na "bundler" (ovo rešava potrebu za baseUrl)
+    "moduleResolution": "bundler", 
+    
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
@@ -22,14 +27,16 @@
         "name": "next"
       }
     ],
-    "target": "ES2017"
+    // 4. Slobodno podigni target na ES2022 za bolju optimizaciju (opciono)
+    "target": "ES2022" 
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    "additional-modules.d.ts" // Dodaj ako si pravio fajl za CSS deklaracije
   ],
   "exclude": ["node_modules"]
 }

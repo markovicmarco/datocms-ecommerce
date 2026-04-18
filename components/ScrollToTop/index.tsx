@@ -53,11 +53,11 @@ export default function ScrollToTop({ isDraft }: Props) {
             exit={{ opacity: 0, y: 20 }}
             className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-4"
           >
-            {/* SUCCESS TOAST - Za kupca (Nebesko plava senka) */}
+            {/* SUCCESS TOAST - Senka je sada u primary boji (krem) */}
             <AnimatePresence>
               {successToast && (
                 <motion.div
-                  className="w-[320px] md:w-[450px] border-2 border-black bg-white p-1 shadow-[12px_12px_0px_0px_rgba(135,206,235,1)]"
+                  className="w-[320px] md:w-[450px] border-2 border-black bg-white p-1 shadow-[12px_12px_0px_0px_rgba(var(--primary-rgb),1)]"
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 50 }}
@@ -67,13 +67,13 @@ export default function ScrollToTop({ isDraft }: Props) {
               )}
             </AnimatePresence>
 
-            {/* AUTH MODAL - Za admina (Teška crna senka) */}
+            {/* AUTH MODAL - Zadržana teška crna senka za ozbiljnost (Security) */}
             <AnimatePresence>
               {modalOpen && (
                 <motion.div
                   className="w-[300px] md:w-[380px] border-2 border-black bg-white p-1 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]"
                   initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  animate={{ opacity: 1, x: 0, y: 0 }}
                   exit={{ opacity: 0, y: 50 }}
                 >
                   <AuthenticationModal
@@ -85,17 +85,18 @@ export default function ScrollToTop({ isDraft }: Props) {
               )}
             </AnimatePresence>
 
-            {/* TOGGLE BUTTON - Admin komanda */}
+            {/* TOGGLE BUTTON - Admin komanda usklađena sa Stealth Wealth tonom */}
             <div
               onClick={toggleDraft}
               className={`flex cursor-pointer items-center justify-center border-2 border-black px-6 py-3 font-bold uppercase tracking-[0.2em] text-[10px] transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] ${
                 isDraft 
-                ? 'bg-[#87CEEB] text-black hover:bg-black hover:text-white' 
-                : 'bg-black text-white hover:bg-[#87CEEB] hover:text-black'
+                ? 'bg-primary text-black hover:bg-black hover:text-white' 
+                : 'bg-black text-white hover:bg-primary hover:text-black'
               }`}
             >
               <div className="flex items-center gap-3">
-                <span className={`h-1.5 w-1.5 shrink-0 ${isDraft ? 'bg-black animate-pulse' : 'bg-[#87CEEB]'}`} />
+                {/* Indikator statusa sada koristi primary/crnu kombinaciju */}
+                <span className={`h-1.5 w-1.5 shrink-0 ${isDraft ? 'bg-black animate-pulse' : 'bg-primary'}`} />
                 {isDraft ? 'Enter Published Mode' : 'Enter Draft Mode'}
               </div>
             </div>

@@ -9,26 +9,15 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: '1rem',
+      padding: '1rem', 
     },
     screens: {
       xs: '450px',
-      // => @media (min-width: 450px) { ... }
-
       sm: '575px',
-      // => @media (min-width: 576px) { ... }
-
       md: '768px',
-      // => @media (min-width: 768px) { ... }
-
       lg: '992px',
-      // => @media (min-width: 992px) { ... }
-
       xl: '1200px',
-      // => @media (min-width: 1200px) { ... }
-
       '2xl': '1400px',
-      // => @media (min-width: 1400px) { ... }
     },
     extend: {
       colors: {
@@ -37,6 +26,7 @@ module.exports = {
         white: '#FFFFFF',
         black: '#090E34',
         dark: '#1D2144',
+        // KLJUČ: RGB varijabla bez zareza za alpha podršku
         primary: 'rgb(var(--color-primary) / <alpha-value>)',
         yellow: '#FBB040',
         'body-color': '#959CB1',

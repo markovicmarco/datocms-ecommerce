@@ -6,13 +6,12 @@ import BrandSeo from './BrandSeo';
 import type { ContentPage } from '@/components/WithRealTimeUpdates/types';
 import type { PageProps, Query } from './meta';
 
-
 const Content: ContentPage<PageProps, Query> = ({
   data,
   children,
   ...globalPageProps
 }) => {
-  const { params, isDraft } = globalPageProps as any; // Izvlačimo isDraft
+  const { params, isDraft } = globalPageProps as any;
 
   return (
     <BrandSeo params={params} isDraft={isDraft}> 
@@ -20,13 +19,16 @@ const Content: ContentPage<PageProps, Query> = ({
       
       <Header data={data} globalPageProps={globalPageProps} />
       
+      {/* Dynamic Branding Injection */}
       <CustomColor
-        r={data.layout?.mainColor.red || 74}
-        g={data.layout?.mainColor.green || 247}
-        b={data.layout?.mainColor.blue || 108}
+        r={data.layout?.mainColor?.red || 250}
+        g={data.layout?.mainColor?.green || 238}
+        b={data.layout?.mainColor?.blue || 200}
       />
       
-      {children}
+      <main>
+        {children}
+      </main>
       
       <Footer globalPageProps={globalPageProps} data={data} />
     </BrandSeo>

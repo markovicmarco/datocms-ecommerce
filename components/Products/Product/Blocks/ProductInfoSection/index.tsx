@@ -57,11 +57,11 @@ const ProductInfoSection = ({
           {/* LEVA STRANA: INFO GRID */}
           <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
             
-            {/* ITEM: MATERIALS */}
+            {/* ITEM: MATERIALS - Sada koristi text-primary */}
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#87CEEB]">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">
                   {materials}
                 </h3>
               </div>
@@ -74,7 +74,7 @@ const ProductInfoSection = ({
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#87CEEB]">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">
                   {styleString}
                 </h3>
               </div>
@@ -87,7 +87,7 @@ const ProductInfoSection = ({
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#87CEEB]">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">
                   {weatherString}
                 </h3>
               </div>
@@ -100,7 +100,7 @@ const ProductInfoSection = ({
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#87CEEB]">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">
                   {occasionsString}
                 </h3>
               </div>
@@ -114,7 +114,7 @@ const ProductInfoSection = ({
           <div className="lg:col-span-4 border-2 border-black p-1 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.05)]">
             <div className="border border-gray-100">
               {details?.image.responsiveImage && (
-                <div className="relative aspect-square grayscale hover:grayscale-0 transition-all duration-1000 overflow-hidden">
+                <div className="relative aspect-square grayscale hover:grayscale-0 transition-all duration-1000 overflow-hidden group">
                   <DatoImage
                     fragment={details.image.responsiveImage}
                     className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"

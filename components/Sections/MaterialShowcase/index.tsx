@@ -24,7 +24,8 @@ const MaterialShowcase = ({ fragment, globalPageProps }: Props) => {
         {/* HEADER: Technical Intro */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
           <div className="lg:col-span-5">
-            <h2 className="text-[10px] font-bold uppercase tracking-[0.5em] text-[#87CEEB] mb-6">
+            {/* Labela sekcije sada koristi text-primary */}
+            <h2 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary mb-6">
               Core Components / Materials
             </h2>
             <h1 className="text-4xl md:text-6xl font-serif uppercase leading-[0.9] text-black italic">
@@ -50,8 +51,8 @@ const MaterialShowcase = ({ fragment, globalPageProps }: Props) => {
                 className="group relative bg-white overflow-hidden p-8"
                 key={material.id}
               >
-                {/* Index Number */}
-                <span className="absolute top-8 left-8 text-[10px] font-mono font-bold text-gray-200 group-hover:text-[#87CEEB] transition-colors">
+                {/* Index Number - Na hover dobija primary boju */}
+                <span className="absolute top-8 left-8 text-[10px] font-mono font-bold text-gray-200 group-hover:text-primary transition-colors">
                   MTRL_{String(idx + 1).padStart(2, '0')}
                 </span>
 
@@ -71,6 +72,7 @@ const MaterialShowcase = ({ fragment, globalPageProps }: Props) => {
                   <div className="text-[13px] font-bold uppercase tracking-[0.2em] text-black">
                     {material.name}
                   </div>
+                  {/* Ikonica strelice dobija crnu pozadinu na hover, ostaje brutalistički čista */}
                   <div className="h-6 w-6 flex items-center justify-center border border-black group-hover:bg-black group-hover:text-white transition-all">
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1 9L9 1M9 1H1M9 1V9" stroke="currentColor" strokeWidth="2"/>

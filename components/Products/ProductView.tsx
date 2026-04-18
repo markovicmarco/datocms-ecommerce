@@ -21,11 +21,9 @@ const ALL_SIZES = ['xs', 's', 'm', 'l', 'xl'];
 const ProductView = ({ data, globalPageProps }: Props) => {
   if (!data.product) notFound();
 
-  // Sigurnosni fallback za varijacije i slike
   const variations = data.product.productVariations || [];
   const images = data.product.productImages || [];
   
-  // Inicijalna stanja sa proverama
   const [selectedColor, setSelectedColor] = useState(variations[0]?.color?.hex || '#000');
   const [selectedSize, setSelectedSize] = useState((variations[0]?.availableSizes as string[])?.[0] || 'm');
   const [selectedImage, setSelectedImage] = useState(images[0]);
@@ -93,7 +91,7 @@ const ProductView = ({ data, globalPageProps }: Props) => {
             <div className="space-y-4">
               <Link
                 href={`/${globalPageProps.params.lng}/products?brands=${data.product.brand.id}`}
-                className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#87CEEB] hover:underline transition-all"
+                className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary hover:underline transition-all"
               >
                 {data.product.brand?.name}
               </Link>
@@ -101,7 +99,7 @@ const ProductView = ({ data, globalPageProps }: Props) => {
                 {data.product.name}
               </h1>
               <div className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-gray-400">
-                <div className="flex text-black bg-[#87CEEB] px-2 py-0.5">
+                <div className="flex text-black bg-primary px-2 py-0.5">
                   {data.product.reviewAverage || 5} ★
                 </div>
                 <span>{data.product.numberOfReviews || 0} {reviews}</span>
@@ -136,7 +134,7 @@ const ProductView = ({ data, globalPageProps }: Props) => {
                       key={v.id}
                       style={{ backgroundColor: v.color?.hex || '#000' }}
                       className={`h-10 w-10 border-2 transition-all ${
-                        v.color?.hex === selectedColor ? 'border-black ring-4 ring-[#87CEEB]/20 scale-110' : 'border-black/5'
+                        v.color?.hex === selectedColor ? 'border-black ring-4 ring-primary/20 scale-110' : 'border-black/5'
                       }`}
                       onClick={() => setSelectedColor(v.color?.hex || '#000')}
                     />
@@ -159,7 +157,7 @@ const ProductView = ({ data, globalPageProps }: Props) => {
                         onClick={() => setSelectedSize(s)}
                         className={`h-14 flex items-center justify-center text-[11px] font-bold uppercase border-r border-black last:border-r-0 transition-all ${
                           !isAvailable ? 'bg-gray-50 text-gray-200 cursor-not-allowed' : 
-                          selectedSize === s ? 'bg-black text-white' : 'bg-white text-black hover:bg-[#87CEEB]'
+                          selectedSize === s ? 'bg-black text-white' : 'bg-white text-black hover:bg-primary'
                         }`}
                       >
                         {s}
@@ -172,7 +170,7 @@ const ProductView = ({ data, globalPageProps }: Props) => {
 
             {/* Action Buttons */}
             <div className="flex flex-col gap-4 pt-4">
-              <button className="w-full bg-black text-white py-6 text-[12px] font-bold uppercase tracking-[0.4em] hover:bg-[#87CEEB] hover:text-black transition-all duration-500 shadow-[10px_10px_0px_0px_rgba(135,206,235,0.3)]">
+              <button className="w-full bg-black text-white py-6 text-[12px] font-bold uppercase tracking-[0.4em] hover:bg-primary hover:text-black transition-all duration-500 shadow-[10px_10px_0px_0px_rgba(var(--primary-rgb),0.3)]">
                 {primaryButton}
               </button>
               <button className="w-full border-2 border-black text-black py-6 text-[12px] font-bold uppercase tracking-[0.4em] hover:bg-black hover:text-white transition-all duration-500">

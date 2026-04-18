@@ -20,7 +20,8 @@ const Footer = ({ data, globalPageProps }: Props) => {
           <div className="max-w-[1920px] mx-auto px-4 md:px-12 py-16 md:py-24">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-end">
               <div className="md:col-span-7">
-                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#87CEEB]">
+                {/* Tag Newsletter sada koristi primary boju (krem) */}
+                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">
                   {data.generalInterface?.newsletter}
                 </span>
                 <h2 className="mt-4 text-4xl md:text-6xl font-serif uppercase leading-tight text-black">
@@ -34,9 +35,10 @@ const Footer = ({ data, globalPageProps }: Props) => {
                     placeholder={data.generalInterface?.emailPlaceholder ?? 'EMAIL@ADDRESS.COM'}
                     className="flex-1 bg-white px-6 py-5 text-[11px] uppercase tracking-widest outline-none focus:placeholder:opacity-0"
                   />
+                  {/* Button hover efekat usklađen sa brendom */}
                   <button
                     type="button"
-                    className="bg-black text-white px-10 py-5 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#87CEEB] hover:text-black transition-all duration-500"
+                    className="bg-black text-white px-10 py-5 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-primary hover:text-black transition-all duration-500"
                   >
                     {data.generalInterface?.newsletterButton}
                   </button>

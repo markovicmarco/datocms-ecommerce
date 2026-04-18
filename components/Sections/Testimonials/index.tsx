@@ -20,7 +20,8 @@ const TestimonialsSection = ({ fragment }: Props) => {
         
         {/* HEADER: System Title */}
         <div className="mb-16">
-          <h2 className="text-[10px] font-bold uppercase tracking-[0.5em] text-[#87CEEB] mb-4">
+          {/* Labela sekcije sada koristi text-primary */}
+          <h2 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary mb-4">
             User Feedback / Testimonials
           </h2>
           <h1 className="text-4xl md:text-5xl font-serif uppercase leading-tight text-black italic">
@@ -56,17 +57,17 @@ const TestimonialsSection = ({ fragment }: Props) => {
                     </span>
                   </div>
                   
-                  {/* Digital Signature Icon */}
-                  <div className="h-8 w-8 flex items-center justify-center bg-[#87CEEB]/10 text-[#87CEEB]">
+                  {/* Digital Signature Icon - Sada koristi primary boju brenda */}
+                  <div className="h-8 w-8 flex items-center justify-center bg-primary/10 text-primary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                       <path d="M20 6L9 17L4 12" />
                     </svg>
                   </div>
                 </div>
 
-                {/* Decorative corner element */}
+                {/* Decorative corner element - Tačkica na hover sada je u primary boji */}
                 <div className="absolute top-0 right-0 w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="absolute top-4 right-4 w-1 h-1 bg-[#87CEEB]" />
+                  <div className="absolute top-4 right-4 w-1 h-1 bg-primary" />
                 </div>
               </div>
             );

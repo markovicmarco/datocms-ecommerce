@@ -14,7 +14,6 @@ import {
   ProductsGeneralInterfaceFragmentDoc,
   type SiteLocale,
 } from '@/graphql/types/graphql';
-import '@/styles/global.css';
 import type { Record, StructuredText } from 'datocms-structured-text-utils';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
@@ -51,7 +50,6 @@ const Page = async ({ params, searchParams }: PageProps) => {
   const { allBrands, allCollections, allMaterials } =
     getFragmentData(InitialParamsFragmentDoc, initialParams) ?? {};
 
-  // Parametri filtriranja
   const collectionParams = resolvedSearchParams?.collections?.split('|').filter(c => c.length);
   const collections = collectionParams ?? allCollections.map(c => c.id);
 
@@ -61,7 +59,6 @@ const Page = async ({ params, searchParams }: PageProps) => {
   const materialParams = resolvedSearchParams?.materials?.split('|').filter(m => m.length);
   const materials = materialParams ?? allMaterials.map(m => m.id);
 
-  // Glavni Query za proizvode
   const data = await queryDatoCMS(
     ProductsDocument,
     {
@@ -77,7 +74,6 @@ const Page = async ({ params, searchParams }: PageProps) => {
     isEnabled,
   );
 
-  // Logika za prikaz detalja filtera na vrhu
   let singleFilter = null;
   if (materials.length === 1) singleFilter = allMaterials.find(m => m.id === materials[0]);
   else if (collections.length === 1) singleFilter = allCollections.find(c => c.id === collections[0]);
@@ -126,16 +122,15 @@ const Page = async ({ params, searchParams }: PageProps) => {
                     <Link href={`/${lng}/product/${product.slug}`} className="relative aspect-[4/5] overflow-hidden">
                       {product.productImages[0].responsiveImage && (
                         <DatoImage
-                          // USKLAĐENO: Prosleđujemo fragment kako komponenta i zahteva
-                          // Ako TS i dalje buni, ovde ide: fragment={product.productImages[0].responsiveImage as any}
                           fragment={product.productImages[0].responsiveImage}
                           className="h-full w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                           layout="fill"
                         />
                       )}
                       
+                      {/* SALE BADGE: Sada koristi bg-primary (krem) */}
                       {isOnSale && (
-                        <div className="absolute top-0 left-0 bg-[#87CEEB] px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-black z-10">
+                        <div className="absolute top-0 left-0 bg-primary px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-black z-10">
                           {sale}
                         </div>
                       )}
@@ -147,7 +142,8 @@ const Page = async ({ params, searchParams }: PageProps) => {
                           <span className="text-[9px] font-mono font-bold text-gray-400 uppercase tracking-tighter block">
                             {product.brand.name}
                           </span>
-                          <h3 className="text-sm font-bold uppercase tracking-widest text-black group-hover:text-[#87CEEB] transition-colors leading-tight">
+                          {/* NASLOV: group-hover sada koristi primary boju brenda */}
+                          <h3 className="text-sm font-bold uppercase tracking-widest text-black group-hover:text-primary transition-colors leading-tight">
                             {product.name}
                           </h3>
                         </div>

@@ -5,9 +5,9 @@ const Highlighter = (rawTagName: any, props: any, ...children: any) => {
     return (
       <mark
         key={props?.key}
-        className="relative inline-block bg-[#87CEEB] px-1.5 py-0.5 text-black font-bold uppercase tracking-tighter text-[0.95em] leading-none"
+        className="relative inline-block bg-primary px-1.5 py-0.5 text-black font-bold uppercase tracking-tighter text-[0.95em] leading-none transition-colors"
       >
-        {/* Pozadina je oštra, a tekst unutra blago zbijen za "label" efekat */}
+        {/* Pozadina je oštra, a boja sada dolazi iz --color-primary varijable */}
         {children}
       </mark>
     );

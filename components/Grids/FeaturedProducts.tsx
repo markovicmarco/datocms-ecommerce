@@ -32,7 +32,8 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
         {/* SECTION HEADER */}
         <div className="mb-12 flex items-end justify-between border-b border-black/5 pb-8">
           <div className="space-y-2">
-            <span className="text-[10px] font-mono font-bold text-[#87CEEB] uppercase tracking-[0.3em]">
+            {/* Labela sada koristi text-primary (tvoj novi krem ton) */}
+            <span className="text-[10px] font-mono font-bold text-primary uppercase tracking-[0.3em]">
               Collection_Extension
             </span>
             <h2 className="text-3xl md:text-5xl font-serif italic uppercase tracking-tighter text-black">
@@ -47,7 +48,6 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
         {/* PRODUCT GRID */}
         <div className="grid gap-x-6 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
           {relatedProducts.map((product) => {
-            // Sigurnosne provere za cene i slike
             const price = product.price || 0;
             const salePrice = product.salePrice || price;
             const isOnSale = product.sale === 'on_sale' && (product.salePrice ?? 0) < price;
@@ -70,9 +70,9 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
                     )}
                   </div>
 
-                  {/* SALE BADGE */}
+                  {/* SALE BADGE: Sada koristi bg-primary */}
                   {isOnSale && (
-                    <div className="absolute top-4 left-4 bg-[#87CEEB] text-black px-3 py-1 text-[10px] font-bold uppercase tracking-widest z-10">
+                    <div className="absolute top-4 left-4 bg-primary text-black px-3 py-1 text-[10px] font-bold uppercase tracking-widest z-10">
                       {sale}
                     </div>
                   )}
@@ -93,7 +93,8 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
                     </span>
                     <Link
                       href={`/${globalPageProps.params.lng}/product/${product.slug}`}
-                      className="text-[14px] font-bold uppercase tracking-wider text-black hover:text-[#87CEEB] transition-colors"
+                      /* Hover na ime sada vuče primary boju */
+                      className="text-[14px] font-bold uppercase tracking-wider text-black hover:text-primary transition-colors"
                     >
                       {product.name}
                     </Link>

@@ -1,3 +1,4 @@
+
 'use client';
 
 import ReactMarkdown from 'react-markdown';
@@ -20,7 +21,8 @@ const QuestionsSection = ({ fragment }: Props) => {
           <h2 className="text-[12px] font-bold uppercase tracking-[0.4em] text-black">
             Inquiry / Knowledge Base
           </h2>
-          <div className="mt-4 h-1 w-12 bg-[#87CEEB]" />
+          {/* Separator sada koristi bg-primary (krem) */}
+          <div className="mt-4 h-1 w-12 bg-primary" />
         </div>
 
         {/* FAQ GRID */}
@@ -33,7 +35,8 @@ const QuestionsSection = ({ fragment }: Props) => {
               >
                 {/* NUMERACIJA I PITANJE */}
                 <div className="flex items-start gap-6">
-                  <span className="text-[10px] font-bold font-mono text-[#87CEEB] mt-1">
+                  {/* Numeracija sada prati primary boju brenda */}
+                  <span className="text-[10px] font-bold font-mono text-primary mt-1">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   

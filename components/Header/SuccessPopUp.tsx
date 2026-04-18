@@ -15,10 +15,10 @@ const SuccessPopUp = ({ setSuccessToast }: Props) => {
       <div className="border border-gray-100 p-6 flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* Pulsirajući indikator uspeha u tvojoj plavoj boji */}
+            {/* Pulsirajući indikator uspeha - sada u primary boji */}
             <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#87CEEB] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#87CEEB]"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
             </span>
             <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">
               Status: Live Connection
@@ -36,7 +36,8 @@ const SuccessPopUp = ({ setSuccessToast }: Props) => {
           </button>
         </div>
 
-        <div className="space-y-2 border-l-2 border-[#87CEEB] pl-4">
+        {/* Bočna linija usklađena sa brendom */}
+        <div className="space-y-2 border-l-2 border-primary pl-4">
           <strong className="block text-[12px] font-bold uppercase tracking-wider text-black">
             Draft Mode Enabled
           </strong>
@@ -46,9 +47,9 @@ const SuccessPopUp = ({ setSuccessToast }: Props) => {
           </p>
         </div>
 
-        {/* Progress bar koji simulira 'trajanje' toasta */}
+        {/* Progress bar koji koristi primary boju brenda */}
         <div className="w-full bg-gray-50 h-[2px] mt-2 overflow-hidden">
-          <div className="bg-[#87CEEB] h-full animate-progress-shrink origin-left" />
+          <div className="bg-primary h-full animate-progress-shrink origin-left" />
         </div>
       </div>
     </div>

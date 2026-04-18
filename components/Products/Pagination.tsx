@@ -30,7 +30,7 @@ const Pagination = ({ numberOfProducts, currentPage }: PropTypes) => {
         className={`relative inline-flex h-12 w-12 items-center justify-center text-[11px] font-bold uppercase tracking-widest transition-all duration-300 border-r border-black/5 last:border-r-0 ${
           isSelected 
             ? 'bg-black text-white' 
-            : 'bg-white text-black hover:bg-[#87CEEB] hover:text-black'
+            : 'bg-white text-black hover:bg-primary hover:text-black'
         }`}
         onClick={() => exportQueryParameters('page', pageNumber.toString())}
       >
@@ -53,7 +53,7 @@ const Pagination = ({ numberOfProducts, currentPage }: PropTypes) => {
           Total <span className="text-black">{numberOfProducts}</span>
         </div>
 
-        {/* NAVIGATION AREA */}
+        {/* NAVIGATION AREA - Zadržana brutalistička crna senka */}
         <nav className="inline-flex border-2 border-black overflow-hidden bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
           {/* PREVIOUS */}
           <button
@@ -61,7 +61,7 @@ const Pagination = ({ numberOfProducts, currentPage }: PropTypes) => {
             disabled={currentPage === 1}
             onClick={() => exportQueryParameters('page', (currentPage - 1).toString())}
             className={`flex items-center justify-center w-12 h-12 border-r-2 border-black transition-colors ${
-              currentPage === 1 ? 'opacity-20 cursor-not-allowed' : 'hover:bg-[#87CEEB]'
+              currentPage === 1 ? 'opacity-20 cursor-not-allowed' : 'hover:bg-primary hover:text-black'
             }`}
           >
             <ChevronLeftIcon className="h-4 w-4 stroke-[3px]" />
@@ -83,7 +83,7 @@ const Pagination = ({ numberOfProducts, currentPage }: PropTypes) => {
             disabled={lastProductIndex === numberOfProducts}
             onClick={() => exportQueryParameters('page', (currentPage + 1).toString())}
             className={`flex items-center justify-center w-12 h-12 border-l-2 border-black transition-colors ${
-              lastProductIndex === numberOfProducts ? 'opacity-20 cursor-not-allowed' : 'hover:bg-[#87CEEB]'
+              lastProductIndex === numberOfProducts ? 'opacity-20 cursor-not-allowed' : 'hover:bg-primary hover:text-black'
             }`}
           >
             <ChevronRightIcon className="h-4 w-4 stroke-[3px]" />

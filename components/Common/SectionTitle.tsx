@@ -18,8 +18,8 @@ const SectionTitle = ({
     <div
       className={`w-full ${center ? 'mx-auto text-center items-center' : 'items-start'} flex flex-col ${mb}`}
     >
-      {/* Decorative Technical Line */}
-      <div className={`h-[2px] w-12 bg-[#87ceeb] mb-6 ${center ? 'mx-auto' : ''}`} />
+      {/* Decorative Technical Line - Sada koristi primary boju */}
+      <div className={`h-[2px] w-12 bg-primary mb-6 ${center ? 'mx-auto' : ''}`} />
 
       <div className={`w-full ${width}`}>
         <h2 className="mb-6 text-5xl md:text-7xl font-serif italic leading-[0.85] text-black uppercase tracking-tighter">

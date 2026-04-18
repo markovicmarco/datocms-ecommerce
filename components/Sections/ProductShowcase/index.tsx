@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -25,7 +26,8 @@ const ProductShowcase = ({ fragment, globalPageProps }: Props) => {
         <div className={`md:w-2/5 flex flex-col justify-center px-4 md:px-12 py-20 bg-white z-10 ${isLeft ? 'md:order-1' : 'md:order-2'}`}>
           <div className="space-y-8">
             <div className="space-y-4">
-              <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-[#87CEEB]">
+              {/* Pretitle sada koristi text-primary */}
+              <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary">
                 {pretitle}
               </span>
               <h2 className="text-5xl md:text-8xl font-serif uppercase leading-[0.85] text-black italic">
@@ -37,9 +39,10 @@ const ProductShowcase = ({ fragment, globalPageProps }: Props) => {
               {description}
             </p>
 
+            {/* Dugme sa shadow efektom u primary boji brenda */}
             <Link
               href={`/${globalPageProps.params.lng}/${button[0].slug}`}
-              className="inline-block border-2 border-black bg-black px-12 py-5 text-[11px] font-bold uppercase tracking-[0.3em] text-white transition-all hover:bg-[#87CEEB] hover:text-black shadow-[8px_8px_0px_0px_rgba(135,206,235,0.3)]"
+              className="inline-block border-2 border-black bg-black px-12 py-5 text-[11px] font-bold uppercase tracking-[0.3em] text-white transition-all hover:bg-primary hover:text-black shadow-[8px_8px_0px_0px_rgba(var(--primary-rgb),0.3)]"
             >
               {button[0].label}
             </Link>
@@ -64,7 +67,7 @@ const ProductShowcase = ({ fragment, globalPageProps }: Props) => {
             </div>
           </div>
 
-          {/* Secondary Small Image 1 */}
+          {/* Secondary Small Image 1 - Overlay promenjen u primary boju brenda */}
           <div className="col-span-1 row-span-1 relative overflow-hidden group border-t border-r border-white/20">
             {collection[1].details.image.responsiveImage && (
               <DatoImage
@@ -73,7 +76,7 @@ const ProductShowcase = ({ fragment, globalPageProps }: Props) => {
                 layout="fill"
               />
             )}
-            <div className="absolute inset-0 bg-[#87CEEB]/10 group-hover:bg-transparent transition-colors" />
+            <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors" />
           </div>
 
           {/* Secondary Small Image 2 */}

@@ -29,9 +29,9 @@ const Content: ContentPage<PageProps, Query> = ({
       <div className="max-w-[1920px] mx-auto px-4 md:px-12 py-24 border-t border-black/5">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
-          {/* Labela sekcije */}
+          {/* Labela sekcije - Sada koristi text-primary */}
           <div className="lg:col-span-3">
-            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#87CEEB] sticky top-32">
+            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary sticky top-32">
               Product_Deep_Dive / 01
             </span>
           </div>
@@ -92,10 +92,13 @@ const Content: ContentPage<PageProps, Query> = ({
                     return (
                       <div
                         key={key}
-                        className="bg-white p-4 flex items-center gap-4 group"
+                        className="bg-white p-4 flex items-center gap-4 group transition-all"
                       >
-                        <span className="text-[#87CEEB] font-mono text-[10px] font-bold">●</span>
-                        <div className="text-[11px] font-bold uppercase tracking-widest text-black group-hover:text-[#87CEEB] transition-colors">
+                        {/* Bullet point u primary boji */}
+                        <span className="text-primary font-mono text-[10px] font-bold">●</span>
+                        
+                        {/* Hover na tekst ćelije sada vuče primary boju */}
+                        <div className="text-[11px] font-bold uppercase tracking-widest text-black group-hover:text-primary transition-colors">
                           {children}
                         </div>
                       </div>

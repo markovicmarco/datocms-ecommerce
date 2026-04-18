@@ -14,14 +14,15 @@ type PropTypes = {
   globalPageProps: ResolvedGlobalPageProps;
 };
 
-// Minimalistički indikator ocene (Single Star + Number)
+// Minimalistički indikator ocene - Sada koristi primary boju (krem)
 const RatingBadge: FC<{ score: number }> = ({ score }) => (
   <div className="flex items-center gap-2">
     <div className="flex gap-0.5">
       {[...Array(5)].map((_, i) => (
         <div 
           key={i} 
-          className={`w-3 h-3 ${i < Math.round(score) ? 'bg-[#87CEEB]' : 'bg-gray-100'}`} 
+          /* Popunjeni kvadratići sada koriste bg-primary */
+          className={`w-3 h-3 ${i < Math.round(score) ? 'bg-primary' : 'bg-gray-100'}`} 
         />
       ))}
     </div>
@@ -44,7 +45,7 @@ const Reviews = ({ data, globalPageProps }: PropTypes) => {
         {/* HEADER: Brutalist Summary */}
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 mb-16 border-b-2 border-black pb-8">
           <div className="space-y-4">
-            <h2 className="text-[12px] font-bold uppercase tracking-[0.4em] text-[#87CEEB]">
+            <h2 className="text-[12px] font-bold uppercase tracking-[0.4em] text-primary">
               Verified Feedback
             </h2>
             <div className="flex items-baseline gap-4">
@@ -62,7 +63,8 @@ const Reviews = ({ data, globalPageProps }: PropTypes) => {
             </div>
           </div>
 
-          <button className="px-8 py-4 border-2 border-black text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-300 shadow-[6px_6px_0px_0px_rgba(135,206,235,0.3)]">
+          {/* Senka tastera sada koristi primary-rgb varijablu */}
+          <button className="px-8 py-4 border-2 border-black text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-300 shadow-[6px_6px_0px_0px_rgba(var(--primary-rgb),0.3)]">
             {reviewButton}
           </button>
         </div>
@@ -96,9 +98,9 @@ const Reviews = ({ data, globalPageProps }: PropTypes) => {
                   <ReactMarkdown>{review.review || ''}</ReactMarkdown>
                 </div>
                 
-                {/* Visual Accent */}
+                {/* Visual Accent - Sada u primary boji na hover */}
                 <div className="pt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="h-0.5 w-8 bg-[#87CEEB]" />
+                  <div className="h-0.5 w-8 bg-primary" />
                 </div>
               </div>
             );

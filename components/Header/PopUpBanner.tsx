@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from 'next/link';
@@ -45,7 +44,7 @@ const PopUpBanner = ({ setPopUp, popup, globalPageProps }: PropTypes) => {
           </p>
 
           <h2 className="mt-4 flex flex-col">
-            <span className="text-4xl sm:text-5xl lg:text-7xl font-serif uppercase leading-[0.85] text-black">
+            <span className="text-4xl sm:text-5xl lg:text-7xl font-serif uppercase leading-[0.85] text-black italic">
               {popup.title}
             </span>
             <span className="mt-4 text-[11px] font-bold uppercase tracking-[0.2em] text-black border-l-2 border-black pl-4 self-start md:self-auto inline-block">
@@ -56,7 +55,7 @@ const PopUpBanner = ({ setPopUp, popup, globalPageProps }: PropTypes) => {
           <div className="mt-10 flex flex-col gap-4">
             <Link
               onClick={() => setPopUp(false)}
-              className="w-full bg-black text-white text-[11px] font-bold uppercase tracking-[0.3em] py-5 hover:bg-[#87CEEB] hover:text-black transition-all duration-500 text-center"
+              className="w-full bg-black text-white text-[11px] font-bold uppercase tracking-[0.3em] py-5 hover:bg-primary hover:text-black transition-all duration-500 text-center"
               href={`/${globalPageProps.params.lng}/${popup.button[0]?.slug ?? ''}`}
             >
               {popup.button[0]?.label}
@@ -80,7 +79,7 @@ const PopUpBanner = ({ setPopUp, popup, globalPageProps }: PropTypes) => {
         {/* CLOSE ICON - Gornji desni ugao */}
         <button
           onClick={() => setPopUp(false)}
-          className="absolute -top-4 -right-4 bg-black text-white p-2 hover:rotate-90 transition-transform duration-300"
+          className="absolute -top-4 -right-4 bg-black text-white p-2 hover:rotate-90 hover:bg-primary hover:text-black transition-all duration-300"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />

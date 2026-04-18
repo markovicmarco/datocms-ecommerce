@@ -23,7 +23,8 @@ const Content: ContentPage<PageProps, Query> = ({
       <section className="max-w-[1920px] mx-auto px-4 md:px-12 pt-32 pb-20 border-b border-black/5">
         <div className="flex flex-col md:flex-row items-end justify-between gap-8">
           <div className="max-w-4xl">
-            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-[#87CEEB] mb-6 block">
+            {/* Labela: Sada u primary boji */}
+            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary mb-6 block">
               Global_Collection_Showcase
             </span>
             <h1 className="text-5xl md:text-[120px] font-serif uppercase leading-[0.8] text-black italic tracking-tighter">
@@ -36,7 +37,7 @@ const Content: ContentPage<PageProps, Query> = ({
             </p>
             <Link
               href={`/${globalPageProps.params.lng}/${showcase.cta[0].slug}`}
-              className="mt-8 inline-block text-[11px] font-bold uppercase tracking-[0.3em] border-b-2 border-black pb-1 hover:text-[#87CEEB] hover:border-[#87CEEB] transition-all"
+              className="mt-8 inline-block text-[11px] font-bold uppercase tracking-[0.3em] border-b-2 border-black pb-1 hover:text-primary hover:border-primary transition-all"
             >
               {showcase.cta[0].label}
             </Link>
@@ -84,14 +85,16 @@ const Content: ContentPage<PageProps, Query> = ({
                     layout="fill"
                   />
                 )}
-                <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                {/* Overlay na hover: Blago toniran u primary boju */}
+                <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
               <div className="border-l-2 border-black pl-6 py-2">
                 <span className="text-[9px] font-mono text-gray-400 block mb-1">CATALOG_0{idx + 1}</span>
                 <h3 className="text-xl font-bold uppercase tracking-widest text-black mb-2">
                   {collection.name}
                 </h3>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#87CEEB]">
+                {/* Kolekcija CTA: Sada u primary boji */}
+                <span className="text-[10px] font-bold uppercase tracking-widest text-primary">
                   {showcase.collectionsCta[0].label} →
                 </span>
               </div>
@@ -102,7 +105,7 @@ const Content: ContentPage<PageProps, Query> = ({
 
       {/* NEW PRODUCTS: Large Format */}
       <section className="max-w-[1920px] mx-auto px-4 md:px-12 py-32">
-        <h2 className="text-[10px] font-bold uppercase tracking-[0.5em] text-[#87CEEB] mb-12">
+        <h2 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary mb-12">
           Latest_Arrivals / {new Date().getFullYear()}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-24">
@@ -121,7 +124,7 @@ const Content: ContentPage<PageProps, Query> = ({
               </div>
               <div className="mt-8 flex justify-between items-start">
                 <div>
-                  <h3 className="text-2xl font-serif italic uppercase text-black">{product.name}</h3>
+                  <h3 className="text-2xl font-serif italic uppercase text-black group-hover:text-primary transition-colors">{product.name}</h3>
                   <div className="text-[12px] font-mono mt-2 text-gray-400 uppercase tracking-tighter">
                     Price_Value: {generalInterface?.currencySymbol}
                     {product.sale !== 'not_on_sale' ? product.salePrice : product.price}
@@ -132,7 +135,8 @@ const Content: ContentPage<PageProps, Query> = ({
                     )}
                   </div>
                 </div>
-                <div className="h-10 w-10 flex items-center justify-center border border-black group-hover:bg-black group-hover:text-white transition-all">
+                {/* Plus dugme: Hover postaje primary boja brenda */}
+                <div className="h-10 w-10 flex items-center justify-center border border-black group-hover:bg-primary group-hover:border-primary group-hover:text-black transition-all">
                   <span className="text-sm">+</span>
                 </div>
               </div>

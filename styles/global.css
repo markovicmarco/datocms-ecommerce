@@ -6,10 +6,12 @@
 
 @layer base {
   :root {
-    --color-primary: #080807;
+    /* #FAEEC8 u RGB formatu (250, 238, 200) */
+    --color-primary: 250 238 200;
   }
   body {
     font-family: 'Inter', sans-serif;
+    @apply bg-white text-black; /* Osigurava bazu */
   }
 }
 
