@@ -21,10 +21,10 @@ const TestimonialsSection = ({ fragment }: Props) => {
         {/* HEADER: System Title */}
         <div className="mb-16">
           {/* Labela sekcije sada koristi text-primary */}
-          <h2 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary mb-4">
+          <h2 className="text-[9px] font-bold uppercase tracking-[0.5em] text-primary mb-4">
             User Feedback / Testimonials
           </h2>
-          <h1 className="text-4xl md:text-5xl font-serif uppercase leading-tight text-black italic">
+          <h1 className="text-[12px] font-serif uppercase leading-tight text-black italic">
             {title}
           </h1>
         </div>
@@ -39,7 +39,7 @@ const TestimonialsSection = ({ fragment }: Props) => {
               >
                 {/* Quote Content */}
                 <div className="relative z-10">
-                  <div className="text-[14px] leading-relaxed text-black font-medium tracking-wide italic">
+                  <div className="text-[9px] leading-relaxed text-black font-medium tracking-wide italic">
                     <ReactMarkdown>
                       {item.testimonial || ''}
                     </ReactMarkdown>
@@ -49,7 +49,7 @@ const TestimonialsSection = ({ fragment }: Props) => {
                 {/* Author & Verification */}
                 <div className="mt-12 flex items-center justify-between border-t border-black/5 pt-6">
                   <div className="flex flex-col">
-                    <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-black">
+                    <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-black">
                       {item.author}
                     </span>
                     <span className="text-[9px] font-mono text-gray-400 uppercase tracking-tighter">

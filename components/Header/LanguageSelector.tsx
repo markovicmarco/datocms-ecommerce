@@ -30,7 +30,7 @@ const LanguageSelector = ({ languages, currencySymbol }: Props) => {
         onBlur={() => setTimeout(() => setIsOpen(false), 200)}
         className="flex items-center gap-2 px-2 py-1 transition-all duration-300 active:scale-95 group"
       >
-        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-black group-hover:opacity-50 transition-opacity">
+        <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-black group-hover:opacity-50 transition-opacity">
           {getLangNameFromCode(currentLocale)?.name || currentLocale}
         </span>
         <span className="text-[9px] font-medium text-gray-400">
@@ -57,7 +57,7 @@ const LanguageSelector = ({ languages, currencySymbol }: Props) => {
             <Link
               key={locale}
               href={`/${locale}/${pathString}?${searchParams.toString()}`}
-              className={`block px-6 py-3 text-[10px] font-bold uppercase tracking-[0.15em] transition-colors hover:bg-gray-50 ${
+              className={`block px-6 py-3 text-[9px] font-bold uppercase tracking-[0.15em] transition-colors hover:bg-gray-50 ${
                 currentLocale === locale ? 'text-black' : 'text-gray-400 hover:text-black'
               }`}
               role="menuitem"

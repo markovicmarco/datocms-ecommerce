@@ -24,17 +24,17 @@ const Content: ContentPage<PageProps, Query> = ({ data }) => {
           
           {/* Metadata */}
           <div className="space-y-4">
-            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary">
+            <span className="text-[9px] font-bold uppercase tracking-[0.5em] text-primary">
               Location_Archive / {store.country}
             </span>
-            <h1 className="text-5xl md:text-7xl font-serif uppercase leading-[0.85] text-black italic tracking-tighter">
+            <h1 className="text-[9px] font-serif uppercase leading-[0.85] text-black italic tracking-tighter">
               {store.storeName}
             </h1>
           </div>
 
           {/* Description Box */}
           <div className="border-l-2 border-black pl-8 py-2">
-            <p className="text-[13px] uppercase tracking-widest leading-relaxed text-gray-500 font-medium">
+            <p className="text-[9px] uppercase tracking-widest leading-relaxed text-gray-500 font-medium">
               {store.storeDescription}
             </p>
           </div>
@@ -45,7 +45,7 @@ const Content: ContentPage<PageProps, Query> = ({ data }) => {
               href={`https://www.google.com/maps/search/?api=1&query=${store.storeLocation?.latitude},${store.storeLocation?.longitude}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-6 text-[11px] font-bold uppercase tracking-[0.3em] text-black"
+              className="group flex items-center gap-6 text-[9px] font-bold uppercase tracking-[0.3em] text-black"
             >
               <span className="border-b-2 border-black group-hover:text-primary group-hover:border-primary transition-all">
                 {data.generalInterface?.findOnMaps}

@@ -20,7 +20,7 @@ const SuccessPopUp = ({ setSuccessToast }: Props) => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
             </span>
-            <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">
+            <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-black">
               Status: Live Connection
             </p>
           </div>
@@ -38,10 +38,10 @@ const SuccessPopUp = ({ setSuccessToast }: Props) => {
 
         {/* Bočna linija usklađena sa brendom */}
         <div className="space-y-2 border-l-2 border-primary pl-4">
-          <strong className="block text-[12px] font-bold uppercase tracking-wider text-black">
+          <strong className="block text-[9px] font-bold uppercase tracking-wider text-black">
             Draft Mode Enabled
           </strong>
-          <p className="text-[10px] uppercase tracking-widest text-gray-500 leading-relaxed">
+          <p className="text-[9px] uppercase tracking-widest text-gray-500 leading-relaxed">
             Real-time synchronization with DatoCMS endpoint is now active. 
             Previewing unpublished changes.
           </p>

@@ -21,7 +21,7 @@ const HoveringSearch = ({ lng, setSerachIsOpen }: PropTypes) => {
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
         placeholder="ENTER SEARCH QUERY"
-        className="h-10 w-64 md:w-80 border-b-2 border-black bg-white px-0 text-[11px] uppercase tracking-[0.2em] font-bold text-black placeholder:text-gray-300 focus:outline-none transition-all duration-500 focus:w-72 md:focus:w-96"
+        className="h-10 w-64 md:w-80 border-b-2 border-black bg-white px-0 text-[9px] uppercase tracking-[0.2em] font-bold text-black placeholder:text-gray-300 focus:outline-none transition-all duration-500 focus:w-72 md:focus:w-96"
         onKeyDown={(event) => {
           if (event.key === 'Enter') {
             router.push(`/${lng}/products?productName=${searchValue}`);

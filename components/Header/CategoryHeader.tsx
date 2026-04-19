@@ -61,7 +61,7 @@ export default function CategoryHeader({
           className="btn-brutalist flex items-center justify-center transition-transform active:scale-90"
         >
           <Bars3Icon className="h-5 w-5" />
-          <span className="[writing-mode:vertical-lr] rotate-180 text-[10px] font-bold uppercase tracking-[0.4em] py-1">
+          <span className="[writing-mode:vertical-lr] rotate-180 text-[9px] font-bold uppercase tracking-[0.4em] py-1">
             Menu
           </span>
         </button>
@@ -89,14 +89,14 @@ export default function CategoryHeader({
                       value={searchValue}
                       onChange={(e) => setSearchValue(e.target.value)}
                       placeholder="SEARCH"
-                      className="w-full bg-gray-50 border-none px-4 py-4 text-[10px] uppercase tracking-widest focus:ring-1 focus:ring-black"
+                      className="w-full bg-gray-50 border-none px-4 py-4 text-[9px] uppercase tracking-widest focus:ring-1 focus:ring-black"
                       onKeyDown={(e) => e.key === 'Enter' && (router.push(`/${globalPageProps.params.lng}/products?productName=${searchValue}`), setOpen(false))}
                     />
                   </div>
                   <nav className="px-6 space-y-10">
                     {categories?.map((category) => (
                       <div key={category.label}>
-                        <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-4 border-l-2 border-black pl-3">{category.label}</h3>
+                        <h3 className="text-[9px] font-black uppercase tracking-[0.4em] mb-4 border-l-2 border-black pl-3">{category.label}</h3>
                         <ul className="space-y-4 pl-4 border-l border-gray-100">
                           {category.column.flatMap(col => col.item).map((item, idx) => (
                             <li key={`${item?.id}-${idx}`}>
@@ -110,7 +110,7 @@ export default function CategoryHeader({
                     ))}
                     <div className="pt-4 space-y-6">
                       {links?.map((link) => (
-                        <Link key={link.label} href={`/${globalPageProps.params.lng}/${link.slug}`} className="block text-[11px] font-bold uppercase tracking-[0.3em]" onClick={() => setOpen(false)}>
+                        <Link key={link.label} href={`/${globalPageProps.params.lng}/${link.slug}`} className="block text-[9px] font-bold uppercase tracking-[0.3em]" onClick={() => setOpen(false)}>
                           {link.label}
                         </Link>
                       ))}
@@ -140,7 +140,7 @@ export default function CategoryHeader({
                     <Popover key={category.label} className="flex h-full">
                       {({ open, close }) => (
                         <>
-                          <Popover.Button className={classNames(open ? 'text-black' : 'text-gray-500', 'text-[10px] font-bold uppercase tracking-[0.2em] hover:text-black focus:outline-none h-full')}>
+                          <Popover.Button className={classNames(open ? 'text-black' : 'text-gray-500', 'text-[9px] font-bold uppercase tracking-[0.2em] hover:text-black focus:outline-none h-full')}>
                             {category.label}
                           </Popover.Button>
 
@@ -151,7 +151,7 @@ export default function CategoryHeader({
                                   <div className="col-span-8 grid grid-cols-3 gap-8">
                                     {category.column.map((section) => (
                                       <div key={section.label}>
-                                        <p className="font-bold text-black uppercase tracking-widest text-[10px] mb-6">{section.label}</p>
+                                        <p className="font-bold text-black uppercase tracking-widest text-[9px] mb-6">{section.label}</p>
                                         <ul className="space-y-4">
                                           {section.item.map((item) => (
                                             <li key={item.id}>
@@ -173,7 +173,7 @@ export default function CategoryHeader({
                     </Popover>
                   ))}
                   {links?.map((link) => (
-                    <Link key={link.label} href={`/${globalPageProps.params.lng}/${link.slug}`} className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 hover:text-black">
+                    <Link key={link.label} href={`/${globalPageProps.params.lng}/${link.slug}`} className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-500 hover:text-black">
                       {link.label}
                     </Link>
                   ))}
@@ -188,7 +188,7 @@ export default function CategoryHeader({
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
                     placeholder="SEARCH"
-                    className="h-8 w-48 bg-gray-50 border-none px-4 text-[10px] uppercase tracking-widest focus:ring-1 focus:ring-black"
+                    className="h-8 w-48 bg-gray-50 border-none px-4 text-[9px] uppercase tracking-widest focus:ring-1 focus:ring-black"
                     onKeyDown={(e) => e.key === 'Enter' && router.push(`/${globalPageProps.params.lng}/products?productName=${searchValue}`)}
                   />
                 </div>

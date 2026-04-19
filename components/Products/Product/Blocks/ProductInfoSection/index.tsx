@@ -61,11 +61,11 @@ const ProductInfoSection = ({
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">
+                <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] text-primary">
                   {materials}
                 </h3>
               </div>
-              <p className="text-[13px] font-bold uppercase tracking-wider text-black leading-tight">
+              <p className="text-[9px] font-bold uppercase tracking-wider text-black leading-tight">
                 {material}
               </p>
             </div>
@@ -74,11 +74,11 @@ const ProductInfoSection = ({
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">
+                <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] text-primary">
                   {styleString}
                 </h3>
               </div>
-              <p className="text-[13px] font-bold uppercase tracking-wider text-black leading-tight">
+              <p className="text-[9px] font-bold uppercase tracking-wider text-black leading-tight">
                 {style}
               </p>
             </div>
@@ -87,11 +87,11 @@ const ProductInfoSection = ({
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">
+                <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] text-primary">
                   {weatherString}
                 </h3>
               </div>
-              <p className="text-[13px] font-bold uppercase tracking-wider text-black leading-tight">
+              <p className="text-[9px] font-bold uppercase tracking-wider text-black leading-tight">
                 {weather}
               </p>
             </div>
@@ -100,11 +100,11 @@ const ProductInfoSection = ({
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">
+                <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] text-primary">
                   {occasionsString}
                 </h3>
               </div>
-              <p className="text-[13px] font-bold uppercase tracking-wider text-black leading-tight">
+              <p className="text-[9px] font-bold uppercase tracking-wider text-black leading-tight">
                 {occasions}
               </p>
             </div>
@@ -124,10 +124,10 @@ const ProductInfoSection = ({
 
               <div className="p-6 space-y-6 bg-white">
                 <div className="space-y-2">
-                  <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400">
+                  <span className="text-[12px] font-bold uppercase tracking-[0.2em] text-gray-400">
                     Sourced Material
                   </span>
-                  <p className="text-[14px] font-bold uppercase tracking-widest text-black">
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-black">
                     {name}
                   </p>
                 </div>

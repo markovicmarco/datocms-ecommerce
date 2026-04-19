@@ -22,12 +22,12 @@ const SectionTitle = ({
       <div className={`h-[2px] w-12 bg-primary mb-6 ${center ? 'mx-auto' : ''}`} />
 
       <div className={`w-full ${width}`}>
-        <h2 className="mb-6 text-5xl md:text-7xl font-serif italic leading-[0.85] text-black uppercase tracking-tighter">
+        <h2 className="text-[12px] font-serif italic leading-[0.85] text-black uppercase tracking-tighter">
           {title}
         </h2>
         
         {paragraph && (
-          <div className="text-[12px] md:text-[14px] leading-relaxed uppercase tracking-[0.15em] font-medium text-gray-500 max-w-2xl">
+          <div className="text-[9px] leading-relaxed uppercase tracking-[0.15em] font-medium text-gray-500 max-w-2xl">
             <Markdown>{paragraph}</Markdown>
           </div>
         )}

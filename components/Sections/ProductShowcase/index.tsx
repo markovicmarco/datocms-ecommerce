@@ -27,22 +27,22 @@ const ProductShowcase = ({ fragment, globalPageProps }: Props) => {
           <div className="space-y-8">
             <div className="space-y-4">
               {/* Pretitle sada koristi text-primary */}
-              <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary">
+              <span className="text-[9px] font-bold uppercase tracking-[0.5em] text-primary">
                 {pretitle}
               </span>
-              <h2 className="text-5xl md:text-8xl font-serif uppercase leading-[0.85] text-black italic">
+              <h2 className="text-[12px] font-serif uppercase leading-[0.85] text-black italic">
                 {title}
               </h2>
             </div>
             
-            <p className="max-w-md text-[13px] uppercase tracking-widest text-gray-500 leading-relaxed font-medium">
+            <p className="max-w-md text-[9px] uppercase tracking-widest text-gray-500 leading-relaxed font-medium">
               {description}
             </p>
 
             {/* Dugme sa shadow efektom u primary boji brenda */}
             <Link
               href={`/${globalPageProps.params.lng}/${button[0].slug}`}
-              className="inline-block border-2 border-black bg-black px-12 py-5 text-[11px] font-bold uppercase tracking-[0.3em] text-white transition-all hover:bg-primary hover:text-black shadow-[8px_8px_0px_0px_rgba(var(--primary-rgb),0.3)]"
+              className="btn-brutalist inline-block border-2 border-black bg-black px-12 py-5 text-[9px] font-bold uppercase tracking-[0.3em] text-white transition-all hover:bg-primary hover:text-black shadow-[8px_8px_0px_0px_rgba(var(--primary-rgb),0.3)]"
             >
               {button[0].label}
             </Link>

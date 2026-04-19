@@ -24,20 +24,20 @@ const Content: ContentPage<PageProps, Query> = ({
         <div className="flex flex-col md:flex-row items-end justify-between gap-8">
           <div className="max-w-4xl">
             {/* Labela: Sada u primary boji */}
-            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary mb-6 block">
+            <span className="text-[9px] font-bold uppercase tracking-[0.5em] text-primary mb-6 block">
               Global_Collection_Showcase
             </span>
-            <h1 className="text-5xl md:text-[120px] font-serif uppercase leading-[0.8] text-black italic tracking-tighter">
+            <h1 className="text-5xl md:text-[27px] font-serif uppercase leading-[0.8] text-black italic tracking-tighter">
               {showcase.title}
             </h1>
           </div>
           <div className="md:w-1/3 pb-4">
-            <p className="text-[13px] uppercase tracking-widest leading-relaxed text-gray-500 font-medium">
+            <p className="text-[9px] uppercase tracking-widest leading-relaxed text-gray-500 font-medium">
               {showcase.description}
             </p>
             <Link
               href={`/${globalPageProps.params.lng}/${showcase.cta[0].slug}`}
-              className="mt-8 inline-block text-[11px] font-bold uppercase tracking-[0.3em] border-b-2 border-black pb-1 hover:text-primary hover:border-primary transition-all"
+              className="mt-8 inline-block text-[9px] font-bold uppercase tracking-[0.3em] border-b-2 border-black pb-1 hover:text-primary hover:border-primary transition-all"
             >
               {showcase.cta[0].label}
             </Link>
@@ -61,7 +61,7 @@ const Content: ContentPage<PageProps, Query> = ({
             layout="fill"
           />
           <div className="absolute bottom-12 left-12 z-10 hidden md:block">
-            <span className="bg-black text-white px-4 py-2 text-[10px] font-mono tracking-widest uppercase">
+            <span className="bg-black text-white px-4 py-2 text-[9px] font-mono tracking-widest uppercase">
               Ref_IMG_02 // Detail_View
             </span>
           </div>
@@ -94,7 +94,7 @@ const Content: ContentPage<PageProps, Query> = ({
                   {collection.name}
                 </h3>
                 {/* Kolekcija CTA: Sada u primary boji */}
-                <span className="text-[10px] font-bold uppercase tracking-widest text-primary">
+                <span className="text-[9px] font-bold uppercase tracking-widest text-primary">
                   {showcase.collectionsCta[0].label} →
                 </span>
               </div>
@@ -105,7 +105,7 @@ const Content: ContentPage<PageProps, Query> = ({
 
       {/* NEW PRODUCTS: Large Format */}
       <section className="max-w-[1920px] mx-auto px-4 md:px-12 py-32">
-        <h2 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary mb-12">
+        <h2 className="text-[9px] font-bold uppercase tracking-[0.5em] text-primary mb-12">
           Latest_Arrivals / {new Date().getFullYear()}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-24">
@@ -125,7 +125,7 @@ const Content: ContentPage<PageProps, Query> = ({
               <div className="mt-8 flex justify-between items-start">
                 <div>
                   <h3 className="text-2xl font-serif italic uppercase text-black group-hover:text-primary transition-colors">{product.name}</h3>
-                  <div className="text-[12px] font-mono mt-2 text-gray-400 uppercase tracking-tighter">
+                  <div className="text-[9px] font-mono mt-2 text-gray-400 uppercase tracking-tighter">
                     Price_Value: {generalInterface?.currencySymbol}
                     {product.sale !== 'not_on_sale' ? product.salePrice : product.price}
                     {product.sale !== 'not_on_sale' && (
@@ -149,10 +149,10 @@ const Content: ContentPage<PageProps, Query> = ({
       <section className="bg-black text-white py-32">
         <div className="max-w-[1920px] mx-auto px-4 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
           <div>
-            <h2 className="text-4xl md:text-7xl font-serif italic uppercase leading-[0.9] mb-12">
+            <h2 className="text-[12px] font-serif italic uppercase leading-[0.9] mb-12">
               {showcase.materialsTitle}
             </h2>
-            <p className="text-[14px] tracking-widest leading-loose text-gray-400 uppercase max-w-lg mb-12">
+            <p className="text-[9px] tracking-widest leading-loose text-gray-400 uppercase max-w-lg mb-12">
               {showcase.materialsDescription}
             </p>
             <div className="relative aspect-square md:aspect-video overflow-hidden">
@@ -166,11 +166,11 @@ const Content: ContentPage<PageProps, Query> = ({
           <div className="relative aspect-[3/4] md:aspect-[4/5] overflow-hidden">
             <DatoImage
               fragment={showcase.materialsDisplay[1].responsiveImage!}
-              className="h-full w-full object-cover"
+              className="w-full [20vh] object-cover"
               layout="fill"
             />
             <div className="absolute top-0 right-0 p-8">
-              <span className="text-[10px] font-mono tracking-[0.4em] bg-white text-black px-4 py-2 uppercase">
+              <span className="text-[9px] font-mono tracking-[0.4em] bg-white text-black px-4 py-2 uppercase">
                 Mat_Archive_02
               </span>
             </div>

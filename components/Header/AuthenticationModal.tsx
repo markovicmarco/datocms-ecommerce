@@ -57,16 +57,16 @@ const AuthenticationModal = ({
         </div>
 
         <div>
-          <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] text-black">
+          <h3 className="text-[9px] font-bold uppercase tracking-[0.3em] text-black">
             System Access
           </h3>
-          <p className="text-[10px] uppercase tracking-widest text-gray-400">
+          <p className="text-[9px] uppercase tracking-widest text-gray-400">
             Authorization Required
           </p>
         </div>
       </div>
 
-      <p className="mt-8 text-[11px] uppercase tracking-wider text-gray-500 leading-relaxed border-l-2 border-gray-100 pl-4">
+      <p className="mt-8 text-[9px] uppercase tracking-wider text-gray-500 leading-relaxed border-l-2 border-gray-100 pl-4">
         Enter the secret token to decrypt and access the latest drafts. 
         Unauthorised access is logged.
       </p>
@@ -89,7 +89,7 @@ const AuthenticationModal = ({
           placeholder="••••••••"
         />
         {hasError && (
-          <p className="mt-2 text-[10px] uppercase tracking-widest font-bold text-red-500">
+          <p className="mt-2 text-[9px] uppercase tracking-widest font-bold text-red-500">
             Invalid Token. Access Denied.
           </p>
         )}

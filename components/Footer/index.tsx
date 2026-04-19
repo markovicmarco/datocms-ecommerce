@@ -21,24 +21,24 @@ const Footer = ({ data, globalPageProps }: Props) => {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-end">
               <div className="md:col-span-7">
                 {/* Tag Newsletter sada koristi primary boju (krem) */}
-                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">
+                <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-primary">
                   {data.generalInterface?.newsletter}
                 </span>
-                <h2 className="mt-4 text-4xl md:text-6xl font-serif uppercase leading-tight text-black">
+                <h2 className="text-[12px] font-serif uppercase leading-tight text-black">
                   {data.generalInterface?.subscribeToOurNewsletter}
                 </h2>
               </div>
 
               <div className="md:col-span-5">
-                <form className="flex flex-col sm:flex-row gap-0 border-2 border-black">
+                <form className="flex flex-col sm:flex-row gap-0 border-1 border-white">
                   <input
                     placeholder={data.generalInterface?.emailPlaceholder ?? 'EMAIL@ADDRESS.COM'}
-                    className="flex-1 bg-white px-6 py-5 text-[11px] uppercase tracking-widest outline-none focus:placeholder:opacity-0"
+                    className="flex-1 bg-white border-1 border-white px-6 py-5 text-[9px] uppercase tracking-widest outline-none focus:placeholder:opacity-0"
                   />
                   {/* Button hover efekat usklađen sa brendom */}
                   <button
                     type="button"
-                    className="btn-brutalist flex items-center justify-center transition-all duration-500"
+                    className="btn-brutalist px-5 py-5 flex items-center justify-center transition-all duration-500"
                   >
                     {data.generalInterface?.newsletterButton}
                   </button>
@@ -67,7 +67,7 @@ const Footer = ({ data, globalPageProps }: Props) => {
               </span>
             </div>
             
-            <p className="text-[11px] uppercase tracking-wider text-gray-400 leading-relaxed max-w-xs">
+            <p className="text-[9px] uppercase tracking-wider text-gray-400 leading-relaxed max-w-xs">
               {data.layout?.footerSubtitle}
             </p>
 
@@ -91,7 +91,7 @@ const Footer = ({ data, globalPageProps }: Props) => {
           {/* DYNAMIC COLUMNS */}
           {data.layout?.footerColumns.map((column) => (
             <div key={column.id} className="lg:col-span-2">
-              <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black mb-10">
+              <h3 className="text-[9px] font-bold uppercase tracking-[0.3em] text-black mb-10">
                 {column.label}
               </h3>
               <nav className="flex flex-col gap-4">
@@ -99,7 +99,7 @@ const Footer = ({ data, globalPageProps }: Props) => {
                   <Link
                     key={item.id}
                     href={`/${globalPageProps.params.lng}/${item.slug}`}
-                    className="text-[11px] uppercase tracking-wider text-gray-500 hover:text-black hover:line-through transition-all"
+                    className="text-[9px] uppercase tracking-wider text-gray-500 hover:text-black hover:line-through transition-all"
                   >
                     {item.label}
                   </Link>

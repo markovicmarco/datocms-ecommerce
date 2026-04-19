@@ -95,10 +95,10 @@ const ProductView = ({ data, globalPageProps }: Props) => {
               >
                 {data.product.brand?.name}
               </Link>
-              <h1 className="text-4xl md:text-6xl font-serif uppercase leading-[0.9] text-black italic tracking-tighter">
+              <h1 className="text-[12px] font-serif uppercase leading-[0.9] text-black italic tracking-tighter">
                 {data.product.name}
               </h1>
-              <div className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+              <div className="flex items-center gap-4 text-[9px] font-bold uppercase tracking-widest text-gray-400">
                 <div className="flex text-black bg-primary px-2 py-0.5">
                   {data.product.reviewAverage || 5} ★
                 </div>
@@ -109,11 +109,11 @@ const ProductView = ({ data, globalPageProps }: Props) => {
             {/* Price Area */}
             <div className="space-y-2">
               <div className="flex items-baseline gap-4 font-mono">
-                <span className="text-4xl font-bold tracking-tighter text-black">
+                <span className="text-[10px] font-bold tracking-tighter text-black">
                   {currencySymbol}{isOnSale ? salePrice : price}
                 </span>
                 {isOnSale && (
-                  <span className="text-xl text-gray-300 line-through">
+                  <span className="text-[10px] text-gray-300 line-through">
                     {currencySymbol}{price}
                   </span>
                 )}

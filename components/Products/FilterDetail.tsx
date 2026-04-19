@@ -42,10 +42,10 @@ const FilterDetail = ({
             className="lg:col-span-12 w-full flex items-center justify-between px-6 md:px-12 py-10 group bg-white hover:bg-gray-50 transition-colors z-20"
           >
             <div className="flex items-baseline gap-8">
-              <span className="text-[10px] font-mono opacity-30">
+              <span className="text-[9px] font-mono opacity-30">
                 {isOpen ? '[ 02 ]' : '[ 01 ]'}
               </span>
-              <h2 className="text-2xl md:text-5xl font-serif uppercase italic tracking-tight text-black">
+              <h2 className="text-[12px] font-serif uppercase italic tracking-tight text-black">
                 {name}
               </h2>
             </div>
@@ -69,12 +69,12 @@ const FilterDetail = ({
                 <div className="max-w-xl">
                   <div className="flex items-center gap-3 mb-8">
                     <span className="h-px w-6 bg-black opacity-20"></span>
-                    <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-black/40">
+                    <span className="text-[9px] font-bold uppercase tracking-[0.5em] text-black/40">
                       {type ?? "ARCHIVE_REF"}
                     </span>
                   </div>
                   
-                  <div className="mt-8 text-[16px] uppercase tracking-[0.1em] text-black font-bold leading-relaxed border-l-[4px] border-black pl-8">
+                  <div className="mt-8 text-[9px] uppercase tracking-[0.1em] text-black font-bold leading-relaxed border-l-[4px] border-black pl-8">
                     <ReactMarkdown>{subtitle || ''}</ReactMarkdown>
                   </div>
 
@@ -85,7 +85,7 @@ const FilterDetail = ({
                         renderNodeRule(isListItem, ({ children, key }) => (
                           <li key={key} className="flex items-center gap-4 py-4 border-b border-gray-50 group/item">
                             <span className="w-1.5 h-1.5 bg-black rotate-45 shrink-0 transition-transform group-hover/item:rotate-90" />
-                            <span className="text-[11px] uppercase tracking-[0.2em] text-black/50 group-hover/item:text-black transition-colors">{children}</span>
+                            <span className="text-[9px] uppercase tracking-[0.2em] text-black/50 group-hover/item:text-black transition-colors">{children}</span>
                           </li>
                         )),
                       ]}

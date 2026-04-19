@@ -69,10 +69,10 @@ const SideFilter = ({
         {({ open }) => (
           <div className="border-b border-gray-100 pb-6">
             <Disclosure.Button className="flex w-full items-center justify-between group">
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40 group-hover:text-black transition-colors">
-                01 // Sort_By
+              <span className="text-[9px] font-black uppercase tracking-[0.4em] text-black/40 group-hover:text-black transition-colors">
+                // Sort_By
               </span>
-              <span className="text-[12px] font-mono text-black">
+              <span className="text-[9px] font-mono text-black">
                 {open ? '[ – ]' : '[ + ]'}
               </span>
             </Disclosure.Button>
@@ -88,7 +88,7 @@ const SideFilter = ({
                       <button
                         type="button"
                         onClick={() => exportQueryParameters('orderBy', option.value)}
-                        className={`text-[11px] uppercase tracking-[0.2em] transition-all flex items-center gap-3 ${
+                        className={`text-[9px] uppercase tracking-[0.2em] transition-all flex items-center gap-3 ${
                           isSelected 
                           ? 'font-bold text-black' 
                           : 'text-gray-400 hover:text-black hover:translate-x-1'
@@ -113,7 +113,7 @@ const SideFilter = ({
             {({ open }) => (
               <div className="border-b border-gray-100 pb-6 mb-6">
                 <Disclosure.Button className="flex w-full items-center justify-between group">
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40 group-hover:text-black transition-colors">
+                  <span className="text-[9px] font-black uppercase tracking-[0.4em] text-black/40 group-hover:text-black transition-colors">
                     0{index + 2} // {section.name}
                   </span>
                   <span className="text-[12px] font-mono text-black">
@@ -154,7 +154,7 @@ const SideFilter = ({
                           </div>
                           <label
                             htmlFor={`f-${section.id}-${idx}`}
-                            className={`ml-4 text-[10px] font-bold uppercase tracking-widest cursor-pointer transition-colors ${
+                            className={`ml-4 text-[9px] font-bold uppercase tracking-widest cursor-pointer transition-colors ${
                               isChecked ? 'text-black' : 'text-gray-400 hover:text-black'
                             }`}
                           >

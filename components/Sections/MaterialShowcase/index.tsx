@@ -25,18 +25,18 @@ const MaterialShowcase = ({ fragment, globalPageProps }: Props) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
           <div className="lg:col-span-5">
             {/* Labela sekcije sada koristi text-primary */}
-            <h2 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary mb-6">
+            <h2 className="text-[9px] font-bold uppercase tracking-[0.5em] text-primary mb-6">
               Core Components / Materials
             </h2>
-            <h1 className="text-4xl md:text-6xl font-serif uppercase leading-[0.9] text-black italic">
+            <h1 className="text-[12px] font-serif uppercase leading-[0.9] text-black italic">
               {title}
             </h1>
           </div>
           <div className="lg:col-span-7 lg:pt-12">
-            <p className="text-[14px] font-bold uppercase tracking-widest text-black mb-4">
+            <p className="text-[9px] font-bold uppercase tracking-widest text-black mb-4">
               {description}
             </p>
-            <p className="max-w-2xl text-[12px] leading-relaxed text-gray-400 uppercase tracking-wider font-medium">
+            <p className="max-w-2xl text-[9px] leading-relaxed text-gray-400 uppercase tracking-wider font-medium">
               {subDescription}
             </p>
           </div>
@@ -69,7 +69,7 @@ const MaterialShowcase = ({ fragment, globalPageProps }: Props) => {
 
                 {/* Label Style Title */}
                 <div className="flex items-center justify-between border-t-2 border-black pt-6">
-                  <div className="text-[13px] font-bold uppercase tracking-[0.2em] text-black">
+                  <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-black">
                     {material.name}
                   </div>
                   {/* Ikonica strelice dobija crnu pozadinu na hover, ostaje brutalistički čista */}

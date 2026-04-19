@@ -33,14 +33,14 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
         <div className="mb-12 flex items-end justify-between border-b border-black/5 pb-8">
           <div className="space-y-2">
             {/* Labela sada koristi text-primary (tvoj novi krem ton) */}
-            <span className="text-[10px] font-mono font-bold text-primary uppercase tracking-[0.3em]">
+            <span className="text-[9px] font-mono font-bold text-primary uppercase tracking-[0.3em]">
               Collection_Extension
             </span>
             <h2 className="text-3xl md:text-5xl font-serif italic uppercase tracking-tighter text-black">
               Featured Selection
             </h2>
           </div>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-gray-400 pb-2">
+          <span className="text-[9px] font-mono uppercase tracking-widest text-gray-400 pb-2">
             [{relatedProducts.length}] Units_Available
           </span>
         </div>
@@ -94,7 +94,7 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
                     <Link
                       href={`/${globalPageProps.params.lng}/product/${product.slug}`}
                       /* Hover na ime sada vuče primary boju */
-                      className="text-[14px] font-bold uppercase tracking-wider text-black hover:text-primary transition-colors"
+                      className="text-[9px] font-bold uppercase tracking-wider text-black hover:text-primary transition-colors"
                     >
                       {product.name}
                     </Link>
@@ -103,11 +103,11 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
                   <div className="flex flex-col items-end gap-1 font-mono">
                     <div className="flex items-center gap-2">
                       {isOnSale && (
-                        <span className="text-[11px] text-gray-300 line-through">
+                        <span className="text-[9px] text-gray-300 line-through">
                           {currencySymbol}{price}
                         </span>
                       )}
-                      <span className="text-[14px] font-bold text-black">
+                      <span className="text-[9px] font-bold text-black">
                         {currencySymbol}{isOnSale ? salePrice : price}
                       </span>
                     </div>

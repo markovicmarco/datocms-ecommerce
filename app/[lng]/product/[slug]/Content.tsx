@@ -32,7 +32,7 @@ const Content: ContentPage<PageProps, Query> = ({
           {/* Labela sekcije - Sada koristi text-primary */}
           <div className="lg:col-span-3">
             <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary sticky top-32">
-              Product_Deep_Dive / 01
+              Product_Deep_Dive 
             </span>
           </div>
 
@@ -98,7 +98,7 @@ const Content: ContentPage<PageProps, Query> = ({
                         <span className="text-primary font-mono text-[10px] font-bold">●</span>
                         
                         {/* Hover na tekst ćelije sada vuče primary boju */}
-                        <div className="text-[11px] font-bold uppercase tracking-widest text-black group-hover:text-primary transition-colors">
+                        <div className="text-[9px] font-bold uppercase tracking-widest text-black group-hover:text-primary transition-colors">
                           {children}
                         </div>
                       </div>
