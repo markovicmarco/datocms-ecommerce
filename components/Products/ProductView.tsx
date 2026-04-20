@@ -65,7 +65,7 @@ const ProductView = ({ data, globalPageProps }: Props) => {
             </div>
 
             {/* Main Image */}
-            <div className="md:col-span-10 relative aspect-[3/4] border-2 border-black p-1 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.03)] group">
+            <div className="md:col-span-10 relative aspect-[3/4] border-2 border-black p-1 shadow-[1px_1px_0px_0px_rgba(0,0,0,0.03)] group">
               <div className="w-full h-full overflow-hidden bg-gray-50">
                 {selectedImage?.responsiveImage && (
                   <DatoImage

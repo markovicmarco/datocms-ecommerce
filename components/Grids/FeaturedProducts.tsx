@@ -36,7 +36,7 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
             <span className="text-[9px] font-mono font-bold text-primary uppercase tracking-[0.3em]">
               Collection_Extension
             </span>
-            <h2 className="text-3xl md:text-5xl font-serif italic uppercase tracking-tighter text-black">
+            <h2 className="text-3xl md:text-5xl font-serif italic uppercase tracking-wide text-black">
               Featured Selection
             </h2>
           </div>

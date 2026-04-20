@@ -9,23 +9,23 @@ import { type Dispatch, Fragment, type SetStateAction } from 'react';
 const products = [
   {
     id: 1,
-    name: 'Throwback Hip Bag',
+    name: 'Maglia over',
     href: '#',
-    color: 'Salmon',
-    price: '$90.00',
+    color: 'dark olive',
+    price: '$275.00',
     quantity: 1,
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
-    imageAlt: 'Salmon orange fabric pouch.',
+    imageSrc: 'https://nostrasantissima.com/wp-content/uploads/2026/04/DSF0124.jpg',
+    imageAlt: 'Maglia over dark olive.',
   },
   {
     id: 2,
-    name: 'Medium Stuff Satchel',
+    name: 'Denim over',
     href: '#',
-    color: 'Blue',
-    price: '$32.00',
+    color: 'blue dyed',
+    price: '$389.00',
     quantity: 1,
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
-    imageAlt: 'Front of satchel.',
+    imageSrc: 'https://nostrasantissima.com/wp-content/uploads/2026/04/hf_20260417_153054_9185e58c-fb05-4fc9-b764-495708cc0cc9.png',
+    imageAlt: 'Denim over dyed.',
   },
 ];
 
@@ -65,7 +65,7 @@ export default function Cart({ open, setOpen }: PropTypes) {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="flex h-full flex-col bg-white shadow-[-20px_0_40px_rgba(0,0,0,0.1)] border-l border-gray-100">
+                  <div className="flex h-full flex-col bg-white shadow-[-1px_0_1px_rgba(0,0,0,0.1)] border-l border-gray-100">
                     
                     {/* HEADER */}
                     <div className="flex-1 overflow-y-auto px-6 py-10">
@@ -85,10 +85,10 @@ export default function Cart({ open, setOpen }: PropTypes) {
                       {/* DEMO INFO BOX - Brutalist stil */}
                       <div className="mt-8 bg-gray-50 border border-gray-100 p-6">
                         <h3 className="text-[10px] font-bold uppercase tracking-widest text-black mb-2">
-                          DatoCMS Integration Notice
+                          Integration Notice
                         </h3>
                         <p className="text-[10px] uppercase tracking-wider text-gray-500 leading-relaxed italic">
-                          To enable live purchases, sync with Shopify or CommerceLayer is required.
+                          To enable live purchases, sync with CommerceLayer is required.
                         </p>
                       </div>
 
@@ -136,7 +136,7 @@ export default function Cart({ open, setOpen }: PropTypes) {
                     <div className="border-t border-gray-100 px-6 py-10 bg-gray-50">
                       <div className="flex justify-between text-[12px] font-bold uppercase tracking-[0.2em] text-black">
                         <p>Subtotal</p>
-                        <p>$262.00</p>
+                        <p>$64.00</p>
                       </div>
                       <p className="mt-2 text-[9px] uppercase tracking-widest text-gray-400">
                         Shipping and taxes calculated at checkout.

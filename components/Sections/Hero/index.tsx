@@ -1,162 +1,132 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from 'next/link';
-import DatoImage from '@/components/DatoImage';
-import { type FragmentType, getFragmentData } from '@/graphql/types';
-import { HeroSectionFragmentDoc } from '@/graphql/types/graphql';
-import type { ResolvedGlobalPageProps } from '@/utils/globalPageProps';
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import DatoImage from "@/components/DatoImage";
+import { type FragmentType, getFragmentData } from "@/graphql/types";
+import { HeroSectionFragmentDoc } from "@/graphql/types/graphql";
+import type { ResolvedGlobalPageProps } from "@/utils/globalPageProps";
 
 type Props = {
   fragment: FragmentType<typeof HeroSectionFragmentDoc>;
   globalPageProps: ResolvedGlobalPageProps;
 };
 
-const Hero = ({ fragment, globalPageProps }: Props) => {
+const Hero = ({ fragment }: Props) => {
   const data = getFragmentData(HeroSectionFragmentDoc, fragment);
-  
-  const {
-    id,
-    heroTitle,
-    heroSubtitle,
-    heroImage,
-    socialLabel,
-    socials,
-  } = data;
+  const { id, heroTitle, heroSubtitle, heroImage, socialLabel, socials } = data;
 
-  const slides: { before: any; after: any }[] = [];
-  
-  if (Array.isArray(heroImage)) {
-    for (let i = 0; i < heroImage.length; i += 2) {
-      const beforeAsset = heroImage[i];
-      const afterAsset = heroImage[i + 1];
-
-      if (beforeAsset?.responsiveImage && afterAsset?.responsiveImage) {
-        slides.push({
-          before: beforeAsset.responsiveImage,
-          after: afterAsset.responsiveImage,
-        });
-      }
-    }
-  }
-
+  const slides = heroImage?.filter((img) => img?.responsiveImage).map((img) => img.responsiveImage) || [];
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  
+  // Ref za čuvanje ID-a intervala kako bismo mogli da ga obrišemo
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Funkcija za pokretanje intervala
+  const startInterval = () => {
+    if (slides.length <= 1) return;
+    // Čistimo postojeći ako postoji, za svaki slučaj
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    }, 5000); // Smena na 5 sekundi
+  };
+
+  // Funkcija za zaustavljanje intervala
+  const stopInterval = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+  };
+
+  // Pokrećemo interval na mountu
   useEffect(() => {
-    if (isPaused || slides.length <= 1) return;
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [isPaused, slides.length]);
+    startInterval();
+    // Čistimo na unmountu
+    return stopInterval;
+  }, [slides.length]);
 
   return (
     <div 
-      className="bg-white w-full" 
+      className="bg-white w-full selection:bg-primary selection:text-black group" 
       data-sidebar={id}
+      // Dodajemo event listenere na ceo Hero kontejner
+      onMouseEnter={stopInterval}
+      onMouseLeave={startInterval}
     >
-      <section className="mx-auto w-full max-w-[1920px] flex flex-col">
-        
-        {/* TOP TITLE */}
-        <header className="py-6 md:py-10 border-b border-gray-100 px-4">
-          <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-[4rem] font-serif uppercase tracking-[0.2em] text-black leading-[0.8]">
-            {heroTitle ?? "Find Your Style"}
-          </h1>
-        </header>
+      
+      <section className="relative w-full h-[90vh] overflow-hidden bg-black">
+        {slides.map((slide, index) => (
+          <div 
+            key={index} 
+            className={`absolute inset-0 h-full w-full transition-opacity duration-1000 ease-in-out ${
+              index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+          >
+            {/* Skaliranje slike ostaje aktivno, daje dubinu */}
+            <div className="h-full w-full animate-in zoom-in-105 duration-[15000ms] ease-linear">
+              <DatoImage
+                fragment={slide as any}
+                // KLJUČNA PROMENA: Po defaultu grayscale/brightness, na hover (group-hover) dobija boju i brightness
+                className="h-full w-full object-cover object-center 
+                           grayscale brightness-50 contrast-110
+                           transition-all duration-700 ease-in-out
+                           group-hover:grayscale-0 group-hover:brightness-100 group-hover:contrast-100"
+                priority={index === 0}
+                layout="fill"
+              />
+            </div>
+          </div>
+        ))}
 
-        {/* SUBTITLE */}
-        <div className="mx-auto max-w-xs md:max-w-md text-center py-6 md:py-8">
-          <p className="text-[9px] md:text-[10px] uppercase tracking-[0.12em] font-medium text-black leading-relaxed">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60 z-20" />
+
+        {/* SYSTEM STATUS OVERLAY - High contrast */}
+        <div className="absolute top-12 left-12 z-30 hidden md:block">
+          <div className="text-[8px] font-mono font-bold text-primary uppercase tracking-[0.4em] space-y-1">
+            {/* Dinamički status na osnovu hovera cele grupe */}
+            <p className="group-hover:text-white transition-colors duration-500">
+              {slides.length > 1 ? `BRUTALIST_${currentIndex + 1}/${slides.length}` : `RENDER_SEQUENCE`}
+            </p>
+            <p className="text-white/40 group-hover:text-white/60 transition-colors duration-500">
+              EXPERIENCE: {id ? `${id?.substring(0, 4).toUpperCase()}` : 'LIVE_FEED'}
+            </p>
+          </div>
+        </div>
+
+        {/* MAIN TITLE - Suptilno se menja na hover */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-30 px-6">
+          <h1 className="text-white text-5xl md:text-9xl font-serif italic uppercase leading-none tracking-tighter transition-all duration-700 group-hover:tracking-tight group-hover:scale-[1.01]">
+            {heroTitle}
+          </h1>
+          <p className="mt-6 max-w-sm text-white/40 group-hover:text-white/60 transition-colors duration-700 text-[9px] font-mono uppercase tracking-[0.3em] leading-relaxed">
             {heroSubtitle}
           </p>
         </div>
-
-        {/* MAIN SLIDER - Izmenjen za mobilnu visinu */}
-        <div className="flex items-start justify-center p-2 md:p-4 pt-4 md:pt-6 bg-white">
-          <div 
-            className="group relative w-full 
-                       /* MOBILNI: 80% visine ekrana, portretni odnos */
-                       h-[80vh] aspect-[3/4] 
-                       /* DESKTOP: Vraća se na tvoj original */
-                       md:h-auto md:max-h-[50vh] md:aspect-[3/1] lg:aspect-[4/1] 
-                       overflow-hidden rounded-sm shadow-sm cursor-crosshair"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            {slides.map((slide, index: number) => (
-              <div 
-                key={index}
-                className={`absolute inset-0 flex h-full w-full transition-opacity duration-1000 ease-in-out ${
-                  index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-                }`}
-              >
-                {/* Before Image */}
-                <div className="relative w-1/2 h-full border-r border-white/10 overflow-hidden">
-                  <DatoImage
-                    fragment={slide.before}
-                    className="h-full w-full object-cover transition-transform duration-[6000ms] ease-out group-hover:scale-110"
-                  />
-                  <div className="absolute top-4 left-4 z-20 bg-black/20 backdrop-blur-sm text-white text-[9px] px-2 py-1 rounded-full uppercase tracking-[0.2em]">
-                    Original
-                  </div>
-                </div>
-
-                {/* After Image */}
-                <div className="relative w-1/2 h-full overflow-hidden">
-                  <DatoImage
-                    fragment={slide.after}
-                    className="h-full w-full object-cover transition-transform duration-[6000ms] ease-out group-hover:scale-110"
-                    priority={index === 0}
-                  />
-                  <div className="absolute top-4 right-4 z-20 bg-black/20 backdrop-blur-sm text-white text-[9px] px-2 py-1 rounded-full uppercase tracking-[0.2em]">
-                    Refined
-                  </div>
-                </div>
-              </div>
-            ))}
-            
-            {/* Središnja linija */}
-            <div className="absolute inset-y-0 left-1/2 w-px bg-white/40 z-20 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-          </div>
-        </div>
-
-        {/* BOTTOM NAVIGATION */}
-        <footer className="px-4 md:px-12 py-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex gap-6 text-[9px] md:text-[10px] tracking-[0.2em] uppercase font-bold text-black">
-            {['Spring', 'Summer', 'Fall', 'Winter'].map((season) => (
-              <span key={season} className="hover:line-through cursor-pointer transition-all duration-500">
-                {season}
-              </span>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-8">
-            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-300">
-              {socialLabel ?? 'Socials'}
-            </span>
-            <div className="flex gap-4">
-              {socials.map((social) => (
-                <Link 
-                  key={social.id} 
-                  href={social.url ?? "#"} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="opacity-40 hover:opacity-100 transition-all duration-500 transform hover:-translate-y-0.5"
-                >
-                  <img 
-                    src={social.icon.url} 
-                    alt={social.name ?? "Social Media"} 
-                    className="h-3.5 w-3.5 grayscale" 
-                  />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </footer>
       </section>
+
+      {/* ARCHIVE FOOTER */} 
+      <footer className="px-4 md:px-12 py-10 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-6 bg-white z-40 relative"> 
+        <div className="flex gap-10 text-[9px] font-mono font-bold tracking-[0.4em] uppercase text-black/30"> 
+          {['Spring', 'Summer', 'Fall', 'Winter'].map((season) => ( 
+            <span key={season} className="hover:text-black hover:line-through cursor-pointer transition-none"> 
+              {season} 
+            </span> 
+          ))} 
+        </div> 
+
+        <div className="flex items-center gap-10"> 
+          <span className="text-[9px] font-mono font-bold uppercase tracking-[0.5em] text-primary"> 
+            {socialLabel ?? 'ARCHIVE_SOCIAL'} 
+          </span> 
+          <div className="flex gap-6"> 
+            {socials.map((social) => ( 
+              <Link key={social.id} href={social.url ?? "#"} target="_blank" className="opacity-30 hover:opacity-100 transition-none"> 
+                <img src={social.icon.url} alt={social.name as any} className="h-3 w-3 grayscale" /> 
+              </Link> 
+            ))} 
+          </div> 
+        </div> 
+      </footer>
     </div>
   );
 };

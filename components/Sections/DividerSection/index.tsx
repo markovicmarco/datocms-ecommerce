@@ -23,7 +23,7 @@ export default function DividerSection({ fragment, globalPageProps }: Props) {
           <div className="text-[10px] uppercase tracking-[0.3em] font-bold text-black mb-3">
             {preTitle}
           </div>
-          <h2 className="text-[12px] font-bold uppercase tracking-tight text-black leading-[1.1]">
+          <h2 className="text-[12px] font-bold uppercase tracking-wide text-black leading-[1.1]">
             {title}
           </h2>
         </div>

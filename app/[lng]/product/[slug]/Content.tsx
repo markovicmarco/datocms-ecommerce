@@ -70,7 +70,7 @@ const Content: ContentPage<PageProps, Query> = ({
                     return (
                       <h3
                         key={key}
-                        className="mb-8 mt-16 text-3xl md:text-5xl font-serif italic uppercase text-black tracking-tighter"
+                        className="mb-8 mt-16 text-3xl md:text-5xl font-serif italic uppercase text-black tracking-wide"
                       >
                         {children}
                       </h3>

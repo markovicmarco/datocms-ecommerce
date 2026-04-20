@@ -12,7 +12,7 @@ type PropTypes = {
 const CookiesNotice = ({ setCookies, cookieNotice }: PropTypes) => {
   return (
     <div className="fixed bottom-0 left-0 w-full z-50 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      <div className="bg-white border-t border-gray-100 shadow-[0_-10px_40px_rgba(0,0,0,0.04)] px-4 md:px-12 py-8">
+      <div className="bg-white border-t border-gray-100 shadow-[0_-1px_1px_rgba(0,0,0,0.04)] px-4 md:px-12 py-8">
         <div className="max-w-[1920px] mx-auto grid grid-cols-1 md:grid-cols-12 items-center gap-10">
           
           {/* IMAGE AREA - Skriven na mobilnom, oštar na desktopu */}

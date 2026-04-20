@@ -2,110 +2,118 @@
 
 import { useState } from 'react';
 import DatoImage from '@/components/DatoImage';
-import type { ContentPage } from '@/components/WithRealTimeUpdates/types';
-import type { PageProps, Query } from './meta';
+import { ContentPage } from '@/components/WithRealTimeUpdates/types';
+import { PageProps, Query } from './meta';
 
 const Content: ContentPage<PageProps, Query> = ({ data }) => {
   const [currentStore, setCurrentStore] = useState(0);
-  const allStores = data.allStores;
+  const allStores = data.allStores || [];
+
+  if (allStores.length === 0) return null;
 
   const nextStore = () => setCurrentStore((prev) => (prev === allStores.length - 1 ? 0 : prev + 1));
   const prevStore = () => setCurrentStore((prev) => (prev === 0 ? allStores.length - 1 : prev - 1));
 
-  // Bezbedno izvlačenje trenutne prodavnice
   const store = allStores[currentStore];
 
   return (
-    <div className="w-full min-h-screen bg-white flex flex-col lg:flex-row">
+    <main className="w-full min-h-screen bg-white flex flex-col lg:flex-row selection:bg-black selection:text-primary">
       
-      {/* LEFT SIDE: Data Panel */}
-      <div className="w-full lg:w-2/5 flex flex-col justify-center px-6 md:px-12 lg:px-24 py-24 border-r border-black/5">
-        <div className="max-w-md space-y-12">
-          
-          {/* Metadata */}
-          <div className="space-y-4">
-            <span className="text-[9px] font-bold uppercase tracking-[0.5em] text-primary">
-              Location_Archive / {store.country}
-            </span>
-            <h1 className="text-[9px] font-serif uppercase leading-[0.85] text-black italic tracking-tighter">
+      {/* SECTION: DATA_ENGINE (Leva strana) */}
+      <section className="w-full lg:w-2/5 flex flex-col justify-between px-6 md:px-12 lg:px-20 py-16 border-r border-black/5 bg-white z-20">
+        
+        {/* Top Branding / Breadcrumb */}
+        <div className="flex items-center gap-4">
+          <div className="h-px w-8 bg-black"></div>
+          <span className="text-[9px] font-mono font-bold uppercase tracking-[0.4em] text-black/40">
+            SYSTEM_ID: {store.id || 'NULL_REF'}
+          </span>
+        </div>
+
+        {/* Main Info Cluster */}
+        <div className="space-y-12">
+          <header className="space-y-4">
+            <h2 className="text-[9px] font-mono font-bold uppercase tracking-[0.5em] text-primary">
+              LOC_{store.country || 'GLOBAL'}
+            </h2>
+            <h1 className="text-5xl lg:text-7xl font-serif italic leading-none tracking-tighter text-black">
               {store.storeName}
             </h1>
-          </div>
+          </header>
 
-          {/* Description Box */}
-          <div className="border-l-2 border-black pl-8 py-2">
-            <p className="text-[9px] uppercase tracking-widest leading-relaxed text-gray-500 font-medium">
+          <div className="max-w-xs border-l border-black pl-6">
+            <p className="text-[10px] uppercase tracking-widest leading-relaxed text-black/60 font-medium">
               {store.storeDescription}
             </p>
           </div>
 
-          {/* Actions & Navigation */}
-          <div className="space-y-12 pt-8">
+          <nav className="pt-4">
             <a
               href={`https://www.google.com/maps/search/?api=1&query=${store.storeLocation?.latitude},${store.storeLocation?.longitude}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-6 text-[9px] font-bold uppercase tracking-[0.3em] text-black"
+              className="group inline-flex items-center gap-4 text-[9px] font-mono font-bold uppercase tracking-[0.3em] text-black hover:text-primary transition-colors"
             >
-              <span className="border-b-2 border-black group-hover:text-primary group-hover:border-primary transition-all">
-                {data.generalInterface?.findOnMaps}
-              </span>
-              <span className="text-primary transition-transform group-hover:translate-x-2">→</span>
+              <span className="underline underline-offset-8">VIEW_COORDINATES</span>
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
             </a>
+          </nav>
+        </div>
 
-            {/* Brutalist Controller */}
-            <div className="flex items-center gap-8 border-t border-black/5 pt-12">
-              <button
-                onClick={prevStore}
-                className="btn-brutalist flex items-center justify-center"
-              >
-                ←
-              </button>
-              
-              <div className="flex flex-col">
-                <span className="text-[9px] font-mono font-bold text-gray-400 uppercase tracking-widest">Index</span>
-                <span className="text-xl font-bold font-mono">
-                  {String(currentStore + 1).padStart(2, '0')} / {String(allStores.length).padStart(2, '0')}
-                </span>
-              </div>
+        {/* Tactical Controller (Bottom) */}
+        <div className="flex items-center gap-10">
+          <div className="flex gap-2">
+            <button onClick={prevStore} className="btn-brutalist h-10 w-10 flex items-center justify-center">
+              ←
+            </button>
+            <button onClick={nextStore} className="btn-brutalist h-10 w-10 flex items-center justify-center">
+              →
+            </button>
+          </div>
+          
+          <div className="h-px flex-1 bg-black/5"></div>
 
-              <button
-                onClick={nextStore}
-                className="btn-brutalist flex items-center justify-center"
-              >
-                →
-              </button>
-            </div>
+          <div className="flex flex-col items-end">
+            <span className="text-[8px] font-mono font-bold text-black/30 uppercase tracking-widest italic">Sequence</span>
+            <span className="text-lg font-mono font-bold tracking-tighter">
+              {String(currentStore + 1).padStart(2, '0')}_{String(allStores.length).padStart(2, '0')}
+            </span>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* RIGHT SIDE: Visual Panel */}
-      <div className="w-full lg:w-3/5 h-[60vh] lg:h-screen relative overflow-hidden bg-gray-100">
+      {/* SECTION: VISUAL_RENDER (Desna strana) */}
+      <section className="w-full lg:w-3/5 h-[70vh] lg:h-screen relative overflow-hidden bg-[#F5F5F3]">
         {store.storeImage?.responsiveImage && (
           <div key={currentStore} className="h-full w-full animate-in fade-in zoom-in-105 duration-1000">
             <DatoImage
-              // Koristimo 'as any' da utišamo TS error za fragment masking
               fragment={store.storeImage.responsiveImage as any}
-              className="h-full w-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+              className="h-full w-full object-cover grayscale brightness-90 hover:grayscale-0 hover:brightness-100 transition-all duration-1000 ease-in-out"
               layout="fill"
             />
           </div>
         )}
         
-        {/* Decorative System Overlay */}
-        <div className="absolute top-12 right-12 z-10 hidden lg:block">
-          <div className="bg-white/90 backdrop-blur-md border border-black/5 p-4 shadow-[10px_10px_0px_0px_rgba(var(--primary-rgb),0.2)]">
-            <div className="text-[9px] font-mono font-bold uppercase tracking-[0.3em] text-black leading-relaxed">
-              COORD_REF: <br />
-              LAT_{store.storeLocation?.latitude?.toFixed(4)}<br />
-              LNG_{store.storeLocation?.longitude?.toFixed(4)}
+        {/* Tactical System Overlay */}
+        <div className="absolute top-10 right-10 z-30 hidden lg:block">
+          <div className="btn-brutalist bg-white/80 pointer-events-none p-5">
+            <div className="text-[9px] font-mono font-bold uppercase tracking-[0.3em] text-black leading-loose">
+              <span className="text-primary opacity-100 text-[10px]">●</span> LIVE_FEED <br />
+              REF: {store.storeName?.substring(0, 3).toUpperCase()}_{currentStore + 100} <br />
+              POS: {store.storeLocation?.latitude?.toFixed(4)} / {store.storeLocation?.longitude?.toFixed(4)}
             </div>
           </div>
         </div>
-      </div>
 
-    </div>
+        {/* Corner Branding */}
+        <div className="absolute bottom-10 right-10 text-white mix-blend-difference opacity-30">
+          <span className="text-[9px] font-mono font-bold uppercase tracking-[1em]">
+            _ARCHIVE
+          </span>
+        </div>
+      </section>
+
+    </main>
   );
 };
 

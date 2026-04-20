@@ -4,9 +4,9 @@ import Link from 'next/link';
 const NotFound = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-white px-4">
-      {/* Container sa dinamičkom senkom: shadow-primary/100 koristi tvoj dynamic RGB */}
-      <div className="max-w-[1920px] mx-auto w-full border-2 border-black p-1 shadow-[20px_20px_0px_0px_rgba(var(--color-primary),1)]">
-        <div className="grid gap-0 md:grid-cols-2 bg-white">
+      {/* Container sa dinamičkom senkom: shadow-primary/100 koristi dynamic RGB */}
+      <div className="max-w-[1920px] mx-auto w-full border-2 border-black p-1">
+        <div className="grid gap-0 md:grid-cols-2 bg-white shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
           
           {/* TEXT CONTENT: Technical Error Log */}
           <div className="flex flex-col items-start justify-center p-8 md:p-24 border-b-2 md:border-b-0 md:border-r-2 border-black">

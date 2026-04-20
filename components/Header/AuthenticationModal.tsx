@@ -34,7 +34,7 @@ const AuthenticationModal = ({
 
   return (
     <div
-      className="bg-white border-2 border-black p-6 md:p-10 shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] max-w-md w-full animate-in zoom-in-95 duration-300"
+      className="bg-white border-2 border-black p-6 md:p-10 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] max-w-md w-full animate-in zoom-in-95 duration-300"
       role="alert"
     >
       <div className="flex items-center gap-4">

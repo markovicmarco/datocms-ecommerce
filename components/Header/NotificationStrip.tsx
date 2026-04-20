@@ -53,7 +53,7 @@ const NotificationStrip = ({
 
         <button
           type="button"
-          className="absolute right-4 md:right-12 text-black hover:opacity-50 transition-opacity"
+          className="absolute right-4 md:right-12 text-white hover:opacity-50 transition-opacity"
           onClick={() => setNotificationStrip(false)}
         >
           <svg

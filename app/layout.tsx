@@ -3,20 +3,22 @@ import ScrollToTop from '@/components/ScrollToTop';
 import '@/styles/global.css';
 import { draftMode } from 'next/headers';
 
-type Params = {
+export default async function RootLayout({
+  children,
+  params,
+}: {
   children: React.ReactNode;
-};
-
-export default async function RootLayout({ children }: Params) {
+  params: { lng: string };
+}) {
   const { isEnabled: isDraft } = await draftMode();
   
-  // RootLayout je sada "providni" omotač.
-  // Ne dodajemo <html> ili <body> ovde jer ih generiše BrandSeo.
   return (
-    <>
-      {children}
-      <ScrollToTop isDraft={isDraft} />
-      {isDraft && <ContentLink />}
-    </>
+    <html lang={params.lng}>
+      <body className="tracking-tight antialiased selection:bg-primary selection:text-black">
+        {children}
+        <ScrollToTop />
+        {isDraft && <ContentLink />}
+      </body>
+    </html>
   );
 }

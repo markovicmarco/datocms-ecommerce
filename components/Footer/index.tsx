@@ -29,20 +29,24 @@ const Footer = ({ data, globalPageProps }: Props) => {
                 </h2>
               </div>
 
-              <div className="md:col-span-5">
-                <form className="flex flex-col sm:flex-row gap-0 border-1 border-white">
-                  <input
-                    placeholder={data.generalInterface?.emailPlaceholder ?? 'EMAIL@ADDRESS.COM'}
-                    className="flex-1 bg-white border-1 border-white px-6 py-5 text-[9px] uppercase tracking-widest outline-none focus:placeholder:opacity-0"
-                  />
-                  {/* Button hover efekat usklađen sa brendom */}
-                  <button
-                    type="button"
-                    className="btn-brutalist px-5 py-5 flex items-center justify-center transition-all duration-500"
-                  >
-                    {data.generalInterface?.newsletterButton}
-                  </button>
-                </form>
+              <div className="md:col-span-5 px-5 py-0">
+              <form className="flex flex-col sm:flex-row gap-0 border-b border-black">
+                <input
+                 placeholder={data.generalInterface?.emailPlaceholder ?? 'EMAIL@ADDRESS.COM'}
+                 className="flex-1 bg-white px-6 py-5 text-[9px] uppercase tracking-[0.2em] 
+                            outline-none focus:outline-none focus:ring-0 border-none
+                            placeholder:text-black/30 focus:placeholder:opacity-0"
+                />
+    
+                 <button
+                  type="button"
+                  className="btn-brutalist flex items-center justify-center px-8 
+                             bg-white text-black/40 active:text-black 
+                             transition-none border-none outline-none"
+                 >
+                  {data.generalInterface?.newsletterButton}
+                 </button>
+               </form>
               </div>
             </div>
           </div>

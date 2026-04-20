@@ -9,10 +9,9 @@ import type { SiteLocale } from '@/graphql/types/graphql';
 
 type Props = {
   languages: SiteLocale[];
-  currencySymbol: Maybe<string>;
 };
 
-const LanguageSelector = ({ languages, currencySymbol }: Props) => {
+const LanguageSelector = ({ languages }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const pathArray = pathname.split('/');
@@ -23,42 +22,49 @@ const LanguageSelector = ({ languages, currencySymbol }: Props) => {
 
   return (
     <div className="relative">
-      {/* TRIGGER - Minimalistički tekst bez pozadine */}
+      {/* TRIGGER - Sada u tonu sa ostatkom interfejsa */}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         onBlur={() => setTimeout(() => setIsOpen(false), 200)}
-        className="flex items-center gap-2 px-2 py-1 transition-all duration-300 active:scale-95 group"
+        className="flex items-center gap-3 px-3 py-2 group transition-none active:translate-x-[0.5px] active:translate-y-[0.5px]"
       >
-        <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-black group-hover:opacity-50 transition-opacity">
+        <span className="text-[9px] font-mono font-bold uppercase tracking-[0.3em] text-black">
           {getLangNameFromCode(currentLocale)?.name || currentLocale}
         </span>
-        <span className="text-[9px] font-medium text-gray-400">
-          ({currencySymbol})
-        </span>
-        {/* Mali indikator koji se rotira */}
-        <svg 
-          className={`w-3 h-3 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} 
-          fill="none" viewBox="0 0 24 24" stroke="currentColor"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+        
+        <div className="flex items-center gap-2 border-l border-black/10 pl-3">
+          <span className="text-[8px] font-mono font-bold text-primary uppercase tracking-widest">
+            LNG
+          </span>
+          <svg 
+            className={`w-2.5 h-2.5 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} 
+            fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
       </button>
 
-      {/* DROPDOWN - Oštar i visok kontrast */}
+      {/* DROPDOWN - Brutalist System Style */}
       <div
-        className={`absolute right-0 z-[100] mt-4 min-w-[140px] bg-white border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.08)] animate-in fade-in slide-in-from-top-2 duration-300 ${
+        className={`absolute right-0 z-[100] mt-2 min-w-[160px] bg-white/90 backdrop-blur-md border border-black shadow-[2px_2px_0px_0px_rgb(var(--color-primary)/0.4)] animate-in fade-in slide-in-from-top-1 duration-200 ${
           isOpen ? 'block' : 'hidden'
         }`}
         role="menu"
       >
-        <div className="py-1">
+        <div className="p-1">
+          <div className="px-4 py-2 border-b border-black/5 mb-1">
+            <span className="text-[7px] font-mono font-bold text-gray-400 uppercase tracking-[0.2em]">Select_Region</span>
+          </div>
           {languages.map((locale) => (
             <Link
               key={locale}
               href={`/${locale}/${pathString}?${searchParams.toString()}`}
-              className={`block px-6 py-3 text-[9px] font-bold uppercase tracking-[0.15em] transition-colors hover:bg-gray-50 ${
-                currentLocale === locale ? 'text-black' : 'text-gray-400 hover:text-black'
+              className={`block px-4 py-3 text-[9px] font-mono font-bold uppercase tracking-[0.2em] transition-none ${
+                currentLocale === locale 
+                  ? 'bg-black text-primary' 
+                  : 'text-black hover:bg-primary/10'
               }`}
               role="menuitem"
             >

@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    /* Krem podloga: #FAEEC8 */
+    /* Krem podloga: #FAEEC8 (250, 238, 200) */
     --color-primary: 250 238 200;
   }
 
@@ -19,14 +19,12 @@
     @apply bg-white text-black antialiased;
   }
 
-  /* Prilagođene selekcije teksta za brend */
   ::selection {
     @apply bg-black text-primary;
   }
 }
 
 @layer components {
-  /* Tvoje postojeće klase za checkbox i header */
   input[type='checkbox']:checked ~ label span svg {
     @apply inline-flex;
   }
@@ -35,10 +33,20 @@
     @apply py-5 lg:py-2;
   }
 
-  /* Dodajemo globalni stil za tvoj novi 'Brutalist' stil dugmadi */
   .btn-brutalist {
-    @apply backdrop-blur-sm text-black text-[9px] px-2 py-1 uppercase tracking-[0.2em]
-           hover:bg-black hover:text-white transition-all duration-300;
+    /* Tehnički/System stil */
+    @apply bg-white/90 backdrop-blur-md border border-black/10 
+           px-4 py-2 uppercase font-mono font-bold text-[9px] tracking-[0.3em] 
+           text-black transition-none;
+    
+    /* Hard shadow efekat koji koristi tvoju primary boju */
+    box-shadow: 1px 1px 0px 0px rgb(var(--color-primary) / 0.4);
+  }
+
+  .btn-brutalist:active {
+    /* Oštar mehanički klik */
+    @apply translate-x-[0.5px] translate-y-[0.5px];
+    box-shadow: none;
   }
 }
 

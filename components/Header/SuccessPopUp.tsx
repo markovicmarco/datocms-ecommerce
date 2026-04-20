@@ -10,7 +10,7 @@ const SuccessPopUp = ({ setSuccessToast }: Props) => {
   return (
     <div
       role="alert"
-      className="fixed bottom-8 right-8 z-[200] w-full max-w-sm border-2 border-black bg-white p-1 shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] animate-in slide-in-from-right duration-500"
+      className="fixed bottom-8 right-8 z-[200] w-full max-w-sm border-2 border-black bg-white p-1 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] animate-in slide-in-from-right duration-500"
     >
       <div className="border border-gray-100 p-6 flex flex-col gap-4">
         <div className="flex items-center justify-between">

@@ -24,7 +24,7 @@ const PopUpBanner = ({ setPopUp, popup, globalPageProps }: PropTypes) => {
       {/* MODAL CONTAINER */}
       <section
         onClick={(e) => e.stopPropagation()}
-        className="relative z-[210] w-full max-w-4xl bg-white border-2 border-black shadow-[30px_30px_0px_0px_rgba(0,0,0,1)] md:grid md:grid-cols-5 animate-in zoom-in-95 duration-500"
+        className="relative z-[210] w-full max-w-4xl bg-white border-2 border-black md:grid md:grid-cols-5 animate-in zoom-in-95 duration-500"
       >
         {/* IMAGE SIDE - Grayscale vibe */}
         <div className="relative h-64 md:h-full md:col-span-2 border-b-2 md:border-b-0 md:border-r-2 border-black grayscale hover:grayscale-0 transition-all duration-1000">
@@ -70,7 +70,7 @@ const PopUpBanner = ({ setPopUp, popup, globalPageProps }: PropTypes) => {
           </div>
 
           {popup.underText && (
-            <p className="mt-8 text-[9px] uppercase tracking-widest text-gray-300 leading-relaxed italic">
+            <p className="mt-8 text-[9px] uppercase tracking-widest text-gray-500 leading-relaxed italic">
               {popup.underText}
             </p>
           )}

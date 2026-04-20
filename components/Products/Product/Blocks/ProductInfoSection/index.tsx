@@ -111,7 +111,7 @@ const ProductInfoSection = ({
           </div>
 
           {/* DESNA STRANA: MATERIAL SPOTLIGHT */}
-          <div className="lg:col-span-4 border-2 border-black p-1 shadow-[20px_20px_0px_0px_rgba(0,0,0,0.05)]">
+          <div className="lg:col-span-4 border-2 border-black p-1 shadow-[1px_1px_0px_0px_rgba(0,0,0,0.05)]">
             <div className="border border-gray-100">
               {details?.image.responsiveImage && (
                 <div className="relative aspect-square grayscale hover:grayscale-0 transition-all duration-1000 overflow-hidden group">

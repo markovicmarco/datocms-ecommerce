@@ -14,66 +14,80 @@ const TestimonialsSection = ({ fragment }: Props) => {
     fragment,
   );
 
-  return (
-    <section className="w-full bg-white py-24 border-t border-black/5">
-      <div className="max-w-[1920px] mx-auto px-4 md:px-12">
-        
-        {/* HEADER: System Title */}
-        <div className="mb-16">
-          {/* Labela sekcije sada koristi text-primary */}
-          <h2 className="text-[9px] font-bold uppercase tracking-[0.5em] text-primary mb-4">
-            User Feedback / Testimonials
-          </h2>
-          <h1 className="text-[12px] font-serif uppercase leading-tight text-black italic">
-            {title}
-          </h1>
-        </div>
+  // Dupliramo niz da bi marquee bio beskončan i gladak
+  const doubledTestimonials = [...testimonials, ...testimonials];
 
-        {/* TESTIMONIALS GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-100 border border-gray-100">
-          {testimonials.map((item) => {
-            return (
+  return (
+    <section className="w-full bg-white py-24 border-t border-black/5 overflow-hidden">
+      <div className="max-w-[1920px] mx-auto">
+        
+        {/* HEADER: Archive Header Style */}
+        <header className="mb-16 px-6 md:px-16 space-y-4">
+          <span className="text-[9px] font-mono font-bold uppercase tracking-[0.6em] text-primary block">
+            LIVE_FEED / CLIENT_VALIDATION
+          </span>
+          <h2 className="text-[18px] font-serif italic uppercase leading-none text-black tracking-wide">
+            {title || 'System_Feedback'}
+          </h2>
+        </header>
+
+        {/* MARQUEE CONTAINER */}
+        <div className="relative flex overflow-x-hidden border-y border-black/5 bg-gray-50/30 py-2">
+          <div className="flex animate-marquee whitespace-nowrap group-hover:pause-none">
+            {doubledTestimonials.map((item, idx) => (
               <div 
-                key={item.id} 
-                className="group relative bg-white p-8 md:p-12 flex flex-col justify-between min-h-[350px] transition-colors hover:bg-gray-50"
+                key={`${item.id}-${idx}`} 
+                className="inline-block w-[350px] md:w-[450px] mx-4 bg-white border border-black/5 p-8 transition-none hover:border-primary"
               >
-                {/* Quote Content */}
-                <div className="relative z-10">
-                  <div className="text-[9px] leading-relaxed text-black font-medium tracking-wide italic">
-                    <ReactMarkdown>
-                      {item.testimonial || ''}
-                    </ReactMarkdown>
-                  </div>
+                {/* Status Header */}
+                <div className="flex justify-between items-center mb-6">
+                  <span className="text-[7px] font-mono font-bold text-primary uppercase tracking-widest">
+                    ENTRY_REF_{idx.toString().padStart(3, '0')}
+                  </span>
+                  <div className="w-1.5 h-1.5 bg-primary animate-pulse" />
                 </div>
 
-                {/* Author & Verification */}
-                <div className="mt-12 flex items-center justify-between border-t border-black/5 pt-6">
+                {/* Quote Content - Text wrapping is handled for marquee */}
+                <div className="text-[10px] leading-relaxed text-black/80 font-medium tracking-widest uppercase whitespace-normal h-24 overflow-hidden italic">
+                  <ReactMarkdown>
+                    {item.testimonial || ''}
+                  </ReactMarkdown>
+                </div>
+
+                {/* Author Metadata */}
+                <div className="mt-8 flex items-center gap-4 border-t border-black/5 pt-6">
+                  <div className="h-6 w-6 flex items-center justify-center bg-black text-primary text-[8px] font-mono font-bold">
+                    ID
+                  </div>
                   <div className="flex flex-col">
-                    <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-black">
+                    <span className="text-[9px] font-mono font-black uppercase tracking-[0.1em] text-black">
                       {item.author}
                     </span>
-                    <span className="text-[9px] font-mono text-gray-400 uppercase tracking-tighter">
-                      Verified Client / 2026
+                    <span className="text-[7px] font-mono text-gray-400 uppercase tracking-widest">
+                      VERIFIED_SOURCE_2026
                     </span>
                   </div>
-                  
-                  {/* Digital Signature Icon - Sada koristi primary boju brenda */}
-                  <div className="h-8 w-8 flex items-center justify-center bg-primary/10 text-primary">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                      <path d="M20 6L9 17L4 12" />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Decorative corner element - Tačkica na hover sada je u primary boji */}
-                <div className="absolute top-0 right-0 w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="absolute top-4 right-4 w-1 h-1 bg-primary" />
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
+
+      {/* Tailwind Animation Config (dodaj u tailwind.config.js ako već nemaš) */}
+      <style jsx global>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          display: flex;
+          animation: marquee 40s linear infinite;
+        }
+        .animate-marquee:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
     </section>
   );
 };

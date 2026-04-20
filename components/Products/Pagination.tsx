@@ -54,7 +54,7 @@ const Pagination = ({ numberOfProducts, currentPage }: PropTypes) => {
         </div>
 
         {/* NAVIGATION AREA - Zadržana brutalistička crna senka */}
-        <nav className="inline-flex border-2 border-black overflow-hidden bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+        <nav className="inline-flex border-1 border-black overflow-hidden bg-white">
           {/* PREVIOUS */}
           <button
             type="button"

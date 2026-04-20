@@ -26,7 +26,7 @@ const RatingBadge: FC<{ score: number }> = ({ score }) => (
         />
       ))}
     </div>
-    <span className="text-[10px] font-bold font-mono tracking-tighter text-black">
+    <span className="text-[10px] font-bold font-mono tracking-wide text-black">
       {score.toFixed(1)}
     </span>
   </div>
@@ -86,7 +86,7 @@ const Reviews = ({ data, globalPageProps }: PropTypes) => {
                     <span className="block text-[11px] font-bold uppercase tracking-wider text-black">
                       {review.reviewerName}
                     </span>
-                    <span className="block text-[9px] font-mono uppercase tracking-tighter text-gray-400">
+                    <span className="block text-[9px] font-mono uppercase tracking-wide text-gray-400">
                       {formattedDate}
                     </span>
                   </div>
