@@ -1,5 +1,4 @@
 import queryDatoCMS from '@/utils/queryDatoCMS'; 
-import Script from 'next/script';
 
 const BRAND_IDENTITY_QUERY = `
   query BrandIdentity($slug: String!) {
@@ -21,12 +20,15 @@ export default async function BrandSeo({
   isDraft,
 }: {
   children: React.ReactNode;
-  params: { lng: string; slug?: string }; // Slug je sada dinamički
+  params: Promise<any>; // Promenjeno u Promise<any> za maksimalnu kompatibilnost
   isDraft: boolean;
 }) {
-  const { lng, slug } = params;
+  // 1. Otpakujemo params koristeći await
+  const resolvedParams = await params;
+  const lng = resolvedParams?.lng || 'en';
+  const slug = resolvedParams?.slug;
 
-  // Fallback strategija: ako nema sluga u URL-u (npr. home), koristi "eillence"
+  // Fallback strategija
   const currentSlug = slug || "eillence"; 
 
   const data: any = await queryDatoCMS(
@@ -38,31 +40,32 @@ export default async function BrandSeo({
   const brand = data?.brandIdentity;
 
   return (
-    <html lang={lng}>
-      <head>
-        {brand?.seo && (
-          <>
-            <title>{brand.seo.title}</title>
-            <meta name="description" content={brand.seo.description} />
-            <meta property="og:title" content={brand.seo.title} />
-            <meta property="og:description" content={brand.seo.description} />
-            {brand.seo.image && <meta property="og:image" content={brand.seo.image.url} />}
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:image" content={brand.seo.image?.url} />
-         </>
-       )}
-       {brand?.schemaData && (
-         <script
-           type="application/ld+json"
-           dangerouslySetInnerHTML={{ 
-             __html: JSON.stringify(brand.schemaData) 
-           }} 
-          />
-        )}
-     </head>
-      <body className="tracking-tight antialiased">
-        {children}
-      </body>
-    </html>
+    <>
+      {/* Next.js automatski pomera ove tagove u <head>.
+        Izbacili smo <html>, <head> i <body> jer su oni u layout.tsx
+      */}
+      {brand?.seo && (
+        <>
+          <title>{brand.seo.title}</title>
+          <meta name="description" content={brand.seo.description} />
+          <meta property="og:title" content={brand.seo.title} />
+          <meta property="og:description" content={brand.seo.description} />
+          {brand.seo.image && <meta property="og:image" content={brand.seo.image.url} />}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:image" content={brand.seo.image?.url} />
+        </>
+      )}
+
+      {brand?.schemaData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ 
+            __html: JSON.stringify(brand.schemaData) 
+          }} 
+        />
+      )}
+
+      {children}
+    </>
   );
 }
