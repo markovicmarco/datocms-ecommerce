@@ -32,7 +32,7 @@ const Content: ContentPage<PageProps, Query> = ({ data }) => {
                     renderNodeRule(isHeading, ({ children, key }) => {
                       return (
                         <h3
-                          className="mb-4 mt-9 text-xl text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl"
+                          className="mb-4 mt-9 text-xl text-current dark:text-white sm:text-2xl lg:text-xl xl:text-2xl"
                           key={key}
                         >
                           {children}

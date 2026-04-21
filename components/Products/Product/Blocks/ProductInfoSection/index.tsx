@@ -57,15 +57,15 @@ const ProductInfoSection = ({
           {/* LEVA STRANA: INFO GRID */}
           <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
             
-            {/* ITEM: MATERIALS - Sada koristi text-primary */}
+            {/* ITEM: MATERIALS - Sada koristi text-current */}
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[12px]  uppercase tracking-[0.3em] text-black">
+                <h3 className="text-[12px]  uppercase tracking-[0.3em] text-current">
                   {materials}
                 </h3>
               </div>
-              <p className="text-[9px]  uppercase tracking-wider text-black leading-tight">
+              <p className="text-[9px]  uppercase tracking-wider text-current leading-tight">
                 {material}
               </p>
             </div>
@@ -74,11 +74,11 @@ const ProductInfoSection = ({
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[12px]  uppercase tracking-[0.3em] text-black">
+                <h3 className="text-[12px]  uppercase tracking-[0.3em] text-current">
                   {styleString}
                 </h3>
               </div>
-              <p className="text-[9px]  uppercase tracking-wider text-black leading-tight">
+              <p className="text-[9px]  uppercase tracking-wider text-current leading-tight">
                 {style}
               </p>
             </div>
@@ -87,11 +87,11 @@ const ProductInfoSection = ({
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[12px]  uppercase tracking-[0.3em] text-black">
+                <h3 className="text-[12px]  uppercase tracking-[0.3em] text-current">
                   {weatherString}
                 </h3>
               </div>
-              <p className="text-[9px]  uppercase tracking-wider text-black leading-tight">
+              <p className="text-[9px]  uppercase tracking-wider text-current leading-tight">
                 {weather}
               </p>
             </div>
@@ -100,11 +100,11 @@ const ProductInfoSection = ({
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[12px]  uppercase tracking-[0.3em] text-black">
+                <h3 className="text-[12px]  uppercase tracking-[0.3em] text-current">
                   {occasionsString}
                 </h3>
               </div>
-              <p className="text-[9px]  uppercase tracking-wider text-black leading-tight">
+              <p className="text-[9px]  uppercase tracking-wider text-current leading-tight">
                 {occasions}
               </p>
             </div>
@@ -118,14 +118,14 @@ const ProductInfoSection = ({
                   <span className="text-[12px]  uppercase tracking-[0.2em] text-gray-400">
                     Sourced Material
                   </span>
-                  <p className="text-[9px]  uppercase tracking-widest text-black">
+                  <p className="text-[9px]  uppercase tracking-widest text-current">
                     {name}
                   </p>
                 </div>
 
                 <Link
                   href={`/${globalPageProps.params.lng}/products/?materials=${id}`}
-                  className="inline-block w-full border-none py-4 text-center text-[10px]  uppercase tracking-[0.3em] hover:text-black transition-all duration-300 animate-pulse"
+                  className="inline-block w-full border-none py-4 text-center text-[10px]  uppercase tracking-[0.3em] hover:text-current transition-all duration-300 animate-pulse"
                 >
                   {more}
                 </Link>

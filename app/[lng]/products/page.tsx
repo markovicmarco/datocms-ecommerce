@@ -99,86 +99,81 @@ const Page = async ({ params, searchParams }: PageProps) => {
         />
       )}
 
-      <div className="max-w-[1920px] mx-auto border-t border-black/5">
-        <div className="grid grid-cols-1 lg:grid-cols-5">
-          
-          <aside className="col-span-1 border-r border-black/5 p-8 lg:p-12">
-            <SideFilter
-              initialParams={initialParams}
-              generalInterface={data.generalInterface}
-              paramaterCollections={collections}
-              parameterBrands={brands}
-              parameterMaterials={materials}
-            />
-          </aside>
+      {/* HORIZONTAL TACTICAL FILTERS */}
+      <SideFilter
+        initialParams={initialParams}
+        generalInterface={data.generalInterface}
+        paramaterCollections={collections}
+        parameterBrands={brands}
+        parameterMaterials={materials}
+      />
 
-          <main className="col-span-4 p-4 md:p-12 lg:p-16">
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-px bg-black/5 border border-black/5">
-              {data.allProducts.map((product) => {
-                const isOnSale = product.sale === 'on_sale';
-                
-                return (
-                  <div key={product.id} className="group relative bg-white flex flex-col">
-                    <Link href={`/${lng}/product/${product.slug}`} className="relative aspect-[4/5] overflow-hidden">
-                      {product.productImages[0].responsiveImage && (
-                        <DatoImage
-                          fragment={product.productImages[0].responsiveImage}
-                          className="h-full w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                          layout="fill"
-                        />
-                      )}
-                      
-                      {/* SALE BADGE: Sada koristi bg-primary (krem) */}
-                      {isOnSale && (
-                        <div className="absolute top-0 left-0 bg-white px-4 py-1.5 text-[10px] uppercase tracking-widest text-black z-10">
-                          {sale}
-                        </div>
-                      )}
-                    </Link>
-
-                    <div className="p-6 border-t border-black/5 flex flex-col flex-grow">
-                      <div className="flex justify-between items-start mb-4">
-                        <div className="space-y-1">
-                          <span className="text-[9px] font-mono text-gray-400 uppercase tracking-tighter block">
-                            {product.brand.name}
-                          </span>
-                          {/* NASLOV: group-hover sada koristi primary boju brenda */}
-                          <h3 className="text-sm uppercase tracking-widest text-black group-hover:text-primary transition-colors leading-tight">
-                            {product.name}
-                          </h3>
-                        </div>
-                        <div className="text-right flex flex-col items-end">
-                          <span className="text-sm font-mono">
-                            {currencySymbol}{isOnSale ? product.salePrice : product.price}
-                          </span>
-                          {isOnSale && (
-                            <span className="text-[10px] font-mono text-red-500 line-through opacity-50">
-                              {currencySymbol}{product.price}
-                            </span>
-                          )}
-                        </div>
+      <div className="max-w-[1920px] mx-auto">
+        <main className="w-full">
+          {/* GRID: Povećan na 4 kolone na velikim ekranima jer nema Sidebara */}
+          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 xl:grid-cols-3 gap-px bg-black/5 border-b border-none/5">
+            {data.allProducts.map((product) => {
+              const isOnSale = product.sale === 'on_sale';
+              
+              return (
+                <div key={product.id} className="group relative bg-white flex flex-col">
+                  <Link href={`/${lng}/product/${product.slug}`} className="relative aspect-[4/5] overflow-hidden">
+                    {product.productImages[0].responsiveImage && (
+                      <DatoImage
+                        fragment={product.productImages[0].responsiveImage}
+                        className="h-full w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                        layout="fill"
+                      />
+                    )}
+                    
+                    {isOnSale && (
+                      <div className="absolute top-0 left-0 bg-white px-4 py-1.5 text-[10px] uppercase tracking-widest text-current z-10">
+                        {sale}
                       </div>
-                      
-                      <Link 
-                        href={`/${lng}/product/${product.slug}`}
-                        className="mt-auto pt-4 text-[9px] uppercase tracking-[0.3em] text-gray-300 group-hover:text-black transition-colors"
-                      >
-                        View_Specs →
-                      </Link>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+                    )}
+                  </Link>
 
-            <div className="mt-20 border-t border-black/5 pt-12">
-              <Pagination
-                numberOfProducts={data._allProductsMeta.count}
-                currentPage={pageNumber}
-              />
-            </div>
-          </main>
-        </div>
+                  <div className="p-6 border-t border-none/5 flex flex-col flex-grow">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="space-y-1">
+                        <span className="text-[9px] font-mono text-gray-400 uppercase tracking-tighter block">
+                          {product.brand.name}
+                        </span>
+                        <h3 className="text-sm uppercase tracking-widest text-current group-hover:text-current transition-colors leading-tight">
+                          {product.name}
+                        </h3>
+                      </div>
+                      <div className="text-right flex flex-col items-end">
+                        <span className="text-sm font-mono">
+                          {currencySymbol}{isOnSale ? product.salePrice : product.price}
+                        </span>
+                        {isOnSale && (
+                          <span className="text-[10px] font-mono text-red-500 line-through opacity-50">
+                            {currencySymbol}{product.price}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    
+                    <Link 
+                      href={`/${lng}/product/${product.slug}`}
+                      className="mt-auto pt-4 text-[9px] uppercase tracking-[0.3em] text-gray-300 group-hover:text-current transition-colors"
+                    >
+                      View_Specs
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="max-w-[1920px] mx-auto px-6 md:px-16 py-20">
+            <Pagination
+              numberOfProducts={data._allProductsMeta.count}
+              currentPage={pageNumber}
+            />
+          </div>
+        </main>
       </div>
     </div>
   );

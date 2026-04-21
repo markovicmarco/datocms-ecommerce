@@ -27,6 +27,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'imgix.net',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   async redirects() {

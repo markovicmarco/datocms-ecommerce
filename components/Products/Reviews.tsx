@@ -26,7 +26,7 @@ const RatingBadge: FC<{ score: number }> = ({ score }) => (
         />
       ))}
     </div>
-    <span className="text-[10px]  font-mono tracking-wide text-black">
+    <span className="text-[10px]  font-mono tracking-wide text-current">
       {score.toFixed(1)}
     </span>
   </div>
@@ -39,21 +39,21 @@ const Reviews = ({ data, globalPageProps }: PropTypes) => {
   );
 
   return (
-    <section className="w-full bg-white py-20 border-t border-black/5">
+    <section className="w-full bg-white py-20 border-t border-none/5">
       <div className="max-w-[1920px] mx-auto px-4 md:px-12">
         
         {/* HEADER: Brutalist Summary */}
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 mb-16 border-b-2 border-none pb-8">
           <div className="space-y-4">
-            <h2 className="text-[9px]  uppercase tracking-[0.4em] text-black/80">
+            <h2 className="text-[9px]  uppercase tracking-[0.4em] text-current/80">
               Verified Feedback
             </h2>
             <div className="flex items-baseline gap-4">
-              <span className="text-[18px] font-serif italic text-black leading-none">
+              <span className="text-[18px] font-serif italic text-current leading-none">
                 {data.product?.reviewAverage}
               </span>
               <div className="flex flex-col">
-                <span className="text-[10px]  uppercase tracking-widest text-black">
+                <span className="text-[10px]  uppercase tracking-widest text-current">
                   Average Rating
                 </span>
                 <span className="text-[10px] font-medium uppercase tracking-widest text-gray-400">
@@ -64,7 +64,7 @@ const Reviews = ({ data, globalPageProps }: PropTypes) => {
           </div>
 
           {/* Senka tastera sada koristi primary-rgb varijablu */}
-          <button className="px-8 py-4 border-none text-[10px] text-black/80 font-mono uppercase tracking-[0.3em] hover:bg-transparent hover:text-black transition-all duration-300 animate-pulse">
+          <button className="px-8 py-4 border-none text-[10px] text-current/80 font-mono uppercase tracking-[0.3em] hover:bg-transparent hover:text-current transition-all duration-300 animate-pulse">
             {reviewButton}
           </button>
         </div>
@@ -83,7 +83,7 @@ const Reviews = ({ data, globalPageProps }: PropTypes) => {
                 {/* Meta Info */}
                 <div className="flex justify-between items-start border-none">
                   <div className="space-y-1">
-                    <span className="block text-[11px]  uppercase tracking-wider text-black">
+                    <span className="block text-[11px]  uppercase tracking-wider text-current">
                       {review.reviewerName}
                     </span>
                     <span className="block text-[9px] font-mono uppercase tracking-wide text-gray-400">

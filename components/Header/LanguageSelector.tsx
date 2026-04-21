@@ -29,32 +29,20 @@ const LanguageSelector = ({ languages }: Props) => {
         onBlur={() => setTimeout(() => setIsOpen(false), 200)}
         className="flex items-center gap-3 px-3 py-2 group transition-none active:translate-x-[0.5px] active:translate-y-[0.5px]"
       >
-        <span className="text-[9px] font-mono  uppercase tracking-[0.3em] text-black">
+        <span className="text-[9px] font-mono  uppercase tracking-[0.3em] text-current">
           {getLangNameFromCode(currentLocale)?.name || currentLocale}
         </span>
-        
-        <div className="flex items-center gap-2 border-l border-black/10 pl-3">
-          <span className="text-[10px] font-mono  text-white uppercase tracking-widest">
-            I|E|S
-          </span>
-          <svg 
-            className={`w-2.5 h-2.5 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} 
-            fill="none" viewBox="0 0 24 24" stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
-          </svg>
-        </div>
       </button>
 
       {/* DROPDOWN - Brutalist System Style */}
       <div
-        className={`absolute right-0 z-[100] mt-2 min-w-[160px] bg-white/90 backdrop-blur-md border border-black shadow-[2px_2px_0px_0px_rgb(var(--color-primary)/0.4)] animate-in fade-in slide-in-from-top-1 duration-200 ${
+        className={`absolute right-0 z-[100] mt-2 min-w-[160px] bg-white/90 backdrop-blur-md border border-none shadow-[2px_2px_0px_0px_rgb(var(--color-primary)/0.4)] animate-in fade-in slide-in-from-top-1 duration-200 ${
           isOpen ? 'block' : 'hidden'
         }`}
         role="menu"
       >
         <div className="p-1">
-          <div className="px-4 py-2 border-b border-black/5 mb-1">
+          <div className="px-4 py-2 border-b border-none/5 mb-1">
             <span className="text-[7px] font-mono  text-gray-400 uppercase tracking-[0.2em]">Select_Region</span>
           </div>
           {languages.map((locale) => (
@@ -64,7 +52,7 @@ const LanguageSelector = ({ languages }: Props) => {
               className={`block px-4 py-3 text-[9px] font-mono  uppercase tracking-[0.2em] transition-none ${
                 currentLocale === locale 
                   ? 'bg-black text-white' 
-                  : 'text-black hover:bg-primary/10'
+                  : 'text-current hover:bg-primary/10'
               }`}
               role="menuitem"
             >

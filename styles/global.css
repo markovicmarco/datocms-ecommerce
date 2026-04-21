@@ -16,11 +16,11 @@
 
   body {
     font-family: 'Inter', sans-serif;
-    @apply bg-white text-black antialiased;
+    @apply bg-white text-current antialiased;
   }
 
   ::selection {
-    @apply bg-black text-primary;
+    @apply bg-black text-current;
   }
 }
 
@@ -37,7 +37,7 @@
     /* Tehnički/System stil */
     @apply bg-white/90 backdrop-blur-md border-none
            px-4 py-2 uppercase font-mono  text-[11px] tracking-[0.3em] 
-           text-black transition-none animate-pulse;
+           text-current transition-none animate-pulse;
     
     /* Hard shadow efekat koji koristi tvoju primary boju */
     box-shadow: none;

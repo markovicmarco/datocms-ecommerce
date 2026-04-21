@@ -14,7 +14,7 @@ const products = [
     color: 'dark olive',
     price: '$275.00',
     quantity: 1,
-    imageSrc: 'https://nostrasantissima.com/wp-content/uploads/2026/04/DSF0124.jpg',
+    imageSrc: 'https://69e7c76219995cfcc32b669b.imgix.net/emerald/QAfbx.jpg',
     imageAlt: 'Maglia over dark olive.',
   },
   {
@@ -24,7 +24,7 @@ const products = [
     color: 'blue dyed',
     price: '$389.00',
     quantity: 1,
-    imageSrc: 'https://nostrasantissima.com/wp-content/uploads/2026/04/hf_20260417_153054_9185e58c-fb05-4fc9-b764-495708cc0cc9.png',
+    imageSrc: 'https://69e7c76219995cfcc32b669b.imgix.net/luxury/d5hP7.jpg',
     imageAlt: 'Denim over dyed.',
   },
 ];
@@ -70,7 +70,7 @@ export default function Cart({ open, setOpen }: PropTypes) {
                     {/* HEADER */}
                     <div className="flex-1 overflow-y-auto px-6 py-10">
                       <div className="flex items-start justify-between border-b border-gray-100 pb-6">
-                        <Dialog.Title className="text-[12px]  uppercase tracking-[0.3em] text-black">
+                        <Dialog.Title className="text-[12px]  uppercase tracking-[0.3em] text-current">
                           Your Cart
                         </Dialog.Title>
                         <button
@@ -84,7 +84,7 @@ export default function Cart({ open, setOpen }: PropTypes) {
 
                       {/* DEMO INFO BOX - Brutalist stil */}
                       <div className="mt-8 bg-gray-50 border border-gray-100 p-6">
-                        <h3 className="text-[10px]  uppercase tracking-widest text-black mb-2">
+                        <h3 className="text-[10px]  uppercase tracking-widest text-current mb-2">
                           Integration Notice
                         </h3>
                         <p className="text-[10px] uppercase tracking-wider text-gray-500 leading-relaxed italic">
@@ -108,7 +108,7 @@ export default function Cart({ open, setOpen }: PropTypes) {
                                 </div>
 
                                 <div className="ml-6 flex flex-1 flex-col">
-                                  <div className="flex justify-between text-[11px]  uppercase tracking-widest text-black">
+                                  <div className="flex justify-between text-[11px]  uppercase tracking-widest text-current">
                                     <h3>{product.name}</h3>
                                     <p className="ml-4">{product.price}</p>
                                   </div>
@@ -134,7 +134,7 @@ export default function Cart({ open, setOpen }: PropTypes) {
 
                     {/* FOOTER */}
                     <div className="border-t border-gray-100 px-6 py-10 bg-gray-50">
-                      <div className="flex justify-between text-[12px]  uppercase tracking-[0.2em] text-black">
+                      <div className="flex justify-between text-[12px]  uppercase tracking-[0.2em] text-current">
                         <p>Subtotal</p>
                         <p>$64.00</p>
                       </div>

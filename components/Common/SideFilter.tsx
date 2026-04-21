@@ -1,8 +1,9 @@
 "use client";
 
-import { Disclosure } from '@headlessui/react';
+import { Popover, Transition } from '@headlessui/react';
+import { Fragment } from 'react';
 import type { Maybe } from 'graphql/jsutils/Maybe';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { type FragmentType, getFragmentData } from '@/graphql/types';
 import {
   InitialParamsFragmentDoc,
@@ -27,6 +28,7 @@ const SideFilter = ({
   generalInterface,
 }: PropTypes) => {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams()!;
   
   const paramaterCollectionsFiltered = paramaterCollections.filter(p => p !== '');
@@ -50,128 +52,120 @@ const SideFilter = ({
   ];
 
   const filters = [
-    { id: 'collections', name: CollectionRecord, options: allCollections },
-    { id: 'materials', name: MaterialRecord, options: allMaterials },
-    { id: 'brands', name: BrandRecord, options: allBrands },
+    { id: 'collections', name: CollectionRecord, options: allCollections, active: paramaterCollectionsFiltered },
+    { id: 'materials', name: MaterialRecord, options: allMaterials, active: parameterMaterialsFiltered },
+    { id: 'brands', name: BrandRecord, options: allBrands, active: parameterBrandsFiltered },
   ];
 
   function exportQueryParameters(key: string, value: string) {
     const params = new URLSearchParams(searchParams.toString());
     if (value) params.set(key, value); else params.delete(key);
-    router.push(`?${params.toString()}`, { scroll: false });
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
   }
 
   return (
-    <form className="lg:sticky lg:top-24 space-y-12 px-4 lg:px-0 bg-white">
+    <div className="flex items-center justify-between w-full h-16 px-6 md:px-16 bg-black border-b border-none/5 sticky top-20 z-40 backdrop-blur-md">
       
-      {/* SORTING SECTION - Zatvoreno po defaultu */}
-      <Disclosure>
-        {({ open }) => (
-          <div className="border-b border-gray-100 pb-6">
-            <Disclosure.Button className="flex w-full items-center justify-between group">
-              <span className="text-[9px] font-black uppercase tracking-[0.4em] text-black/40 group-hover:text-black transition-colors">
-                // Sort_By
-              </span>
-              <span className="text-[9px] font-mono text-black">
-                {open ? '[ – ]' : '[ + ]'}
-              </span>
-            </Disclosure.Button>
-            
-            <Disclosure.Panel className="pt-8 animate-in fade-in duration-500">
-              <ul className="space-y-4">
-                {sortOptions.map((option) => {
-                  const isSelected = searchParams.get('orderBy') === option.value || 
-                    (!searchParams.get('orderBy') && option.value === '_publishedAt_DESC');
-                  
-                  return (
-                    <li key={option.value}>
-                      <button
-                        type="button"
-                        onClick={() => exportQueryParameters('orderBy', option.value)}
-                        className={`text-[9px] uppercase tracking-[0.2em] transition-all flex items-center gap-3 ${
-                          isSelected 
-                          ? ' text-black' 
-                          : 'text-gray-400 hover:text-black hover:translate-x-1'
-                        }`}
-                      >
-                        {isSelected && <span className="h-px w-4 bg-black animate-in slide-in-from-left-2 duration-300"></span>}
-                        {option.label}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </Disclosure.Panel>
-          </div>
-        )}
-      </Disclosure>
-
-      {/* FILTERS - Industrial Accordion (Zatvoreni po defaultu) */}
-      <div className="space-y-2">
-        {filters.map((section, index) => (
-          <Disclosure key={section.id} defaultOpen={false}>
+      {/* LEVA STRANA: Filteri */}
+      <div className="flex items-center gap-10">
+        {filters.map((section) => (
+          <Popover key={section.id} className="relative">
             {({ open }) => (
-              <div className="border-b border-gray-100 pb-6 mb-6">
-                <Disclosure.Button className="flex w-full items-center justify-between group">
-                  <span className="text-[9px] font-black uppercase tracking-[0.4em] text-black/40 group-hover:text-black transition-colors">
-                    0{index + 2} // {section.name}
-                  </span>
-                  <span className="text-[12px] font-mono text-black">
-                    {open ? '[ – ]' : '[ + ]'}
-                  </span>
-                </Disclosure.Button>
-                
-                <Disclosure.Panel className="pt-8 animate-in fade-in slide-in-from-top-2 duration-500">
-                  <div className="space-y-5">
-                    {section.options?.map((option, idx) => {
-                      const isChecked = 
-                        paramaterCollectionsFiltered.includes(option.id) ||
-                        parameterBrandsFiltered.includes(option.id) ||
-                        parameterMaterialsFiltered.includes(option.id);
+              <>
+                <Popover.Button className={`flex items-center gap-2 text-[9px] font-mono uppercase tracking-[0.4em] outline-none transition-colors ${section.active.length > 0 ? 'text-current' : 'text-current/40 hover:text-current'}`}>
+                  <span className='text-white'>{section.name}</span>
+                  {section.active.length > 0 && (
+                    <span className="text-current">[{section.active.length}]</span>
+                  )}
+                  <span className="text-[15px] text-white opacity-40">{open ? '-' : '+'}</span>
+                </Popover.Button>
 
-                      return (
-                        <div key={option.id} className="group flex items-center cursor-pointer">
-                          <div className="relative flex items-center h-4">
-                            <input
-                              id={`f-${section.id}-${idx}`}
-                              type="checkbox"
-                              checked={isChecked}
-                              onChange={() => {
-                                let currentList = section.id === 'collections' ? [...paramaterCollectionsFiltered] :
-                                                 section.id === 'brands' ? [...parameterBrandsFiltered] : 
-                                                 [...parameterMaterialsFiltered];
-                                
-                                if (isChecked) {
-                                  currentList = currentList.filter(id => id !== option.id);
-                                } else {
-                                  currentList.push(option.id);
-                                }
-                                exportQueryParameters(section.id, currentList.join('|'));
-                              }}
-                              className="peer h-3.5 w-3.5 appearance-none border border-black/20 rounded-none checked:bg-black checked:border-black transition-all cursor-pointer"
-                            />
-                            <div className="absolute inset-0 m-auto w-1.5 h-1.5 bg-white scale-0 peer-checked:scale-100 transition-transform pointer-events-none" />
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-200"
+                  enterFrom="opacity-0 translate-y-1"
+                  enterTo="opacity-100 translate-y-0"
+                  leave="transition ease-in duration-150"
+                  leaveFrom="opacity-100 translate-y-0"
+                  leaveTo="opacity-0 translate-y-1"
+                >
+                  <Popover.Panel className="absolute left-0 mt-4 w-64 bg-white border border-none/5 shadow-2xl p-8 z-50">
+                    <div className="space-y-5">
+                      {section.options?.map((option, idx) => {
+                        const isChecked = section.active.includes(option.id);
+                        return (
+                          <div key={option.id} className="group flex items-center cursor-pointer" 
+                               onClick={() => {
+                                 let currentList = [...section.active];
+                                 if (isChecked) currentList = currentList.filter(id => id !== option.id);
+                                 else currentList.push(option.id);
+                                 exportQueryParameters(section.id, currentList.join('|'));
+                               }}>
+                            <div className="relative flex items-center h-4">
+                              <div className={`h-3 w-3 border border-none/20 backdrop-blur-md transition-all ${isChecked ? 'bg-transparent border-none' : 'group-hover:border-black'}`} />
+                              {isChecked && <div className="absolute inset-0 m-auto w-1 h-1 bg-current" />}
+                            </div>
+                            <span className={`ml-4 text-[9px] uppercase tracking-widest transition-colors ${isChecked ? 'text-current' : 'text-current/40 hover:text-current'}`}>
+                              {option.name}
+                            </span>
                           </div>
-                          <label
-                            htmlFor={`f-${section.id}-${idx}`}
-                            className={`ml-4 text-[9px]  uppercase tracking-widest cursor-pointer transition-colors ${
-                              isChecked ? 'text-black' : 'text-gray-400 hover:text-black'
-                            }`}
-                          >
-                            {option.name}
-                          </label>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </Disclosure.Panel>
-              </div>
+                        );
+                      })}
+                    </div>
+                  </Popover.Panel>
+                </Transition>
+              </>
             )}
-          </Disclosure>
+          </Popover>
         ))}
       </div>
 
-    </form>
+      {/* DESNA STRANA: Sorting */}
+      <Popover className="relative">
+        {({ open }) => (
+          <>
+            <Popover.Button className="flex items-center gap-2 text-[9px] font-mono uppercase tracking-[0.4em] text-current/40 hover:text-current outline-none">
+              <span className='text-white'>// Sort_By</span>
+              <span className="text-[15px] text-white opacity-40">{open ? '-' : '+'}</span>
+            </Popover.Button>
+
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-200"
+              enterFrom="opacity-0 translate-y-1"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition ease-in duration-150"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 translate-y-1"
+            >
+              <Popover.Panel className="absolute right-0 mt-4 w-64 bg-white border border-none/5 shadow-2xl p-8 z-50">
+                <ul className="space-y-5">
+                  {sortOptions.map((option) => {
+                    const isSelected = searchParams.get('orderBy') === option.value || 
+                      (!searchParams.get('orderBy') && option.value === '_publishedAt_DESC');
+                    
+                    return (
+                      <li key={option.value}>
+                        <button
+                          type="button"
+                          onClick={() => exportQueryParameters('orderBy', option.value)}
+                          className={`text-[9px] uppercase tracking-[0.2em] transition-all flex items-center gap-3 w-full text-left ${
+                            isSelected ? 'text-current' : 'text-current/40 hover:text-current hover:translate-x-1'
+                          }`}
+                        >
+                          {isSelected && <div className="h-1 w-1 bg-primary" />}
+                          {option.label}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Popover.Panel>
+            </Transition>
+          </>
+        )}
+      </Popover>
+    </div>
   );
 };
 

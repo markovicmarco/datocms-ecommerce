@@ -34,7 +34,7 @@ const AuthenticationModal = ({
 
   return (
     <div
-      className="bg-white border-2 border-black p-6 md:p-10 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] max-w-md w-full animate-in zoom-in-95 duration-300"
+      className="bg-white border-2 border-none p-6 md:p-10 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] max-w-md w-full animate-in zoom-in-95 duration-300"
       role="alert"
     >
       <div className="flex items-center gap-4">
@@ -57,7 +57,7 @@ const AuthenticationModal = ({
         </div>
 
         <div>
-          <h3 className="text-[9px]  uppercase tracking-[0.3em] text-black">
+          <h3 className="text-[9px]  uppercase tracking-[0.3em] text-current">
             System Access
           </h3>
           <p className="text-[9px] uppercase tracking-widest text-gray-400">
@@ -72,7 +72,7 @@ const AuthenticationModal = ({
       </p>
 
       <div className="mt-8">
-        <label htmlFor="UserToken" className="text-[9px]  uppercase tracking-[0.2em] text-black mb-2 block">
+        <label htmlFor="UserToken" className="text-[9px]  uppercase tracking-[0.2em] text-current mb-2 block">
           Access Token
         </label>
         <input
@@ -84,7 +84,7 @@ const AuthenticationModal = ({
           }}
           id="UserToken"
           className={`w-full bg-gray-50 border-none p-4 text-sm tracking-[0.5em] focus:ring-1 focus:ring-black transition-all ${
-            hasError ? 'bg-red-50 text-red-600 ring-1 ring-red-500' : 'text-black'
+            hasError ? 'bg-red-50 text-red-600 ring-1 ring-red-500' : 'text-current'
           }`}
           placeholder="••••••••"
         />

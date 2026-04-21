@@ -10,7 +10,7 @@ const SuccessPopUp = ({ setSuccessToast }: Props) => {
   return (
     <div
       role="alert"
-      className="fixed bottom-8 right-8 z-[200] w-full max-w-sm border-2 border-black bg-white p-1 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] animate-in slide-in-from-right duration-500"
+      className="fixed bottom-8 right-8 z-[200] w-full max-w-sm border-2 border-none bg-white p-1 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] animate-in slide-in-from-right duration-500"
     >
       <div className="border border-gray-100 p-6 flex flex-col gap-4">
         <div className="flex items-center justify-between">
@@ -20,7 +20,7 @@ const SuccessPopUp = ({ setSuccessToast }: Props) => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
             </span>
-            <p className="text-[9px]  uppercase tracking-[0.3em] text-black">
+            <p className="text-[9px]  uppercase tracking-[0.3em] text-current">
               Status: Live Connection
             </p>
           </div>
@@ -28,7 +28,7 @@ const SuccessPopUp = ({ setSuccessToast }: Props) => {
           <button
             type="button"
             onClick={() => setSuccessToast(false)}
-            className="text-gray-300 hover:text-black transition-colors"
+            className="text-gray-300 hover:text-current transition-colors"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -38,7 +38,7 @@ const SuccessPopUp = ({ setSuccessToast }: Props) => {
 
         {/* Bočna linija usklađena sa brendom */}
         <div className="space-y-2 border-l-2 border-primary pl-4">
-          <strong className="block text-[9px]  uppercase tracking-wider text-black">
+          <strong className="block text-[9px]  uppercase tracking-wider text-current">
             Draft Mode Enabled
           </strong>
           <p className="text-[9px] uppercase tracking-widest text-gray-500 leading-relaxed">

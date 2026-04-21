@@ -26,7 +26,7 @@ const NotificationStrip = ({
   setNotificationStrip,
 }: Props) => {
   return (
-    <div className="w-full bg-primary relative z-[60] border-b border-black/5">
+    <div className="w-full bg-primary relative z-[60] border-b border-none/5">
       <div className="max-w-[1920px] mx-auto px-4 md:px-12 py-3 flex items-center justify-center relative">
         
         <div className="text-[9px] uppercase tracking-[0.2em]  text-white text-center">

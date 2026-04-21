@@ -5,17 +5,17 @@ const NotFound = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-white px-4">
       {/* Container sa dinamičkom senkom: shadow-primary/100 koristi dynamic RGB */}
-      <div className="max-w-[1920px] mx-auto w-full border-2 border-black p-1">
+      <div className="max-w-[1920px] mx-auto w-full border-2 border-none p-1">
         <div className="grid gap-0 md:grid-cols-2 bg-white shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
           
           {/* TEXT CONTENT: Technical Error Log */}
-          <div className="flex flex-col items-start justify-center p-8 md:p-24 border-b-2 md:border-b-0 md:border-r-2 border-black">
-            {/* Status kod sada koristi text-primary za branding */}
-            <span className="mb-6 inline-block bg-black px-3 py-1 text-[10px] font-mono uppercase tracking-[0.3em] text-primary">
+          <div className="flex flex-col items-start justify-center p-8 md:p-24 border-b-2 md:border-b-0 md:border-r-2 border-none">
+            {/* Status kod sada koristi text-current za branding */}
+            <span className="mb-6 inline-block bg-black px-3 py-1 text-[10px] font-mono uppercase tracking-[0.3em] text-current">
               Status_Code: 404
             </span>
             
-            <h1 className="mb-4 text-5xl md:text-8xl font-serif uppercase leading-[0.85] text-black italic">
+            <h1 className="mb-4 text-5xl md:text-8xl font-serif uppercase leading-[0.85] text-current italic">
               Route <br /> Not Found
             </h1>
 
@@ -23,10 +23,10 @@ const NotFound = () => {
               The requested resource has been moved, deleted, or never existed in this architectural layer.
             </p>
 
-            {/* Dugme sa hover-primary efektom */}
+            {/* Dugme sa hover-current efektom */}
             <Link
               href={'/'}
-              className="group relative flex items-center gap-4 border-2 border-black bg-black px-10 py-5 text-[11px] uppercase tracking-[0.4em] text-white transition-all hover:bg-primary hover:text-black"
+              className="group relative flex items-center gap-4 border-2 border-none bg-black px-10 py-5 text-[11px] uppercase tracking-[0.4em] text-white transition-all hover:bg-primary hover:text-current"
             >
               <span>Return to Base</span>
               <span className="transition-transform group-hover:translate-x-2">→</span>

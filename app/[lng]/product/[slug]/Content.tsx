@@ -26,12 +26,12 @@ const Content: ContentPage<PageProps, Query> = ({
       <ProductView data={data} globalPageProps={globalPageProps} />
 
       {/* DETALJNI OPIS & BLOKOVI */}
-      <div className="max-w-[1920px] mx-auto px-4 md:px-12 py-24 border-t border-black/5">
+      <div className="max-w-[1920px] mx-auto px-4 md:px-12 py-24 border-t border-none/5">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
-          {/* Labela sekcije - Sada koristi text-primary */}
+          {/* Labela sekcije - Sada koristi text-current */}
           <div className="lg:col-span-3">
-            <span className="text-[10px] uppercase tracking-[0.4em] text-black/80 sticky top-32">
+            <span className="text-[10px] uppercase tracking-[0.4em] text-current/80 sticky top-32">
               Product_Deep_Dive 
             </span>
           </div>
@@ -45,7 +45,7 @@ const Content: ContentPage<PageProps, Query> = ({
                   switch (record.__typename) {
                     case 'ProductFeatureSectionRecord':
                       return (
-                        <div className="my-20 border-y border-black/5 py-12">
+                        <div className="my-20 border-y border-none/5 py-12">
                           <ProductInfoSection
                             ProductInfoFragment={record}
                             MaterialFragment={data.product?.material}
@@ -70,7 +70,7 @@ const Content: ContentPage<PageProps, Query> = ({
                     return (
                       <h3
                         key={key}
-                        className="mb-8 mt-16 text-3xl md:text-5xl font-serif italic uppercase text-black tracking-wide"
+                        className="mb-8 mt-16 text-3xl md:text-5xl font-serif italic uppercase text-current tracking-wide"
                       >
                         {children}
                       </h3>
@@ -95,10 +95,10 @@ const Content: ContentPage<PageProps, Query> = ({
                         className="bg-white p-4 flex items-center gap-4 group transition-all"
                       >
                         {/* Bullet point u primary boji */}
-                        <span className="text-black font-mono text-[10px]"></span>
+                        <span className="text-current font-mono text-[10px]"></span>
                         
                         {/* Hover na tekst ćelije sada vuče primary boju */}
-                        <div className="text-[9px] uppercase tracking-widest text-black group-hover:text-black transition-colors">
+                        <div className="text-[9px] uppercase tracking-widest text-current group-hover:text-current transition-colors">
                           {children}
                         </div>
                       </div>
@@ -112,11 +112,11 @@ const Content: ContentPage<PageProps, Query> = ({
       </div>
 
       {/* FOOTER SEKCIJE */}
-      <div className="border-t border-black/5">
+      <div className="border-t border-none/5">
         <FeaturedProducts data={data} globalPageProps={globalPageProps} />
       </div>
       
-      <div className="bg-transparent text-black py-5">
+      <div className="bg-transparent text-current py-5">
         <Reviews data={data} globalPageProps={globalPageProps} />
       </div>
     </div>

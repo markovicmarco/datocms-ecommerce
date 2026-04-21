@@ -21,7 +21,7 @@ const HoveringSearch = ({ lng, setSerachIsOpen }: PropTypes) => {
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
         placeholder="ENTER SEARCH QUERY"
-        className="h-10 w-64 md:w-80 border-b-2 border-black bg-white px-0 text-[9px] uppercase tracking-[0.2em]  text-black placeholder:text-gray-300 focus:outline-none transition-all duration-500 focus:w-72 md:focus:w-96"
+        className="h-10 w-64 md:w-80 border-b-2 border-none bg-white px-0 text-[9px] uppercase tracking-[0.2em]  text-current placeholder:text-gray-300 focus:outline-none transition-all duration-500 focus:w-72 md:focus:w-96"
         onKeyDown={(event) => {
           if (event.key === 'Enter') {
             router.push(`/${lng}/products?productName=${searchValue}`);
@@ -40,7 +40,7 @@ const HoveringSearch = ({ lng, setSerachIsOpen }: PropTypes) => {
       {/* Dugme za brzo zatvaranje ako zatreba */}
       <button 
         onClick={() => setSerachIsOpen(false)}
-        className="absolute -top-6 right-0 text-[9px]  tracking-[0.2em] text-gray-400 hover:text-black uppercase transition-colors"
+        className="absolute -top-6 right-0 text-[9px]  tracking-[0.2em] text-gray-400 hover:text-current uppercase transition-colors"
       >
         Close [Esc]
       </button>

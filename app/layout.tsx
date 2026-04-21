@@ -20,7 +20,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
   
   return (
     <html lang={lng}>
-      <body className="tracking-tight antialiased selection:bg-primary selection:text-black">
+      <body className="tracking-tight antialiased selection:bg-primary selection:text-current">
         {children}
         <ScrollToTop />
         {isDraft && <ContentLink />}

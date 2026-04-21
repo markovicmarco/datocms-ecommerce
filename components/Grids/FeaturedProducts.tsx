@@ -26,17 +26,17 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
   if (relatedProducts.length === 0) return null;
 
   return (
-    <section className="w-full bg-white py-20 border-t border-black/5">
+    <section className="w-full bg-white py-20 border-t border-none/5">
       <div className="max-w-[1920px] mx-auto px-4 md:px-12">
         
         {/* SECTION HEADER */}
-        <div className="mb-12 flex items-end justify-between border-b border-black/5 pb-8">
+        <div className="mb-12 flex items-end justify-between border-b border-none/5 pb-8">
           <div className="space-y-2">
-            {/* Labela sada koristi text-primary (tvoj novi krem ton) */}
-            <span className="text-[9px] font-mono  text-black uppercase tracking-[0.3em]">
+            {/* Labela sada koristi text-current (tvoj novi krem ton) */}
+            <span className="text-[9px] font-mono  text-current uppercase tracking-[0.3em]">
               Collection_Extension
             </span>
-            <h2 className="text-[18px] font-serif italic uppercase tracking-wide text-black">
+            <h2 className="text-[18px] font-serif italic uppercase tracking-wide text-current">
               Featured Selection
             </h2>
           </div>
@@ -72,7 +72,7 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
 
                   {/* SALE BADGE: Sada koristi bg-primary */}
                   {isOnSale && (
-                    <div className="absolute top-0 left-0 bg-white text-black px-3 py-1 text-[10px]  uppercase tracking-widest z-10">
+                    <div className="absolute top-0 left-0 bg-white text-current px-3 py-1 text-[10px]  uppercase tracking-widest z-10">
                       {sale}
                     </div>
                   )}
@@ -94,7 +94,7 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
                     <Link
                       href={`/${globalPageProps.params.lng}/product/${product.slug}`}
                       /* Hover na ime sada vuče primary boju */
-                      className="text-[9px]  uppercase tracking-wider text-black hover:text-primary transition-colors"
+                      className="text-[9px]  uppercase tracking-wider text-current hover:text-current transition-colors"
                     >
                       {product.name}
                     </Link>
@@ -107,7 +107,7 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
                           {currencySymbol}{price}
                         </span>
                       )}
-                      <span className="text-[9px]  text-black">
+                      <span className="text-[9px]  text-current">
                         {currencySymbol}{isOnSale ? salePrice : price}
                       </span>
                     </div>

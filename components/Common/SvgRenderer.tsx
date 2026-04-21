@@ -38,7 +38,7 @@ const SvgRenderer = ({ url, className = "h-6 w-6" }: Props) => {
         inline-flex items-center justify-center 
         transition-all duration-300
         /* Promenjeno: hover efekat sada koristi primary boju (krem) */
-        text-black hover:text-primary
+        text-current hover:text-current
         [&_svg]:h-full [&_svg]:w-full [&_svg]:fill-current
         ${className}
       `}

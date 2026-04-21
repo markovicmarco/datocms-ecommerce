@@ -21,27 +21,27 @@ const Footer = ({ data, globalPageProps }: Props) => {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-end">
               <div className="md:col-span-7">
                 {/* Tag Newsletter sada koristi primary boju (krem) */}
-                <span className="text-[9px]  uppercase tracking-[0.4em] text-black/80">
+                <span className="text-[9px]  uppercase tracking-[0.4em] text-current/80">
                   {data.generalInterface?.newsletter}
                 </span>
-                <h2 className="text-[12px] font-serif uppercase leading-tight text-black">
+                <h2 className="text-[12px] font-serif uppercase leading-tight text-current">
                   {data.generalInterface?.subscribeToOurNewsletter}
                 </h2>
               </div>
 
               <div className="md:col-span-5 px-5 py-0">
-              <form className="flex flex-col sm:flex-row gap-0 border-b border-black/5">
+              <form className="flex flex-col sm:flex-row gap-0 border-b border-none/5">
                 <input
                  placeholder={data.generalInterface?.emailPlaceholder ?? 'EMAIL@ADDRESS.COM'}
                  className="flex-1 bg-white px-6 py-5 text-[9px] uppercase tracking-[0.2em] 
                             outline-none focus:outline-none focus:ring-0 border-none
-                            placeholder:text-black/80 focus:placeholder:opacity-0"
+                            placeholder:text-current/80 focus:placeholder:opacity-0"
                 />
     
                  <button
                   type="button"
                   className="btn-brutalist flex items-center justify-center px-8 
-                             bg-white text-black/40 active:text-black 
+                             bg-white text-current/40 active:text-current 
                              transition-none border-none outline-none"
                  >
                   {data.generalInterface?.newsletterButton}
@@ -66,7 +66,7 @@ const Footer = ({ data, globalPageProps }: Props) => {
                   className="h-full w-full object-contain"
                 />
               </Link>
-              <span className="text-[14px]  uppercase tracking-[0.3em] text-black">
+              <span className="text-[14px]  uppercase tracking-[0.3em] text-current">
                 {data.layout?.footerTitle}
               </span>
             </div>
@@ -81,7 +81,7 @@ const Footer = ({ data, globalPageProps }: Props) => {
                   href={social.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-black hover:opacity-50 transition-opacity"
+                  className="text-current hover:opacity-50 transition-opacity"
                   key={social.id}
                 >
                   <div className="w-5 h-5">
@@ -95,7 +95,7 @@ const Footer = ({ data, globalPageProps }: Props) => {
           {/* DYNAMIC COLUMNS */}
           {data.layout?.footerColumns.map((column) => (
             <div key={column.id} className="lg:col-span-2">
-              <h3 className="text-[9px]  uppercase tracking-[0.3em] text-black mb-10">
+              <h3 className="text-[9px]  uppercase tracking-[0.3em] text-current mb-10">
                 {column.label}
               </h3>
               <nav className="flex flex-col gap-4">
@@ -103,7 +103,7 @@ const Footer = ({ data, globalPageProps }: Props) => {
                   <Link
                     key={item.id}
                     href={`/${globalPageProps.params.lng}/${item.slug}`}
-                    className="text-[9px] uppercase tracking-wider text-gray-500 hover:text-black hover:line-through transition-all"
+                    className="text-[9px] uppercase tracking-wider text-gray-500 hover:text-current hover:line-through transition-all"
                   >
                     {item.label}
                   </Link>
@@ -119,8 +119,8 @@ const Footer = ({ data, globalPageProps }: Props) => {
             {data.layout?.copyrightText}
           </div>
           <div className="flex gap-8">
-            <span className="text-[9px]  uppercase tracking-[0.2em] text-gray-300 hover:text-black cursor-pointer">Privacy Policy</span>
-            <span className="text-[9px]  uppercase tracking-[0.2em] text-gray-300 hover:text-black cursor-pointer">Terms of Service</span>
+            <span className="text-[9px]  uppercase tracking-[0.2em] text-gray-300 hover:text-current cursor-pointer">Privacy Policy</span>
+            <span className="text-[9px]  uppercase tracking-[0.2em] text-gray-300 hover:text-current cursor-pointer">Terms of Service</span>
           </div>
         </div>
       </div>

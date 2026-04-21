@@ -24,10 +24,10 @@ const PopUpBanner = ({ setPopUp, popup, globalPageProps }: PropTypes) => {
       {/* MODAL CONTAINER */}
       <section
         onClick={(e) => e.stopPropagation()}
-        className="relative z-[210] w-full max-w-4xl bg-white border-2 border-black md:grid md:grid-cols-5 animate-in zoom-in-95 duration-500"
+        className="relative z-[210] w-full max-w-4xl bg-white border-2 border-none md:grid md:grid-cols-5 animate-in zoom-in-95 duration-500"
       >
         {/* IMAGE SIDE - Grayscale vibe */}
-        <div className="relative h-64 md:h-full md:col-span-2 border-b-2 md:border-b-0 md:border-r-2 border-black grayscale hover:grayscale-0 transition-all duration-1000">
+        <div className="relative h-full md:col-span-2 border-b-2 md:border-b-0 md:border-r-2 border-none grayscale hover:grayscale-0 transition-all duration-1000">
           <DatoImage
             data={popup.popupImage?.responsiveImage as ResponsiveImageType}
             className="h-full w-full object-cover"
@@ -44,10 +44,10 @@ const PopUpBanner = ({ setPopUp, popup, globalPageProps }: PropTypes) => {
           </p>
 
           <h2 className="mt-4 flex flex-col">
-            <span className="text-[12px] font-serif uppercase leading-[0.85] text-black italic">
+            <span className="text-[12px] font-serif uppercase leading-[0.85] text-current italic">
               {popup.title}
             </span>
-            <span className="mt-4 text-[9px]  uppercase tracking-[0.2em] text-black border-l-2 border-black pl-4 self-start md:self-auto inline-block">
+            <span className="mt-4 text-[9px]  uppercase tracking-[0.2em] text-current border-l-2 border-none pl-4 self-start md:self-auto inline-block">
               {popup.subtitle}
             </span>
           </h2>
@@ -55,7 +55,7 @@ const PopUpBanner = ({ setPopUp, popup, globalPageProps }: PropTypes) => {
           <div className="mt-10 flex flex-col gap-4">
             <Link
               onClick={() => setPopUp(false)}
-              className="w-full bg-black text-white text-[9px]  uppercase tracking-[0.3em] py-5 hover:bg-primary hover:text-black transition-all duration-500 text-center"
+              className="w-full bg-black text-white text-[9px]  uppercase tracking-[0.3em] py-5 hover:bg-primary hover:text-current transition-all duration-500 text-center"
               href={`/${globalPageProps.params.lng}/${popup.button[0]?.slug ?? ''}`}
             >
               {popup.button[0]?.label}
@@ -63,7 +63,7 @@ const PopUpBanner = ({ setPopUp, popup, globalPageProps }: PropTypes) => {
             
             <button
               onClick={() => setPopUp(false)}
-              className="text-[9px]  uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-colors"
+              className="text-[9px]  uppercase tracking-[0.2em] text-gray-400 hover:text-current transition-colors"
             >
               {popup.dismissButtonLabel ?? "Close"}
             </button>
@@ -79,7 +79,7 @@ const PopUpBanner = ({ setPopUp, popup, globalPageProps }: PropTypes) => {
         {/* CLOSE ICON - Gornji desni ugao */}
         <button
           onClick={() => setPopUp(false)}
-          className="absolute -top-4 -right-4 bg-black text-white p-2 hover:rotate-90 hover:bg-primary hover:text-black transition-all duration-300"
+          className="absolute -top-4 -right-4 bg-black text-white p-2 hover:rotate-90 hover:bg-primary hover:text-current transition-all duration-300"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />

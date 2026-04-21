@@ -18,23 +18,23 @@ const ProductShowcase = ({ fragment, globalPageProps }: Props) => {
   const isLeft = direction === 'left';
 
   return (
-    <section className="w-full bg-white border-t border-black/5 overflow-hidden group/section">
+    <section className="w-full bg-white border-t border-none/5 overflow-hidden group/section">
       <div className="max-w-[1920px] mx-auto min-h-screen flex flex-col md:flex-row">
         
         {/* TEXT CONTENT - System Engine Block */}
         <div className={`md:w-2/5 flex flex-col justify-center px-6 md:px-16 py-24 bg-white z-20 ${isLeft ? 'md:order-1' : 'md:order-2'}`}>
           <div className="space-y-12">
             <header className="space-y-4">
-              <span className="text-[9px] font-mono p-2 uppercase tracking-[0.5em] text-black/20 block">
+              <span className="text-[9px] font-mono p-2 uppercase tracking-[0.5em] text-current/20 block">
                 {pretitle || 'COLLECTION_REF'}
               </span>
-              <h2 className="text-[18px] font-serif italic uppercase leading-[0.85] text-black tracking-wide">
+              <h2 className="text-[18px] font-serif italic uppercase leading-[0.85] text-current tracking-wide">
                 {title}
               </h2>
             </header>
             
-            <div className="border-l border-black/10 pl-8 py-2">
-              <p className="max-w-xs text-[10px] uppercase tracking-widest text-black/20 leading-relaxed font-medium">
+            <div className="border-l border-none/10 pl-8 py-2">
+              <p className="max-w-xs text-[10px] uppercase tracking-widest text-current/20 leading-relaxed font-medium">
                 {description}
               </p>
               <Link
@@ -48,7 +48,7 @@ const ProductShowcase = ({ fragment, globalPageProps }: Props) => {
         </div>
 
         {/* VISUAL GRID - Archive Multi-View */}
-        <div className={`md:w-3/5 grid grid-cols-2 grid-rows-2 h-[80vh] md:h-screen bg-black ${isLeft ? 'md:order-2 border-l' : 'md:order-1 border-r'} border-black/5`}>
+        <div className={`md:w-3/5 grid grid-cols-2 grid-rows-2 h-[80vh] md:h-screen bg-black ${isLeft ? 'md:order-2 border-l' : 'md:order-1 border-r'} border-none/5`}>
           
           {/* Main Large Frame */}
           <div className="col-span-2 row-span-1 md:row-span-2 relative overflow-hidden group/frame border-b md:border-b-0 border-white/5">
@@ -62,7 +62,7 @@ const ProductShowcase = ({ fragment, globalPageProps }: Props) => {
               </div>
             )}
             <div className="absolute top-8 left-8 text-white/40 text-[8px] font-mono  tracking-[0.4em] z-30">
-              NOSTRA SANTISSIMA
+              JULHKOVA
             </div>
           </div>
 

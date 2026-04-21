@@ -47,7 +47,7 @@ const Hero = ({ fragment }: Props) => {
 
   return (
     <div 
-      className="bg-white w-full selection:bg-primary selection:text-black group" 
+      className="bg-white w-full selection:bg-primary selection:text-current group" 
       data-sidebar={id}
       // Dodajemo event listenere na ceo Hero kontejner
       onMouseEnter={stopInterval}
@@ -82,7 +82,7 @@ const Hero = ({ fragment }: Props) => {
 
         {/* SYSTEM STATUS OVERLAY - High contrast */}
         <div className="absolute top-12 left-12 z-30 hidden md:block">
-          <div className="text-[8px] font-mono  text-primary uppercase tracking-[0.4em] space-y-1">
+          <div className="text-[8px] font-mono  text-current uppercase tracking-[0.4em] space-y-1">
             {/* Dinamički status na osnovu hovera cele grupe */}
             <p className="group-hover:text-white transition-colors duration-500">
               {slides.length > 1 ? `BRUTALIST_${currentIndex + 1}/${slides.length}` : `RENDER_SEQUENCE`}
@@ -105,17 +105,17 @@ const Hero = ({ fragment }: Props) => {
       </section>
 
       {/* ARCHIVE FOOTER */} 
-      <footer className="px-4 md:px-12 py-10 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-6 bg-white z-40 relative"> 
-        <div className="flex gap-10 text-[9px] font-mono  tracking-[0.4em] uppercase text-black/30"> 
+      <footer className="px-4 md:px-12 py-10 border-t border-none/5 flex flex-col md:flex-row justify-between items-center gap-6 bg-white z-40 relative"> 
+        <div className="flex gap-10 text-[9px] font-mono  tracking-[0.4em] uppercase text-current/30"> 
           {['Spring', 'Summer', 'Fall', 'Winter'].map((season) => ( 
-            <span key={season} className="hover:text-black hover:line-through cursor-pointer transition-none"> 
+            <span key={season} className="hover:text-current hover:line-through cursor-pointer transition-none"> 
               {season} 
             </span> 
           ))} 
         </div> 
 
         <div className="flex items-center gap-10"> 
-          <span className="text-[9px] font-mono italic uppercase tracking-[0.5em] text-black/40 animate-pulse"> 
+          <span className="text-[9px] font-mono italic uppercase tracking-[0.5em] text-current/40 animate-pulse"> 
             {socialLabel ?? 'ARCHIVE_SOCIAL'} 
           </span> 
           <div className="flex gap-6"> 

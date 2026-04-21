@@ -22,7 +22,7 @@ const SectionTitle = ({
       <div className={`h-[2px] w-12 bg-primary mb-6 ${center ? 'mx-auto' : ''}`} />
 
       <div className={`w-full ${width}`}>
-        <h2 className="text-[12px] font-serif italic leading-[0.85] text-black uppercase tracking-wide">
+        <h2 className="text-[12px] font-serif italic leading-[0.85] text-current uppercase tracking-wide">
           {title}
         </h2>
         

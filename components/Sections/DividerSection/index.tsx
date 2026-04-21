@@ -20,10 +20,10 @@ export default function DividerSection({ fragment, globalPageProps }: Props) {
         
         {/* LEVA STRANA: PreTitle i Title */}
         <div className="md:col-span-4 flex flex-col items-start text-left">
-          <div className="text-[7px] uppercase tracking-[0.3em] font-mono text-black/40 mb-3">
+          <div className="text-[7px] uppercase tracking-[0.3em] font-mono text-current/40 mb-3">
             {preTitle}
           </div>
-          <h2 className="text-[12px]  uppercase tracking-wide text-black italic leading-[1.1]">
+          <h2 className="text-[12px]  uppercase tracking-wide text-current italic leading-[1.1]">
             {title}
           </h2>
         </div>
@@ -33,7 +33,7 @@ export default function DividerSection({ fragment, globalPageProps }: Props) {
 
         {/* DESNA STRANA: Subtitle i Button */}
         <div className="md:col-span-7 flex flex-col md:flex-row items-center justify-between gap-12">
-          <p className="max-w-md text-[7px] md:text-[9px] uppercase tracking-[0.05em] font-medium text-black/40 leading-relaxed text-left">
+          <p className="max-w-md text-[7px] md:text-[9px] uppercase tracking-[0.05em] font-medium text-current/40 leading-relaxed text-left">
             {subtitle}
           </p>
           
@@ -41,7 +41,7 @@ export default function DividerSection({ fragment, globalPageProps }: Props) {
              {button?.[0] && (
               <Link
                 href={`/${globalPageProps.params.lng}/${button[0].slug}`}
-                className="text-[11px] uppercase tracking-[0.2em] font-mono italic text-black border-none hover:opacity-50 transition-all whitespace-nowrap animate-pulse"
+                className="text-[11px] uppercase tracking-[0.2em] font-mono italic text-current border-none hover:opacity-50 transition-all whitespace-nowrap animate-pulse"
               >
                 {button[0].label}
               </Link>

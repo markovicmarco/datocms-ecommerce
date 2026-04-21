@@ -19,7 +19,7 @@ const QuestionsSection = ({ fragment }: Props) => {
         
         {/* HEADER SEKCIJE */}
         <div className="mb-12">
-          <h2 className="text-[12px] uppercase tracking-[0.4em] text-black">
+          <h2 className="text-[12px] uppercase tracking-[0.4em] text-current">
             Inquiry / Knowledge Base
           </h2>
           <div className="mt-4 h-1 w-12 bg-primary" />
@@ -31,15 +31,15 @@ const QuestionsSection = ({ fragment }: Props) => {
             return (
               <div 
                 key={question.id} 
-                className="group flex flex-col border-b border-gray-100 pb-8 transition-colors hover:border-black"
+                className="group flex flex-col border-b border-gray-100 pb-8 transition-colors hover:border-none"
               >
                 <div className="flex items-start gap-6">
-                  <span className="text-[10px] font-mono text-primary mt-1">
+                  <span className="text-[10px] font-mono text-current mt-1">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   
                   <div className="flex-1">
-                    <h3 className="text-[14px] uppercase tracking-wider text-black mb-4 leading-tight">
+                    <h3 className="text-[14px] uppercase tracking-wider text-current mb-4 leading-tight">
                       {question.question}
                     </h3>
 

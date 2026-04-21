@@ -45,16 +45,16 @@ const FilterDetail = ({
               <span className="text-[9px] font-mono opacity-30">
                 {isOpen ? '[ 02 ]' : '[ 01 ]'}
               </span>
-              <h2 className="text-[12px] font-serif uppercase italic tracking-tight text-black">
+              <h2 className="text-[12px] font-serif uppercase italic tracking-tight text-current">
                 {name}
               </h2>
             </div>
             
             <div className="flex items-center gap-6">
-              <span className="hidden md:block text-[9px] font-black uppercase tracking-[0.4em] opacity-0 group-hover:opacity-40 transition-opacity text-black">
+              <span className="hidden md:block text-[9px] font-black uppercase tracking-[0.4em] opacity-0 group-hover:opacity-40 transition-opacity text-current">
                 {isOpen ? 'Close_Archive' : 'View_Details'}
               </span>
-              <span className="text-xl font-mono text-black">
+              <span className="text-xl font-mono text-current">
                 {isOpen ? '[ - ]' : '[ + ]'}
               </span>
             </div>
@@ -69,12 +69,12 @@ const FilterDetail = ({
                 <div className="max-w-xl">
                   <div className="flex items-center gap-3 mb-8">
                     <span className="h-px w-6 bg-black opacity-20"></span>
-                    <span className="text-[9px]  uppercase tracking-[0.5em] text-black/40">
+                    <span className="text-[9px]  uppercase tracking-[0.5em] text-current/40">
                       {type ?? "ARCHIVE_REF"}
                     </span>
                   </div>
                   
-                  <div className="mt-8 text-[9px] uppercase tracking-[0.1em] text-black  leading-relaxed border-l-[4px] border-black pl-8">
+                  <div className="mt-8 text-[9px] uppercase tracking-[0.1em] text-current  leading-relaxed border-l-[4px] border-none pl-8">
                     <ReactMarkdown>{subtitle || ''}</ReactMarkdown>
                   </div>
 
@@ -85,7 +85,7 @@ const FilterDetail = ({
                         renderNodeRule(isListItem, ({ children, key }) => (
                           <li key={key} className="flex items-center gap-4 py-4 border-b border-gray-50 group/item">
                             <span className="w-1.5 h-1.5 bg-black rotate-45 shrink-0 transition-transform group-hover/item:rotate-90" />
-                            <span className="text-[9px] uppercase tracking-[0.2em] text-black/50 group-hover/item:text-black transition-colors">{children}</span>
+                            <span className="text-[9px] uppercase tracking-[0.2em] text-current/50 group-hover/item:text-current transition-colors">{children}</span>
                           </li>
                         )),
                       ]}

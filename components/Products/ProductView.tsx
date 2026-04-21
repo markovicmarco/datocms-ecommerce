@@ -43,7 +43,7 @@ const ProductView = ({ data, globalPageProps }: Props) => {
       <div className="max-w-[1920px] mx-auto min-h-screen flex flex-col lg:flex-row">
         
         {/* LEVI DEO: GALERIJA */}
-        <div className="lg:w-3/5 border-r border-black/5 px-4 md:px-12 py-12 lg:py-24">
+        <div className="lg:w-3/5 border-r border-none/5 px-4 md:px-12 py-12 lg:py-24">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
             
             {/* Thumbnails */}
@@ -53,7 +53,7 @@ const ProductView = ({ data, globalPageProps }: Props) => {
                   key={image.id}
                   onClick={() => setSelectedImage(image)}
                   className={`relative aspect-[3/4] border-1 transition-all duration-500 overflow-hidden ${
-                    image.id === selectedImage?.id ? 'border-black/40' : 'border-transparent grayscale opacity-50'
+                    image.id === selectedImage?.id ? 'border-none/40' : 'border-transparent grayscale opacity-50'
                   }`}
                 >
                   {image.responsiveImage && (
@@ -65,7 +65,7 @@ const ProductView = ({ data, globalPageProps }: Props) => {
             </div>
 
             {/* Main Image */}
-            <div className="md:col-span-10 relative aspect-[3/4] border-1 border-black/40 p-1 group">
+            <div className="md:col-span-10 relative aspect-[3/4] border-1 border-none/40 p-1 group">
               <div className="w-full h-full overflow-hidden bg-gray-50">
                 {selectedImage?.responsiveImage && (
                   <DatoImage
@@ -75,7 +75,7 @@ const ProductView = ({ data, globalPageProps }: Props) => {
                 )}
               </div>
               {isOnSale && (
-                <span className="absolute top-0 left-0 bg-black text-white px-6 py-3 text-[12px]  uppercase tracking-[0.3em] z-10">
+                <span className="absolute top-0 left-0 bg-white text-black px-6 py-3 text-[12px]  uppercase tracking-[0.3em] z-10">
                   {sale}
                 </span>
               )}
@@ -91,15 +91,15 @@ const ProductView = ({ data, globalPageProps }: Props) => {
             <div className="space-y-4">
               <Link
                 href={`/${globalPageProps.params.lng}/products?brands=${data.product.brand.id}`}
-                className="text-[9px]  uppercase tracking-[0.4em] text-black/40 hover:line-throught transition-all"
+                className="text-[9px]  uppercase tracking-[0.4em] text-current/40 hover:line-throught transition-all"
               >
                 {data.product.brand?.name}
               </Link>
-              <h1 className="text-[14px] font-serif uppercase leading-[0.9] text-black italic tracking-tighter">
+              <h1 className="text-[14px] font-serif uppercase leading-[0.9] text-current italic tracking-tighter">
                 {data.product.name}
               </h1>
               <div className="flex items-center gap-4 text-[9px]  uppercase tracking-widest text-gray-400">
-                <div className="flex text-black/80 bg-tranparent px-2 py-0.5">
+                <div className="flex text-current/80 bg-tranparent px-2 py-0.5">
                   {data.product.reviewAverage || 5} ★
                 </div>
                 <span>{data.product.numberOfReviews || 0} {reviews}</span>
@@ -109,7 +109,7 @@ const ProductView = ({ data, globalPageProps }: Props) => {
             {/* Price Area */}
             <div className="space-y-2">
               <div className="flex items-baseline gap-4 font-mono">
-                <span className="text-[12px]  tracking-tighter text-black">
+                <span className="text-[12px]  tracking-tighter text-current">
                   {currencySymbol}{isOnSale ? salePrice : price}
                 </span>
                 {isOnSale && (
@@ -127,14 +127,14 @@ const ProductView = ({ data, globalPageProps }: Props) => {
             <div className="space-y-10">
               {/* Color Selection */}
               <div className="space-y-4">
-                <span className="text-[9px]  uppercase tracking-[0.3em] text-black/40">{color}</span>
+                <span className="text-[9px]  uppercase tracking-[0.3em] text-current/40">{color}</span>
                 <div className="flex gap-4">
                   {variations.map((v) => (
                     <button
                       key={v.id}
                       style={{ backgroundColor: v.color?.hex || '#000' }}
                       className={`h-10 w-10 border-1 transition-all ${
-                        v.color?.hex === selectedColor ? 'border-black/20 ring-4 ring-white/20 scale-110' : 'border-black/5'
+                        v.color?.hex === selectedColor ? 'border-none/20 ring-4 ring-white/20 scale-110' : 'border-none/5'
                       }`}
                       onClick={() => setSelectedColor(v.color?.hex || '#000')}
                     />
@@ -144,7 +144,7 @@ const ProductView = ({ data, globalPageProps }: Props) => {
 
               {/* Size Selection */}
               <div className="space-y-4">
-                <span className="text-[10px]  uppercase tracking-[0.3em] text-black">{size}</span>
+                <span className="text-[10px]  uppercase tracking-[0.3em] text-current">{size}</span>
                 <div className="grid grid-cols-5 gap-0 border-none">
                   {ALL_SIZES.map((s) => {
                     const currentVariation = variations.find(v => v.color?.hex === selectedColor);
@@ -157,7 +157,7 @@ const ProductView = ({ data, globalPageProps }: Props) => {
                         onClick={() => setSelectedSize(s)}
                         className={`h-14 flex items-center justify-center text-[11px]  uppercase border-r border-none last:border-r-0 transition-all ${
                           !isAvailable ? 'bg-gray-50 text-gray-200 cursor-not-allowed' : 
-                          selectedSize === s ? 'bg-black text-white' : 'bg-white text-black hover:bg-black/10'
+                          selectedSize === s ? 'bg-black text-white' : 'bg-white text-current hover:bg-black/10'
                         }`}
                       >
                         {s}
@@ -170,10 +170,10 @@ const ProductView = ({ data, globalPageProps }: Props) => {
 
             {/* Action Buttons */}
             <div className="flex flex-col gap-4 pt-4">
-              <button className="w-full bg-transparent text-black/40 py-6 text-[12px]  uppercase tracking-[0.4em] hover:text-black transition-all duration-500 shadow-[10px_10px_0px_0px_rgba(var(--primary-rgb),0.3)]">
+              <button className="w-full bg-transparent text-current/40 py-6 text-[12px]  uppercase tracking-[0.4em] hover:text-current transition-all duration-500 shadow-[10px_10px_0px_0px_rgba(var(--primary-rgb),0.3)]">
                 {primaryButton}
               </button>
-              <button className="w-full border-none text-black py-6 text-[12px]  uppercase tracking-[0.4em] hover:text-black transition-all duration-500 animate-pulse">
+              <button className="w-full border-none text-current py-6 text-[12px]  uppercase tracking-[0.4em] hover:text-current transition-all duration-500 animate-pulse">
                 {secondaryButton}
               </button>
             </div>

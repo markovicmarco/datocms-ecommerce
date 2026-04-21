@@ -70,7 +70,7 @@ export default async function BrandPage({ params }: PageProps) {
           <p>Created by Ageless. Minimalist identity protocol.</p>
         </div>
 
-        <header className="mb-20 border-b border-black/5 pb-10">
+        <header className="mb-20 border-b border-none/5 pb-10">
           <p className="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-6 font-medium">
             Protocol: Identity Architecture
           </p>
@@ -93,7 +93,7 @@ export default async function BrandPage({ params }: PageProps) {
             <div className="h-[1px] w-full md:w-32 bg-black/20 mb-6" />
             <p className="text-[10px] uppercase tracking-[0.3em] opacity-40 italic text-left md:text-right">
               Verified Brand Asset<br />
-              <span className="not-italic text-black/60 uppercase">Ref: {slug}</span>
+              <span className="not-italic text-current/60 uppercase">Ref: {slug}</span>
             </p>
           </div>
         </section>
