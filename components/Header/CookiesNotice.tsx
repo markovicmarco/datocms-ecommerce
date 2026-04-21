@@ -27,7 +27,7 @@ const CookiesNotice = ({ setCookies, cookieNotice }: PropTypes) => {
 
           {/* TEXT AREA */}
           <div className="md:col-span-6 flex flex-col gap-2">
-            <h2 className="text-[9px] font-bold uppercase tracking-[0.3em] text-black">
+            <h2 className="text-[9px]  uppercase tracking-[0.3em] text-black">
               {cookieNotice.header ?? "Cookies & Privacy"}
             </h2>
             <p className="text-[9px] uppercase tracking-wider text-gray-500 leading-relaxed max-w-xl">

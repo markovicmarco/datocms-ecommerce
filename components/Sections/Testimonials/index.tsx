@@ -23,8 +23,8 @@ const TestimonialsSection = ({ fragment }: Props) => {
         
         {/* HEADER: Archive Header Style */}
         <header className="mb-16 px-6 md:px-16 space-y-4">
-          <span className="text-[9px] font-mono font-bold uppercase tracking-[0.6em] text-primary block">
-            LIVE_FEED / CLIENT_VALIDATION
+          <span className="text-[9px] font-mono  uppercase tracking-[0.6em] text-black/20 block">
+            LIVE FEED / CLIENT VALIDATION
           </span>
           <h2 className="text-[18px] font-serif italic uppercase leading-none text-black tracking-wide">
             {title || 'System_Feedback'}
@@ -37,14 +37,13 @@ const TestimonialsSection = ({ fragment }: Props) => {
             {doubledTestimonials.map((item, idx) => (
               <div 
                 key={`${item.id}-${idx}`} 
-                className="inline-block w-[350px] md:w-[450px] mx-4 bg-white border border-black/5 p-8 transition-none hover:border-primary"
+                className="inline-block w-[350px] md:w-[450px] mx-4 bg-white border border-black/5 p-8 transition-none hover:border-none"
               >
                 {/* Status Header */}
                 <div className="flex justify-between items-center mb-6">
-                  <span className="text-[7px] font-mono font-bold text-primary uppercase tracking-widest">
+                  <span className="text-[7px] font-mono  text-black/20 uppercase tracking-widest">
                     ENTRY_REF_{idx.toString().padStart(3, '0')}
                   </span>
-                  <div className="w-1.5 h-1.5 bg-primary animate-pulse" />
                 </div>
 
                 {/* Quote Content - Text wrapping is handled for marquee */}
@@ -56,14 +55,11 @@ const TestimonialsSection = ({ fragment }: Props) => {
 
                 {/* Author Metadata */}
                 <div className="mt-8 flex items-center gap-4 border-t border-black/5 pt-6">
-                  <div className="h-6 w-6 flex items-center justify-center bg-black text-primary text-[8px] font-mono font-bold">
-                    ID
-                  </div>
                   <div className="flex flex-col">
-                    <span className="text-[9px] font-mono font-black uppercase tracking-[0.1em] text-black">
+                    <span className="text-[9px] font-mono uppercase italic tracking-[0.1em] text-black/20">
                       {item.author}
                     </span>
-                    <span className="text-[7px] font-mono text-gray-400 uppercase tracking-widest">
+                    <span className="text-[7px] font-mono text-black/20 uppercase tracking-widest">
                       VERIFIED_SOURCE_2026
                     </span>
                   </div>

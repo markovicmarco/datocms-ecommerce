@@ -90,7 +90,7 @@ const SideFilter = ({
                         onClick={() => exportQueryParameters('orderBy', option.value)}
                         className={`text-[9px] uppercase tracking-[0.2em] transition-all flex items-center gap-3 ${
                           isSelected 
-                          ? 'font-bold text-black' 
+                          ? ' text-black' 
                           : 'text-gray-400 hover:text-black hover:translate-x-1'
                         }`}
                       >
@@ -154,7 +154,7 @@ const SideFilter = ({
                           </div>
                           <label
                             htmlFor={`f-${section.id}-${idx}`}
-                            className={`ml-4 text-[9px] font-bold uppercase tracking-widest cursor-pointer transition-colors ${
+                            className={`ml-4 text-[9px]  uppercase tracking-widest cursor-pointer transition-colors ${
                               isChecked ? 'text-black' : 'text-gray-400 hover:text-black'
                             }`}
                           >

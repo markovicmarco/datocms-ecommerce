@@ -22,8 +22,8 @@ const MaterialShowcase = ({ fragment, globalPageProps }: Props) => {
       <div className="max-w-[1920px] mx-auto px-6 md:px-16 pt-32 pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end">
           <div className="space-y-8">
-            <span className="text-[9px] font-mono font-bold uppercase tracking-[0.6em] text-primary block">
-              COMPONENT_REGISTRY // ARCHIVE
+            <span className="text-[9px] font-mono  uppercase tracking-[0.6em] text-black/40 block">
+              HIGH-QUALITY // MATERIALS
             </span>
             <h2 className="text-[18px] font-serif italic uppercase leading-[0.8] text-black tracking-wide">
               {title}
@@ -61,35 +61,33 @@ const MaterialShowcase = ({ fragment, globalPageProps }: Props) => {
 
             {/* TACTICAL OVERLAY - Replikacija tvog "Jo Malone" screenshota */}
             <div className="absolute top-0 right-0 z-20">
-              <div className="bg-black text-white px-4 py-2 flex items-center gap-4">
-                <span className="text-[8px] font-mono font-bold tracking-[0.5em] uppercase text-white/50">
-                  MTRL_SEQ
+              <div className="bg-transparent text-white px-4 py-2 flex items-center gap-4">
+                <span className="text-[9px] font-mono  tracking-[0.5em] uppercase text-white/50">
+                  NOSTRA_SANTISSIMA
                 </span>
-                <span className="text-[8px] font-mono font-bold text-white tracking-[0.2em]">
+                <span className="text-[8px] font-mono  text-white tracking-[0.2em] animate-pulse">
                   {String(idx + 1).padStart(2, '0')}
                 </span>
-                <div className="w-1.5 h-1.5 bg-primary animate-pulse"></div>
               </div>
             </div>
 
             {/* FLOATING BOX: Onaj beli boks koji lebdi na hoveru */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700 z-30">
+            <div className="absolute bottom-0 right-0 z-20 items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700 z-30">
               <div className="bg-white/95 backdrop-blur-md p-8 border border-black/5 shadow-2xl min-w-[280px] translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <div className="space-y-5">
                   <div className="flex items-center gap-3">
-                    <span className="text-primary text-[10px]">●</span>
-                    <span className="text-[9px] font-mono font-black text-black tracking-[0.4em]">LIVE_FEED</span>
+                    <span className="text-[9px] font-mono font-black text-black/40 tracking-[0.4em]">CHOSE</span>
                   </div>
                   <div className="h-px w-full bg-black/5"></div>
                   <div>
-                    <span className="text-[8px] font-mono text-black/40 block mb-1">IDENT_NAME:</span>
+                    <span className="text-[8px] font-mono text-black/40 block mb-1">MATERIAL:</span>
                     <h3 className="text-2xl font-serif italic uppercase text-black leading-none">
                       {material.name}
                     </h3>
                   </div>
                   <div className="flex justify-between items-end pt-4">
-                    <span className="text-[8px] font-mono font-bold text-primary uppercase tracking-[0.3em]">
-                      OPEN_DETAILS →
+                    <span className="text-[8px] font-mono  text-black/40 uppercase tracking-[0.3em]">
+                      DETAILS
                     </span>
                     <span className="text-[7px] font-mono text-black/20 uppercase italic leading-none">
                       REF: {material.id.substring(0, 8)}
@@ -101,10 +99,10 @@ const MaterialShowcase = ({ fragment, globalPageProps }: Props) => {
 
             {/* BOTTOM INFO BAR: Statična traka koja daje "Inventory" osećaj */}
             <div className="absolute bottom-0 left-0 w-full p-8 z-20 pointer-events-none group-hover:opacity-0 transition-opacity duration-300">
-               <div className="flex justify-between items-end border-l border-black pl-6 py-1">
+               <div className="flex justify-between items-end">
                   <div className="flex flex-col">
-                    <span className="text-[7px] font-mono text-black/40 uppercase tracking-widest">Entry_Point</span>
-                    <span className="text-[11px] font-mono font-black uppercase text-black tracking-widest">{material.name}</span>
+                    <span className="text-[7px] font-mono text-[#D8D8D8] uppercase tracking-widest">TYPE</span>
+                    <span className="text-[14px] font-mono uppercase text-[#D8D8D8] tracking-widest animate-pulse">{material.name}</span>
                   </div>
                </div>
             </div>

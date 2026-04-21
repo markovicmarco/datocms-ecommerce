@@ -1,4 +1,3 @@
-
 'use client';
 
 import ReactMarkdown from 'react-markdown';
@@ -13,39 +12,37 @@ const QuestionsSection = ({ fragment }: Props) => {
   const { questions } = getFragmentData(QuestionSectionFragmentDoc, fragment);
 
   return (
-    <section className="w-full bg-white py-20 border-t border-gray-100">
-      <div className="max-w-[1920px] mx-auto px-4 md:px-12">
+    // Smanjen padding (py-16 umesto 20) da ne bude "duže"
+    <section className="w-full bg-white">
+      {/* Smanjen padding levo/desno (px-6 lg:px-10) da se kontejner raširi */}
+      <div className="max-w-[1920px] w-full mx-auto">
         
         {/* HEADER SEKCIJE */}
-        <div className="mb-16">
-          <h2 className="text-[12px] font-bold uppercase tracking-[0.4em] text-black">
+        <div className="mb-12">
+          <h2 className="text-[12px] uppercase tracking-[0.4em] text-black">
             Inquiry / Knowledge Base
           </h2>
-          {/* Separator sada koristi bg-primary (krem) */}
           <div className="mt-4 h-1 w-12 bg-primary" />
         </div>
 
-        {/* FAQ GRID */}
-        <div className="grid gap-x-16 gap-y-12 sm:grid-cols-2">
+        {/* FAQ GRID - md:grid-cols-2 sa većim gapom da se maksimalno raširi */}
+        <div className="grid gap-x-20 gap-y-12 md:grid-cols-2">
           {questions.map((question, index) => {
             return (
               <div 
                 key={question.id} 
-                className="group flex flex-col border-b border-gray-100 pb-10 transition-colors hover:border-black"
+                className="group flex flex-col border-b border-gray-100 pb-8 transition-colors hover:border-black"
               >
-                {/* NUMERACIJA I PITANJE */}
                 <div className="flex items-start gap-6">
-                  {/* Numeracija sada prati primary boju brenda */}
-                  <span className="text-[10px] font-bold font-mono text-primary mt-1">
+                  <span className="text-[10px] font-mono text-primary mt-1">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   
                   <div className="flex-1">
-                    <h3 className="text-[14px] font-bold uppercase tracking-wider text-black mb-6 leading-tight">
+                    <h3 className="text-[14px] uppercase tracking-wider text-black mb-4 leading-tight">
                       {question.question}
                     </h3>
 
-                    {/* ODGOVOR */}
                     <div className="prose prose-sm max-w-none">
                       <div className="text-[12px] uppercase tracking-widest text-gray-400 leading-relaxed font-medium italic">
                         <ReactMarkdown>

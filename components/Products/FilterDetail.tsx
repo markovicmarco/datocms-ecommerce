@@ -69,12 +69,12 @@ const FilterDetail = ({
                 <div className="max-w-xl">
                   <div className="flex items-center gap-3 mb-8">
                     <span className="h-px w-6 bg-black opacity-20"></span>
-                    <span className="text-[9px] font-bold uppercase tracking-[0.5em] text-black/40">
+                    <span className="text-[9px]  uppercase tracking-[0.5em] text-black/40">
                       {type ?? "ARCHIVE_REF"}
                     </span>
                   </div>
                   
-                  <div className="mt-8 text-[9px] uppercase tracking-[0.1em] text-black font-bold leading-relaxed border-l-[4px] border-black pl-8">
+                  <div className="mt-8 text-[9px] uppercase tracking-[0.1em] text-black  leading-relaxed border-l-[4px] border-black pl-8">
                     <ReactMarkdown>{subtitle || ''}</ReactMarkdown>
                   </div>
 
@@ -104,7 +104,7 @@ const FilterDetail = ({
                     objectFit="cover"
                   />
                 )}
-                <div className="absolute bottom-12 right-12 bg-black text-white px-6 py-4 text-[9px] font-bold uppercase tracking-[0.4em]">
+                <div className="absolute bottom-12 right-12 bg-black text-white px-6 py-4 text-[9px]  uppercase tracking-[0.4em]">
                   {name} // Image_Data
                 </div>
               </div>

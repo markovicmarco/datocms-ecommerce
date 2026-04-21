@@ -32,14 +32,14 @@ const PopUpBanner = ({ setPopUp, popup, globalPageProps }: PropTypes) => {
             data={popup.popupImage?.responsiveImage as ResponsiveImageType}
             className="h-full w-full object-cover"
           />
-          <div className="absolute top-4 left-4 bg-black text-white text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1">
+          <div className="absolute top-4 left-4 bg-black text-white text-[9px]  uppercase tracking-[0.3em] px-3 py-1">
             Featured
           </div>
         </div>
 
         {/* CONTENT SIDE */}
         <div className="md:col-span-3 flex flex-col justify-center p-8 md:p-12 text-center md:text-left">
-          <p className="text-[9px] font-bold uppercase tracking-[0.4em] text-gray-400">
+          <p className="text-[9px]  uppercase tracking-[0.4em] text-gray-400">
             {popup.preTitle ?? "System Announcement"}
           </p>
 
@@ -47,7 +47,7 @@ const PopUpBanner = ({ setPopUp, popup, globalPageProps }: PropTypes) => {
             <span className="text-[12px] font-serif uppercase leading-[0.85] text-black italic">
               {popup.title}
             </span>
-            <span className="mt-4 text-[9px] font-bold uppercase tracking-[0.2em] text-black border-l-2 border-black pl-4 self-start md:self-auto inline-block">
+            <span className="mt-4 text-[9px]  uppercase tracking-[0.2em] text-black border-l-2 border-black pl-4 self-start md:self-auto inline-block">
               {popup.subtitle}
             </span>
           </h2>
@@ -55,7 +55,7 @@ const PopUpBanner = ({ setPopUp, popup, globalPageProps }: PropTypes) => {
           <div className="mt-10 flex flex-col gap-4">
             <Link
               onClick={() => setPopUp(false)}
-              className="w-full bg-black text-white text-[9px] font-bold uppercase tracking-[0.3em] py-5 hover:bg-primary hover:text-black transition-all duration-500 text-center"
+              className="w-full bg-black text-white text-[9px]  uppercase tracking-[0.3em] py-5 hover:bg-primary hover:text-black transition-all duration-500 text-center"
               href={`/${globalPageProps.params.lng}/${popup.button[0]?.slug ?? ''}`}
             >
               {popup.button[0]?.label}
@@ -63,7 +63,7 @@ const PopUpBanner = ({ setPopUp, popup, globalPageProps }: PropTypes) => {
             
             <button
               onClick={() => setPopUp(false)}
-              className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-colors"
+              className="text-[9px]  uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-colors"
             >
               {popup.dismissButtonLabel ?? "Close"}
             </button>

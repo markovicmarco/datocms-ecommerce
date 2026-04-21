@@ -33,15 +33,15 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
         <div className="mb-12 flex items-end justify-between border-b border-black/5 pb-8">
           <div className="space-y-2">
             {/* Labela sada koristi text-primary (tvoj novi krem ton) */}
-            <span className="text-[9px] font-mono font-bold text-primary uppercase tracking-[0.3em]">
+            <span className="text-[9px] font-mono  text-black uppercase tracking-[0.3em]">
               Collection_Extension
             </span>
-            <h2 className="text-3xl md:text-5xl font-serif italic uppercase tracking-wide text-black">
+            <h2 className="text-[18px] font-serif italic uppercase tracking-wide text-black">
               Featured Selection
             </h2>
           </div>
           <span className="text-[9px] font-mono uppercase tracking-widest text-gray-400 pb-2">
-            [{relatedProducts.length}] Units_Available
+            [{relatedProducts.length}] Units Available
           </span>
         </div>
 
@@ -72,14 +72,14 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
 
                   {/* SALE BADGE: Sada koristi bg-primary */}
                   {isOnSale && (
-                    <div className="absolute top-4 left-4 bg-primary text-black px-3 py-1 text-[10px] font-bold uppercase tracking-widest z-10">
+                    <div className="absolute top-0 left-0 bg-white text-black px-3 py-1 text-[10px]  uppercase tracking-widest z-10">
                       {sale}
                     </div>
                   )}
 
                   {/* QUICK ACTION BAR */}
                   <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-black text-white">
-                    <span className="text-[9px] font-bold uppercase tracking-[0.3em] block text-center">
+                    <span className="text-[9px]  uppercase tracking-[0.3em] block text-center">
                       View_Technical_Specs — {product.name}
                     </span>
                   </div>
@@ -88,13 +88,13 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
                 {/* INFO AREA */}
                 <div className="mt-6 flex justify-between items-start">
                   <div className="flex flex-col gap-1">
-                    <span className="text-[9px] font-mono font-bold uppercase tracking-[0.2em] text-gray-400">
+                    <span className="text-[9px] font-mono  uppercase tracking-[0.2em] text-gray-400">
                       {product.brand?.name}
                     </span>
                     <Link
                       href={`/${globalPageProps.params.lng}/product/${product.slug}`}
                       /* Hover na ime sada vuče primary boju */
-                      className="text-[9px] font-bold uppercase tracking-wider text-black hover:text-primary transition-colors"
+                      className="text-[9px]  uppercase tracking-wider text-black hover:text-primary transition-colors"
                     >
                       {product.name}
                     </Link>
@@ -107,12 +107,12 @@ const FeaturedProducts = ({ data, globalPageProps }: PropTypes) => {
                           {currencySymbol}{price}
                         </span>
                       )}
-                      <span className="text-[9px] font-bold text-black">
+                      <span className="text-[9px]  text-black">
                         {currencySymbol}{isOnSale ? salePrice : price}
                       </span>
                     </div>
                     {isOnSale && (
-                      <span className="text-[9px] font-bold uppercase text-red-500 bg-red-50 px-1">
+                      <span className="text-[9px]  uppercase text-red-500 bg-red-50 px-1">
                         -{Math.round(((price - salePrice) / price) * 100)}%
                       </span>
                     )}

@@ -39,19 +39,19 @@ export default function ScrollToTop() {
           {/* TACTICAL SCROLL BUTTON */}
           <button
             onClick={scrollToTop}
-            className="group flex items-center justify-center border-1 border-black bg-black px-6 py-4 transition-all duration-300 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] active:bg-primary active:border-primary active:text-black"
+            className="group flex items-center justify-center border-none bg-transparent px-6 py-4 transition-all duration-300 hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] active:bg-primary active:border-primary active:text-black"
           >
             <div className="flex flex-col items-start gap-1">
               <div className="flex items-center gap-3">
                 {/* Indikator smera skrolovanja */}
                 
-                <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-white/50">
-                  RETURN
+                <span className="text-[27px] font-mono uppercase tracking-[0.2em] text-black/50">
+                  △
                 </span>
               </div>
-              <span className="text-[9px] font-mono text-white/50 uppercase tracking-[0.2em] italic">
-                TO_TOP
-              </span>
+                <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-black/50">
+                  TOP
+                </span>
             </div>
           </button>
         </motion.div>

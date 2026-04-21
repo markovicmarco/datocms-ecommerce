@@ -23,7 +23,7 @@ const Content: ContentPage<PageProps, Query> = ({
       <section className="max-w-[1920px] mx-auto px-6 md:px-16 pt-40 pb-24 border-b border-black/5">
         <div className="flex flex-col md:flex-row items-end justify-between gap-16">
           <div className="max-w-5xl space-y-8">
-            <span className="text-[9px] font-mono font-bold uppercase tracking-[0.6em] text-primary block">
+            <span className="text-[9px] font-mono uppercase tracking-[0.6em] text-primary block">
               MANIFEST_COLLECTION / {new Date().getFullYear()}
             </span>
             <h1 className="text-[45px] font-serif uppercase leading-[0.8] text-black italic tracking-tighter">
@@ -57,9 +57,9 @@ const Content: ContentPage<PageProps, Query> = ({
           {/* TACTICAL OVERLAY - Replikacija tvoje slike */}
           <div className="absolute top-12 right-12 z-30">
             <div className="bg-white/90 backdrop-blur-sm p-5 border border-black/5 min-w-[180px] shadow-[4px_4px_0px_0px_rgba(var(--primary-rgb),0.2)]">
-              <div className="text-[8px] font-mono font-bold uppercase tracking-[0.3em] text-black space-y-2">
+              <div className="text-[8px] font-mono uppercase tracking-[0.3em] text-black space-y-2">
                 <div className="flex items-center gap-2">
-                  <span className="text-primary text-[10px]">●</span> 
+                  <span className="text-primary text-[10px]"></span> 
                   <span>LIVE_FEED</span>
                 </div>
                 <div>REF: MASTER_EXP_01</div>
@@ -107,7 +107,7 @@ const Content: ContentPage<PageProps, Query> = ({
           {/* TACTICAL OVERLAY: Plutajući beli boks (iz tvoje vizije) */}
           <div className="absolute top-0 right-0 z-20">
             <div className="bg-black text-white px-4 py-2 flex items-center gap-4">
-              <span className="text-[8px] font-mono font-bold tracking-[0.5em] uppercase">
+              <span className="text-[8px] font-mono tracking-[0.5em] uppercase">
                 ENTRY_ID: 0{idx + 1}
               </span>
               <div className="w-1.5 h-1.5 bg-primary animate-pulse"></div>
@@ -118,14 +118,14 @@ const Content: ContentPage<PageProps, Query> = ({
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-30">
             <div className="bg-white/90 backdrop-blur-md p-8 border border-black/5 shadow-2xl min-w-[240px]">
               <div className="space-y-4">
-                <span className="text-[9px] font-mono font-bold text-primary tracking-[0.4em] block">
+                <span className="text-[9px] font-mono text-primary tracking-[0.4em] block">
                   ACCESS_GRANTED
                 </span>
                 <h3 className="text-2xl font-serif italic uppercase text-black">
                   {collection.name}
                 </h3>
                 <div className="h-px w-full bg-black/10"></div>
-                <span className="text-[8px] font-mono font-bold text-black/40 uppercase tracking-widest block">
+                <span className="text-[8px] font-mono text-black/40 uppercase tracking-widest block">
                   EXPLORE_ARCHIVE_CORE →
                 </span>
               </div>
@@ -136,7 +136,7 @@ const Content: ContentPage<PageProps, Query> = ({
         {/* DATA STRIP: Donja traka sa metapodacima */}
         <div className="px-8 py-6 flex justify-between items-center bg-white border-t border-black/5">
           <div className="flex flex-col">
-            <span className="text-[7px] font-mono text-black/30 font-bold uppercase tracking-[0.4em]">
+            <span className="text-[7px] font-mono text-black/30 uppercase tracking-[0.4em]">
               Collection_Type
             </span>
             <span className="text-[11px] font-mono font-black uppercase tracking-[0.2em] text-black">
@@ -146,7 +146,7 @@ const Content: ContentPage<PageProps, Query> = ({
           <div className="flex items-center gap-8">
              <div className="hidden md:flex flex-col items-end">
                 <span className="text-[7px] font-mono text-black/30 uppercase tracking-widest italic">Inventory_State</span>
-                <span className="text-[9px] font-mono font-bold text-black uppercase">Stored // Available</span>
+                <span className="text-[9px] font-mono text-black uppercase">Stored // Available</span>
              </div>
              <div className="h-10 w-10 flex items-center justify-center border border-black group-hover:bg-primary group-hover:border-primary transition-all">
                 <span className="text-lg font-light">→</span>
@@ -166,7 +166,7 @@ const Content: ContentPage<PageProps, Query> = ({
     <div className="bg-black p-12 md:p-20 flex flex-col justify-between min-h-[500px]">
       <div className="space-y-12">
         <header className="space-y-4">
-          <span className="text-[9px] font-mono font-bold uppercase tracking-[0.6em] text-primary block">
+          <span className="text-[9px] font-mono uppercase tracking-[0.6em] text-primary block">
             MATERIAL_COMPOSITION
           </span>
           <h2 className="text-[18px] font-serif italic uppercase leading-[0.8] tracking-wide text-white">
@@ -183,7 +183,7 @@ const Content: ContentPage<PageProps, Query> = ({
 
       <div className="flex items-center gap-6">
         <div className="h-px w-12 bg-primary"></div>
-        <span className="text-[8px] font-mono font-bold text-white tracking-[0.4em] uppercase">
+        <span className="text-[8px] font-mono text-white tracking-[0.4em] uppercase">
           TECH_SPEC_V.2.6
         </span>
       </div>
@@ -200,7 +200,7 @@ const Content: ContentPage<PageProps, Query> = ({
       {/* TACTICAL OVERLAY - Replikacija tvog "Jo Malone" boksa */}
       <div className="absolute top-0 right-0 z-20">
         <div className="bg-white text-black px-4 py-2 flex items-center gap-4">
-          <span className="text-[8px] font-mono font-bold tracking-[0.5em] uppercase">
+          <span className="text-[8px] font-mono tracking-[0.5em] uppercase">
             MTRL_REF_01
           </span>
           <div className="w-1.5 h-1.5 bg-primary animate-pulse"></div>
@@ -212,10 +212,10 @@ const Content: ContentPage<PageProps, Query> = ({
         <div className="bg-white p-6 border border-black/5 shadow-2xl">
           <div className="space-y-2">
             <div className="flex items-center gap-3">
-              <span className="text-primary text-[10px]">●</span>
+              <span className="text-primary text-[10px]">▲</span>
               <span className="text-[8px] font-mono font-black text-black tracking-[0.3em]">LIVE_ARCHIVE</span>
             </div>
-            <div className="text-[10px] font-mono font-bold text-black/40">
+            <div className="text-[10px] font-mono text-black/40">
               DATA_POINT: {showcase.materialsTitle?.substring(0, 5).toUpperCase()}
             </div>
           </div>

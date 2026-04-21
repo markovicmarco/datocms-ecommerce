@@ -35,7 +35,7 @@ const SectionTitle = ({
 
       {/* Optional: System Index line for center-aligned titles */}
       {center && (
-        <div className="mt-8 text-[9px] font-mono font-bold uppercase tracking-[0.5em] text-gray-200">
+        <div className="mt-8 text-[9px] font-mono  uppercase tracking-[0.5em] text-gray-200">
           Section_Index / 2026
         </div>
       )}

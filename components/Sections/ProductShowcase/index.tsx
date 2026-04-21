@@ -25,7 +25,7 @@ const ProductShowcase = ({ fragment, globalPageProps }: Props) => {
         <div className={`md:w-2/5 flex flex-col justify-center px-6 md:px-16 py-24 bg-white z-20 ${isLeft ? 'md:order-1' : 'md:order-2'}`}>
           <div className="space-y-12">
             <header className="space-y-4">
-              <span className="text-[9px] font-mono font-bold uppercase tracking-[0.5em] text-primary block">
+              <span className="text-[9px] font-mono p-2 uppercase tracking-[0.5em] text-black/20 block">
                 {pretitle || 'COLLECTION_REF'}
               </span>
               <h2 className="text-[18px] font-serif italic uppercase leading-[0.85] text-black tracking-wide">
@@ -33,18 +33,17 @@ const ProductShowcase = ({ fragment, globalPageProps }: Props) => {
               </h2>
             </header>
             
-            <div className="border-l border-black pl-8 py-2">
-              <p className="max-w-xs text-[10px] uppercase tracking-widest text-black/60 leading-relaxed font-medium">
+            <div className="border-l border-black/10 pl-8 py-2">
+              <p className="max-w-xs text-[10px] uppercase tracking-widest text-black/20 leading-relaxed font-medium">
                 {description}
               </p>
-            </div>
-
-            <Link
+              <Link
               href={`/${globalPageProps.params.lng}/${button[0].slug}`}
               className="btn-brutalist inline-flex items-center justify-center px-10 py-5"
             >
               <span className="relative z-10">{button[0].label}</span>
             </Link>
+            </div>
           </div>
         </div>
 
@@ -62,8 +61,8 @@ const ProductShowcase = ({ fragment, globalPageProps }: Props) => {
                 />
               </div>
             )}
-            <div className="absolute top-8 left-8 text-white/40 text-[8px] font-mono font-bold tracking-[0.4em] z-30">
-              [PRIMARY_VIEW_01]
+            <div className="absolute top-8 left-8 text-white/40 text-[8px] font-mono  tracking-[0.4em] z-30">
+              NOSTRA SANTISSIMA
             </div>
           </div>
 

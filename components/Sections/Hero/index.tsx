@@ -82,7 +82,7 @@ const Hero = ({ fragment }: Props) => {
 
         {/* SYSTEM STATUS OVERLAY - High contrast */}
         <div className="absolute top-12 left-12 z-30 hidden md:block">
-          <div className="text-[8px] font-mono font-bold text-primary uppercase tracking-[0.4em] space-y-1">
+          <div className="text-[8px] font-mono  text-primary uppercase tracking-[0.4em] space-y-1">
             {/* Dinamički status na osnovu hovera cele grupe */}
             <p className="group-hover:text-white transition-colors duration-500">
               {slides.length > 1 ? `BRUTALIST_${currentIndex + 1}/${slides.length}` : `RENDER_SEQUENCE`}
@@ -106,7 +106,7 @@ const Hero = ({ fragment }: Props) => {
 
       {/* ARCHIVE FOOTER */} 
       <footer className="px-4 md:px-12 py-10 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-6 bg-white z-40 relative"> 
-        <div className="flex gap-10 text-[9px] font-mono font-bold tracking-[0.4em] uppercase text-black/30"> 
+        <div className="flex gap-10 text-[9px] font-mono  tracking-[0.4em] uppercase text-black/30"> 
           {['Spring', 'Summer', 'Fall', 'Winter'].map((season) => ( 
             <span key={season} className="hover:text-black hover:line-through cursor-pointer transition-none"> 
               {season} 
@@ -115,7 +115,7 @@ const Hero = ({ fragment }: Props) => {
         </div> 
 
         <div className="flex items-center gap-10"> 
-          <span className="text-[9px] font-mono font-bold uppercase tracking-[0.5em] text-primary"> 
+          <span className="text-[9px] font-mono italic uppercase tracking-[0.5em] text-black/40 animate-pulse"> 
             {socialLabel ?? 'ARCHIVE_SOCIAL'} 
           </span> 
           <div className="flex gap-6"> 

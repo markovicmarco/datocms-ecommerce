@@ -70,7 +70,7 @@ export default function Cart({ open, setOpen }: PropTypes) {
                     {/* HEADER */}
                     <div className="flex-1 overflow-y-auto px-6 py-10">
                       <div className="flex items-start justify-between border-b border-gray-100 pb-6">
-                        <Dialog.Title className="text-[12px] font-bold uppercase tracking-[0.3em] text-black">
+                        <Dialog.Title className="text-[12px]  uppercase tracking-[0.3em] text-black">
                           Your Cart
                         </Dialog.Title>
                         <button
@@ -84,7 +84,7 @@ export default function Cart({ open, setOpen }: PropTypes) {
 
                       {/* DEMO INFO BOX - Brutalist stil */}
                       <div className="mt-8 bg-gray-50 border border-gray-100 p-6">
-                        <h3 className="text-[10px] font-bold uppercase tracking-widest text-black mb-2">
+                        <h3 className="text-[10px]  uppercase tracking-widest text-black mb-2">
                           Integration Notice
                         </h3>
                         <p className="text-[10px] uppercase tracking-wider text-gray-500 leading-relaxed italic">
@@ -108,7 +108,7 @@ export default function Cart({ open, setOpen }: PropTypes) {
                                 </div>
 
                                 <div className="ml-6 flex flex-1 flex-col">
-                                  <div className="flex justify-between text-[11px] font-bold uppercase tracking-widest text-black">
+                                  <div className="flex justify-between text-[11px]  uppercase tracking-widest text-black">
                                     <h3>{product.name}</h3>
                                     <p className="ml-4">{product.price}</p>
                                   </div>
@@ -134,7 +134,7 @@ export default function Cart({ open, setOpen }: PropTypes) {
 
                     {/* FOOTER */}
                     <div className="border-t border-gray-100 px-6 py-10 bg-gray-50">
-                      <div className="flex justify-between text-[12px] font-bold uppercase tracking-[0.2em] text-black">
+                      <div className="flex justify-between text-[12px]  uppercase tracking-[0.2em] text-black">
                         <p>Subtotal</p>
                         <p>$64.00</p>
                       </div>
@@ -142,7 +142,7 @@ export default function Cart({ open, setOpen }: PropTypes) {
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div className="mt-10 flex flex-col gap-4">
-                        <button className="w-full bg-black text-white text-[10px] font-bold uppercase tracking-[0.3em] py-5 hover:bg-gray-800 transition-all active:scale-[0.98]">
+                        <button className="w-full bg-black text-white text-[10px]  uppercase tracking-[0.3em] py-5 hover:bg-gray-800 transition-all active:scale-[0.98]">
                           Proceed to Checkout
                         </button>
                         <button

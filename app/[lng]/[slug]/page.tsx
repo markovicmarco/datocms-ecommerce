@@ -81,7 +81,7 @@ export default async function BrandPage({ params }: PageProps) {
 
         <section className="grid grid-cols-1 md:grid-cols-2 gap-16">
           <div className="space-y-8">
-            <h2 className="text-[11px] uppercase tracking-[0.2em] font-bold opacity-90">
+            <h2 className="text-[11px] uppercase tracking-[0.2em] opacity-90">
               Vision & Concept
             </h2>
             <p className="text-xl leading-relaxed font-light opacity-70">
@@ -93,7 +93,7 @@ export default async function BrandPage({ params }: PageProps) {
             <div className="h-[1px] w-full md:w-32 bg-black/20 mb-6" />
             <p className="text-[10px] uppercase tracking-[0.3em] opacity-40 italic text-left md:text-right">
               Verified Brand Asset<br />
-              <span className="not-italic font-bold text-black/60 uppercase">Ref: {slug}</span>
+              <span className="not-italic text-black/60 uppercase">Ref: {slug}</span>
             </p>
           </div>
         </section>

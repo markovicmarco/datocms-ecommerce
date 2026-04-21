@@ -22,11 +22,11 @@ const RatingBadge: FC<{ score: number }> = ({ score }) => (
         <div 
           key={i} 
           /* Popunjeni kvadratići sada koriste bg-primary */
-          className={`w-3 h-3 ${i < Math.round(score) ? 'bg-primary' : 'bg-gray-100'}`} 
+          className={`w-3 h-3 ${i < Math.round(score) ? 'bg-black/40' : 'bg-gray-100'}`} 
         />
       ))}
     </div>
-    <span className="text-[10px] font-bold font-mono tracking-wide text-black">
+    <span className="text-[10px]  font-mono tracking-wide text-black">
       {score.toFixed(1)}
     </span>
   </div>
@@ -43,17 +43,17 @@ const Reviews = ({ data, globalPageProps }: PropTypes) => {
       <div className="max-w-[1920px] mx-auto px-4 md:px-12">
         
         {/* HEADER: Brutalist Summary */}
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 mb-16 border-b-2 border-black pb-8">
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 mb-16 border-b-2 border-none pb-8">
           <div className="space-y-4">
-            <h2 className="text-[12px] font-bold uppercase tracking-[0.4em] text-primary">
+            <h2 className="text-[9px]  uppercase tracking-[0.4em] text-black/80">
               Verified Feedback
             </h2>
             <div className="flex items-baseline gap-4">
-              <span className="text-6xl font-serif italic text-black leading-none">
+              <span className="text-[18px] font-serif italic text-black leading-none">
                 {data.product?.reviewAverage}
               </span>
               <div className="flex flex-col">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-black">
+                <span className="text-[10px]  uppercase tracking-widest text-black">
                   Average Rating
                 </span>
                 <span className="text-[10px] font-medium uppercase tracking-widest text-gray-400">
@@ -64,7 +64,7 @@ const Reviews = ({ data, globalPageProps }: PropTypes) => {
           </div>
 
           {/* Senka tastera sada koristi primary-rgb varijablu */}
-          <button className="px-8 py-4 border-2 border-black text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-300 shadow-[6px_6px_0px_0px_rgba(var(--primary-rgb),0.3)]">
+          <button className="px-8 py-4 border-none text-[10px] text-black/80 font-mono uppercase tracking-[0.3em] hover:bg-transparent hover:text-black transition-all duration-300 animate-pulse">
             {reviewButton}
           </button>
         </div>
@@ -81,9 +81,9 @@ const Reviews = ({ data, globalPageProps }: PropTypes) => {
             return (
               <div key={review.id} className="group flex flex-col space-y-6">
                 {/* Meta Info */}
-                <div className="flex justify-between items-start border-b border-gray-100 pb-4">
+                <div className="flex justify-between items-start border-none">
                   <div className="space-y-1">
-                    <span className="block text-[11px] font-bold uppercase tracking-wider text-black">
+                    <span className="block text-[11px]  uppercase tracking-wider text-black">
                       {review.reviewerName}
                     </span>
                     <span className="block text-[9px] font-mono uppercase tracking-wide text-gray-400">

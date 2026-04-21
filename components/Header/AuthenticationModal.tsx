@@ -57,7 +57,7 @@ const AuthenticationModal = ({
         </div>
 
         <div>
-          <h3 className="text-[9px] font-bold uppercase tracking-[0.3em] text-black">
+          <h3 className="text-[9px]  uppercase tracking-[0.3em] text-black">
             System Access
           </h3>
           <p className="text-[9px] uppercase tracking-widest text-gray-400">
@@ -72,7 +72,7 @@ const AuthenticationModal = ({
       </p>
 
       <div className="mt-8">
-        <label htmlFor="UserToken" className="text-[9px] font-bold uppercase tracking-[0.2em] text-black mb-2 block">
+        <label htmlFor="UserToken" className="text-[9px]  uppercase tracking-[0.2em] text-black mb-2 block">
           Access Token
         </label>
         <input
@@ -89,7 +89,7 @@ const AuthenticationModal = ({
           placeholder="••••••••"
         />
         {hasError && (
-          <p className="mt-2 text-[9px] uppercase tracking-widest font-bold text-red-500">
+          <p className="mt-2 text-[9px] uppercase tracking-widest  text-red-500">
             Invalid Token. Access Denied.
           </p>
         )}

@@ -130,7 +130,7 @@ const Page = async ({ params, searchParams }: PageProps) => {
                       
                       {/* SALE BADGE: Sada koristi bg-primary (krem) */}
                       {isOnSale && (
-                        <div className="absolute top-0 left-0 bg-primary px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-black z-10">
+                        <div className="absolute top-0 left-0 bg-white px-4 py-1.5 text-[10px] uppercase tracking-widest text-black z-10">
                           {sale}
                         </div>
                       )}
@@ -139,16 +139,16 @@ const Page = async ({ params, searchParams }: PageProps) => {
                     <div className="p-6 border-t border-black/5 flex flex-col flex-grow">
                       <div className="flex justify-between items-start mb-4">
                         <div className="space-y-1">
-                          <span className="text-[9px] font-mono font-bold text-gray-400 uppercase tracking-tighter block">
+                          <span className="text-[9px] font-mono text-gray-400 uppercase tracking-tighter block">
                             {product.brand.name}
                           </span>
                           {/* NASLOV: group-hover sada koristi primary boju brenda */}
-                          <h3 className="text-sm font-bold uppercase tracking-widest text-black group-hover:text-primary transition-colors leading-tight">
+                          <h3 className="text-sm uppercase tracking-widest text-black group-hover:text-primary transition-colors leading-tight">
                             {product.name}
                           </h3>
                         </div>
                         <div className="text-right flex flex-col items-end">
-                          <span className="text-sm font-mono font-bold">
+                          <span className="text-sm font-mono">
                             {currencySymbol}{isOnSale ? product.salePrice : product.price}
                           </span>
                           {isOnSale && (
@@ -161,7 +161,7 @@ const Page = async ({ params, searchParams }: PageProps) => {
                       
                       <Link 
                         href={`/${lng}/product/${product.slug}`}
-                        className="mt-auto pt-4 text-[9px] font-bold uppercase tracking-[0.3em] text-gray-300 group-hover:text-black transition-colors"
+                        className="mt-auto pt-4 text-[9px] uppercase tracking-[0.3em] text-gray-300 group-hover:text-black transition-colors"
                       >
                         View_Specs →
                       </Link>

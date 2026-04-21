@@ -29,7 +29,7 @@ const NotificationStrip = ({
     <div className="w-full bg-primary relative z-[60] border-b border-black/5">
       <div className="max-w-[1920px] mx-auto px-4 md:px-12 py-3 flex items-center justify-center relative">
         
-        <div className="text-[9px] uppercase tracking-[0.2em] font-bold text-black text-center">
+        <div className="text-[9px] uppercase tracking-[0.2em]  text-white text-center">
           <DatoStructuredText
             data={notification.value as StructuredText<Record, Record>}
             customNodeRules={[
@@ -41,7 +41,7 @@ const NotificationStrip = ({
                   <Link
                     key={key}
                     href={path || '#'}
-                    className="ml-4 inline-block border-b border-black pb-0.5 hover:opacity-50 transition-opacity"
+                    className="ml-4 inline-block border-none pb-0.5 hover:opacity-50 transition-opacity animate-pulse"
                   >
                     {children}
                   </Link>

@@ -25,7 +25,7 @@ const Content: ContentPage<PageProps, Query> = ({ data }) => {
         {/* Top Branding / Breadcrumb */}
         <div className="flex items-center gap-4">
           <div className="h-px w-8 bg-black"></div>
-          <span className="text-[9px] font-mono font-bold uppercase tracking-[0.4em] text-black/40">
+          <span className="text-[9px] font-mono uppercase tracking-[0.4em] text-black/40">
             SYSTEM_ID: {store.id || 'NULL_REF'}
           </span>
         </div>
@@ -33,7 +33,7 @@ const Content: ContentPage<PageProps, Query> = ({ data }) => {
         {/* Main Info Cluster */}
         <div className="space-y-12">
           <header className="space-y-4">
-            <h2 className="text-[9px] font-mono font-bold uppercase tracking-[0.5em] text-primary">
+            <h2 className="text-[9px] font-mono  uppercase tracking-[0.5em] text-primary">
               LOC_{store.country || 'GLOBAL'}
             </h2>
             <h1 className="text-5xl lg:text-7xl font-serif italic leading-none tracking-tighter text-black">
@@ -52,7 +52,7 @@ const Content: ContentPage<PageProps, Query> = ({ data }) => {
               href={`https://www.google.com/maps/search/?api=1&query=${store.storeLocation?.latitude},${store.storeLocation?.longitude}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-4 text-[9px] font-mono font-bold uppercase tracking-[0.3em] text-black hover:text-primary transition-colors"
+              className="group inline-flex items-center gap-4 text-[9px] font-mono  uppercase tracking-[0.3em] text-black hover:text-primary transition-colors"
             >
               <span className="underline underline-offset-8">VIEW_COORDINATES</span>
               <span className="group-hover:translate-x-1 transition-transform">→</span>
@@ -74,8 +74,8 @@ const Content: ContentPage<PageProps, Query> = ({ data }) => {
           <div className="h-px flex-1 bg-black/5"></div>
 
           <div className="flex flex-col items-end">
-            <span className="text-[8px] font-mono font-bold text-black/30 uppercase tracking-widest italic">Sequence</span>
-            <span className="text-lg font-mono font-bold tracking-tighter">
+            <span className="text-[8px] font-mono  text-black/30 uppercase tracking-widest italic">Sequence</span>
+            <span className="text-lg font-mono  tracking-tighter">
               {String(currentStore + 1).padStart(2, '0')}_{String(allStores.length).padStart(2, '0')}
             </span>
           </div>
@@ -97,8 +97,8 @@ const Content: ContentPage<PageProps, Query> = ({ data }) => {
         {/* Tactical System Overlay */}
         <div className="absolute top-10 right-10 z-30 hidden lg:block">
           <div className="btn-brutalist bg-white/80 pointer-events-none p-5">
-            <div className="text-[9px] font-mono font-bold uppercase tracking-[0.3em] text-black leading-loose">
-              <span className="text-primary opacity-100 text-[10px]">●</span> LIVE_FEED <br />
+            <div className="text-[9px] font-mono  uppercase tracking-[0.3em] text-black leading-loose">
+              <span className="text-primary opacity-100 text-[10px]">▲</span> LIVE_FEED <br />
               REF: {store.storeName?.substring(0, 3).toUpperCase()}_{currentStore + 100} <br />
               POS: {store.storeLocation?.latitude?.toFixed(4)} / {store.storeLocation?.longitude?.toFixed(4)}
             </div>
@@ -107,7 +107,7 @@ const Content: ContentPage<PageProps, Query> = ({ data }) => {
 
         {/* Corner Branding */}
         <div className="absolute bottom-10 right-10 text-white mix-blend-difference opacity-30">
-          <span className="text-[9px] font-mono font-bold uppercase tracking-[1em]">
+          <span className="text-[9px] font-mono  uppercase tracking-[1em]">
             _ARCHIVE
           </span>
         </div>

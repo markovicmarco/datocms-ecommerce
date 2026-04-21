@@ -29,13 +29,13 @@ const LanguageSelector = ({ languages }: Props) => {
         onBlur={() => setTimeout(() => setIsOpen(false), 200)}
         className="flex items-center gap-3 px-3 py-2 group transition-none active:translate-x-[0.5px] active:translate-y-[0.5px]"
       >
-        <span className="text-[9px] font-mono font-bold uppercase tracking-[0.3em] text-black">
+        <span className="text-[9px] font-mono  uppercase tracking-[0.3em] text-black">
           {getLangNameFromCode(currentLocale)?.name || currentLocale}
         </span>
         
         <div className="flex items-center gap-2 border-l border-black/10 pl-3">
-          <span className="text-[8px] font-mono font-bold text-primary uppercase tracking-widest">
-            LNG
+          <span className="text-[10px] font-mono  text-white uppercase tracking-widest">
+            I|E|S
           </span>
           <svg 
             className={`w-2.5 h-2.5 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} 
@@ -55,15 +55,15 @@ const LanguageSelector = ({ languages }: Props) => {
       >
         <div className="p-1">
           <div className="px-4 py-2 border-b border-black/5 mb-1">
-            <span className="text-[7px] font-mono font-bold text-gray-400 uppercase tracking-[0.2em]">Select_Region</span>
+            <span className="text-[7px] font-mono  text-gray-400 uppercase tracking-[0.2em]">Select_Region</span>
           </div>
           {languages.map((locale) => (
             <Link
               key={locale}
               href={`/${locale}/${pathString}?${searchParams.toString()}`}
-              className={`block px-4 py-3 text-[9px] font-mono font-bold uppercase tracking-[0.2em] transition-none ${
+              className={`block px-4 py-3 text-[9px] font-mono  uppercase tracking-[0.2em] transition-none ${
                 currentLocale === locale 
-                  ? 'bg-black text-primary' 
+                  ? 'bg-black text-white' 
                   : 'text-black hover:bg-primary/10'
               }`}
               role="menuitem"

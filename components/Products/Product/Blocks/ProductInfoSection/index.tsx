@@ -61,11 +61,11 @@ const ProductInfoSection = ({
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] text-primary">
+                <h3 className="text-[12px]  uppercase tracking-[0.3em] text-black">
                   {materials}
                 </h3>
               </div>
-              <p className="text-[9px] font-bold uppercase tracking-wider text-black leading-tight">
+              <p className="text-[9px]  uppercase tracking-wider text-black leading-tight">
                 {material}
               </p>
             </div>
@@ -74,11 +74,11 @@ const ProductInfoSection = ({
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] text-primary">
+                <h3 className="text-[12px]  uppercase tracking-[0.3em] text-black">
                   {styleString}
                 </h3>
               </div>
-              <p className="text-[9px] font-bold uppercase tracking-wider text-black leading-tight">
+              <p className="text-[9px]  uppercase tracking-wider text-black leading-tight">
                 {style}
               </p>
             </div>
@@ -87,11 +87,11 @@ const ProductInfoSection = ({
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] text-primary">
+                <h3 className="text-[12px]  uppercase tracking-[0.3em] text-black">
                   {weatherString}
                 </h3>
               </div>
-              <p className="text-[9px] font-bold uppercase tracking-wider text-black leading-tight">
+              <p className="text-[9px]  uppercase tracking-wider text-black leading-tight">
                 {weather}
               </p>
             </div>
@@ -100,41 +100,32 @@ const ProductInfoSection = ({
             <div className="group space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-black group-hover:w-12 transition-all duration-500" />
-                <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] text-primary">
+                <h3 className="text-[12px]  uppercase tracking-[0.3em] text-black">
                   {occasionsString}
                 </h3>
               </div>
-              <p className="text-[9px] font-bold uppercase tracking-wider text-black leading-tight">
+              <p className="text-[9px]  uppercase tracking-wider text-black leading-tight">
                 {occasions}
               </p>
             </div>
           </div>
 
           {/* DESNA STRANA: MATERIAL SPOTLIGHT */}
-          <div className="lg:col-span-4 border-2 border-black p-1 shadow-[1px_1px_0px_0px_rgba(0,0,0,0.05)]">
+          <div className="lg:col-span-4 border-none">
             <div className="border border-gray-100">
-              {details?.image.responsiveImage && (
-                <div className="relative aspect-square grayscale hover:grayscale-0 transition-all duration-1000 overflow-hidden group">
-                  <DatoImage
-                    fragment={details.image.responsiveImage}
-                    className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-              )}
-
               <div className="p-6 space-y-6 bg-white">
                 <div className="space-y-2">
-                  <span className="text-[12px] font-bold uppercase tracking-[0.2em] text-gray-400">
+                  <span className="text-[12px]  uppercase tracking-[0.2em] text-gray-400">
                     Sourced Material
                   </span>
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-black">
+                  <p className="text-[9px]  uppercase tracking-widest text-black">
                     {name}
                   </p>
                 </div>
 
                 <Link
                   href={`/${globalPageProps.params.lng}/products/?materials=${id}`}
-                  className="inline-block w-full border-2 border-black py-4 text-center text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-300"
+                  className="inline-block w-full border-none py-4 text-center text-[10px]  uppercase tracking-[0.3em] hover:text-black transition-all duration-300 animate-pulse"
                 >
                   {more}
                 </Link>

@@ -47,7 +47,7 @@ const Pagination = ({ numberOfProducts, currentPage }: PropTypes) => {
       <div className="max-w-[1920px] mx-auto px-4 md:px-12 flex flex-col items-center gap-8">
         
         {/* STATS AREA */}
-        <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
+        <div className="text-[10px]  uppercase tracking-[0.3em] text-gray-400">
           Index <span className="text-black">{firstProductIndex} — {lastProductIndex}</span> 
           <span className="mx-4 text-gray-200">/</span> 
           Total <span className="text-black">{numberOfProducts}</span>
@@ -73,7 +73,7 @@ const Pagination = ({ numberOfProducts, currentPage }: PropTypes) => {
           </div>
 
           {/* MOBILE CURRENT PAGE INDICATOR */}
-          <div className="flex sm:hidden h-12 px-6 items-center justify-center text-[11px] font-bold tracking-widest bg-black text-white">
+          <div className="flex sm:hidden h-12 px-6 items-center justify-center text-[11px]  tracking-widest bg-black text-white">
             PAGE {currentPage}
           </div>
 

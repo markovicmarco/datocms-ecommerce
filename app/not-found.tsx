@@ -11,7 +11,7 @@ const NotFound = () => {
           {/* TEXT CONTENT: Technical Error Log */}
           <div className="flex flex-col items-start justify-center p-8 md:p-24 border-b-2 md:border-b-0 md:border-r-2 border-black">
             {/* Status kod sada koristi text-primary za branding */}
-            <span className="mb-6 inline-block bg-black px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-primary">
+            <span className="mb-6 inline-block bg-black px-3 py-1 text-[10px] font-mono uppercase tracking-[0.3em] text-primary">
               Status_Code: 404
             </span>
             
@@ -26,7 +26,7 @@ const NotFound = () => {
             {/* Dugme sa hover-primary efektom */}
             <Link
               href={'/'}
-              className="group relative flex items-center gap-4 border-2 border-black bg-black px-10 py-5 text-[11px] font-bold uppercase tracking-[0.4em] text-white transition-all hover:bg-primary hover:text-black"
+              className="group relative flex items-center gap-4 border-2 border-black bg-black px-10 py-5 text-[11px] uppercase tracking-[0.4em] text-white transition-all hover:bg-primary hover:text-black"
             >
               <span>Return to Base</span>
               <span className="transition-transform group-hover:translate-x-2">→</span>

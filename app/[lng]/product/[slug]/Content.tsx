@@ -31,7 +31,7 @@ const Content: ContentPage<PageProps, Query> = ({
           
           {/* Labela sekcije - Sada koristi text-primary */}
           <div className="lg:col-span-3">
-            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary sticky top-32">
+            <span className="text-[10px] uppercase tracking-[0.4em] text-black/80 sticky top-32">
               Product_Deep_Dive 
             </span>
           </div>
@@ -56,7 +56,7 @@ const Content: ContentPage<PageProps, Query> = ({
                       );
                     case 'FeaturedQuestionsSectionRecord':
                       return (
-                        <div className="my-20 bg-gray-50 p-8 md:p-16">
+                        <div className="my-20 bg-transparent">
                           <QuestionsSection fragment={record} />
                         </div>
                       );
@@ -81,7 +81,7 @@ const Content: ContentPage<PageProps, Query> = ({
                     return (
                       <div
                         key={key}
-                        className="grid grid-cols-1 md:grid-cols-2 gap-px bg-black/10 border border-black/10 my-12"
+                        className="grid grid-cols-1 md:grid-cols-2 gap-px bg-black/10 border-none my-12"
                       >
                         {children}
                       </div>
@@ -95,10 +95,10 @@ const Content: ContentPage<PageProps, Query> = ({
                         className="bg-white p-4 flex items-center gap-4 group transition-all"
                       >
                         {/* Bullet point u primary boji */}
-                        <span className="text-primary font-mono text-[10px] font-bold">●</span>
+                        <span className="text-black font-mono text-[10px]"></span>
                         
                         {/* Hover na tekst ćelije sada vuče primary boju */}
-                        <div className="text-[9px] font-bold uppercase tracking-widest text-black group-hover:text-primary transition-colors">
+                        <div className="text-[9px] uppercase tracking-widest text-black group-hover:text-black transition-colors">
                           {children}
                         </div>
                       </div>
@@ -116,7 +116,7 @@ const Content: ContentPage<PageProps, Query> = ({
         <FeaturedProducts data={data} globalPageProps={globalPageProps} />
       </div>
       
-      <div className="bg-black text-white py-24">
+      <div className="bg-transparent text-black py-5">
         <Reviews data={data} globalPageProps={globalPageProps} />
       </div>
     </div>
